@@ -88,3 +88,39 @@ h1{font-size:42px; margin:0 0 8px}
 }
 .interests .txt strong{ display:block; font-weight:700 }
 .interests .txt small{ display:block; color: var(--muted) }
+/* نقاط نبذة مرتّبة */
+.about-points{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 10px;                 /* المسافة بين السطور */
+  font-size: 1.1rem;         /* حجم مريح للقراءة */
+  line-height: 1.9;
+}
+.about-points li{
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+/* نقطة دائرية صغيرة بلون الهوية */
+.about-points .dot{
+  width: 10px;
+  height: 10px;
+  margin-top: 10px;          /* يوازن مع سطر النص */
+  border-radius: 50%;
+  background: var(--brand-2);
+  flex: 0 0 10px;
+}
+
+/* خيار بديل: علامة صح */
+.about-points .tick{
+  width: 18px; height: 18px; margin-top: 6px; flex: 0 0 18px;
+  color: var(--brand-2);
+  /* رسم الصح بـ SVG خلفية */
+  -webkit-mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23000" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>') center/contain no-repeat;
+  mask: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="%23000" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z"/></svg>') center/contain no-repeat;
+  background: var(--brand-2);
+  border-radius: 4px;
+}
