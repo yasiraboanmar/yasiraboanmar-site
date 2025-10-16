@@ -124,3 +124,28 @@ h1{font-size:42px; margin:0 0 8px}
   background: var(--brand-2);
   border-radius: 4px;
 }
+/* الإنجازات */
+.achievements{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:12px;
+}
+.achievements li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  padding:12px 14px;
+  background: rgba(255,255,255,0.02);
+  border-radius:12px;
+}
+.achievements .badge{
+  flex:0 0 22px;
+  color: var(--brand-2);
+  line-height:0;
+}
+.achievements .text{
+  line-height:1.9;
+  color: var(--text);
+}
