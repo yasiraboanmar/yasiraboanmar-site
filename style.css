@@ -59,31 +59,72 @@ h1{font-size:42px; margin:0 0 8px}
   .profile-body{ text-align:center }
   .profile-photo{ width:140px; height:140px }
 }
+/* ===== Contact Card ===== */
+.card.contact{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;   /* توسيط عمودي */
+  gap:14px;
+  min-height:320px;         /* عدّل الارتفاع لو احتجت */
+}
+
 /* أيقونات التواصل */
 .socials{
   display:flex;
   gap:18px;
   align-items:center;
-  justify-content:center;       /* وسط الكرت */
-  margin-top:4px;
+  justify-content:center;
+  margin:0;                 /* إزالة أي فراغ علوي */
 }
+
 .social{
+  position: relative;
+  display:inline-flex;
   color: var(--text);
-  opacity: .9;
+  opacity: .95;
   transition: transform .15s ease, opacity .15s ease, color .15s ease;
 }
+
+/* هالة خلف الأيقونة عند الهوفر */
+.social::before{
+  content:"";
+  position:absolute;
+  inset:-6px;               /* مساحة الهالة حول الأيقونة */
+  border-radius:50%;
+  background: currentColor;
+  opacity:0;
+  transform: scale(.6);
+  transition: opacity .15s ease, transform .15s ease;
+}
+
+/* Hover / Focus */
 .social:hover{
   transform: translateY(-2px) scale(1.06);
+  color: var(--brand-2);
   opacity: 1;
-  color: var(--brand-2);         /* تلوّن عند الهوفر */
 }
-.card.contact{
-  display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:14px; min-height: 320px;
+.social:hover::before{ opacity:.12; transform: scale(1); }
+
+/* وصول بالكيبورد */
+.social:focus-visible{
+  outline: 2px solid var(--brand-2);
+  outline-offset: 4px;
+  border-radius: 999px;
 }
-.socials{ margin:0 }
-.contact-note{ color: var(--muted); margin:4px 0 0; font-size:.95rem }
+
+/* نص تحت الأيقونات */
+.contact-note{
+  color: var(--muted);
+  margin:4px 0 0;
+  font-size:.95rem;
+  text-align:center;
+}
+
+/* أزرار */
 .cta-row.center{ justify-content:center }
+.btn:hover{ transform: translateY(-1px); }
+.btn.outline:hover{ border-color: var(--brand-2); color: var(--brand-2); }
 
 /* اهتماماتي */
 .interests{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px }
