@@ -30,7 +30,7 @@ h1{font-size:42px; margin:0 0 8px}
   backdrop-filter: none;
 }
 .brand-fixed img{
-  height: 36px;            /* غيّرها 32–44 حسب رغبتك */
+  height: 44px;            /* غيّرها 32–44 حسب رغبتك */
   width: auto;
   display: block;
   filter: drop-shadow(0 1px 3px rgba(0,0,0,.25)); /* ظل خفيف اختياري */
