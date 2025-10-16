@@ -218,8 +218,28 @@
     <div class="container">© <span id="y"></span> Yasir Aljiyadi — Made with ❤️</div>
   </footer>
 
-  <script>
-    document.getElementById('y').textContent = new Date().getFullYear();
-  </script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const y = document.getElementById('y');
+    if (y) y.textContent = new Date().getFullYear();
+
+    window.copyEmail = async function () {
+      const email = 'my@yasiraboanmar.com';
+      try {
+        await navigator.clipboard.writeText(email);
+        alert('تم نسخ البريد: ' + email);
+      } catch (e) {
+        // فallback
+        const ta = document.createElement('textarea');
+        ta.value = email;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('تم نسخ البريد: ' + email);
+      }
+    };
+  });
+</script>
 </body>
 </html>
