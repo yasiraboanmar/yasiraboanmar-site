@@ -244,13 +244,13 @@
     const y = document.getElementById('y');
     if (y) y.textContent = new Date().getFullYear();
 
+    // نسخ البريد
     window.copyEmail = async function () {
       const email = 'my@yasiraboanmar.com';
       try {
         await navigator.clipboard.writeText(email);
         alert('تم نسخ البريد: ' + email);
       } catch (e) {
-        // فallback
         const ta = document.createElement('textarea');
         ta.value = email;
         document.body.appendChild(ta);
@@ -260,6 +260,51 @@
         alert('تم نسخ البريد: ' + email);
       }
     };
+
+    // ===== QR =====
+    const qrImg      = document.getElementById('qrImg');
+    const qrLink     = document.getElementById('qrLink');
+    const qrCaption  = document.getElementById('qrCaption');
+    const qrDownload = document.getElementById('qrDownload');
+    const chips      = document.querySelectorAll('.qr-toggle .chip');
+
+    // ضَع هنا رابط موقعك النهائي إن أردت QR لملف vCard مباشرة
+    const siteOrigin = 'https://yasiraboanmar.com';
+    const vcardUrl   = siteOrigin + '/yasir.vcf';
+    const mailToStr  = 'mailto:my@yasiraboanmar.com';
+
+    // مولِّد QR سريع عبر Google Charts (مؤقتًا)
+    function qrSrcFor(text){
+      const size = 220; // بكسل
+      const chl  = encodeURIComponent(text);
+      return `https://chart.googleapis.com/chart?cht=qr&chs=${size}x${size}&chld=M|0&chl=${chl}`;
+    }
+
+    function setQR(kind){
+      chips.forEach(c => c.classList.toggle('active', c.dataset.kind === kind));
+
+      let href = '#', caption = '';
+      if (kind === 'mail'){
+        href = mailToStr;
+        caption = 'امسح لفتح البريد مباشرة.';
+      } else {
+        href = vcardUrl;
+        caption = 'امسح لتحميل بطاقة جهة الاتصال (vCard).';
+      }
+
+      const src = qrSrcFor(href);
+      qrImg.src = src;
+      qrLink.href = href;
+      qrCaption.textContent = caption;
+
+      // رابط التحميل لنفس الصورة
+      qrDownload.href = src;
+      qrDownload.download = (kind === 'mail') ? 'yasir-qr-mail.png' : 'yasir-qr-vcard.png';
+    }
+
+    // تفعيل
+    setQR('mail');
+    chips.forEach(ch => ch.addEventListener('click', () => setQR(ch.dataset.kind)));
   });
 </script>
 </body>
