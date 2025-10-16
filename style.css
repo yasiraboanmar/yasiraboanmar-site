@@ -59,3 +59,21 @@ h1{font-size:42px; margin:0 0 8px}
   .profile-body{ text-align:center }
   .profile-photo{ width:140px; height:140px }
 }
+/* أيقونات التواصل */
+.socials{
+  display:flex;
+  gap:18px;
+  align-items:center;
+  justify-content:center;       /* وسط الكرت */
+  margin-top:4px;
+}
+.social{
+  color: var(--text);
+  opacity: .9;
+  transition: transform .15s ease, opacity .15s ease, color .15s ease;
+}
+.social:hover{
+  transform: translateY(-2px) scale(1.06);
+  opacity: 1;
+  color: var(--brand-2);         /* تلوّن عند الهوفر */
+}
