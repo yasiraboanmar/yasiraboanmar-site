@@ -19,20 +19,25 @@ h1{font-size:42px; margin:0 0 8px}
 .links li{margin:6px 0}
 .footer{opacity:.7; padding:24px 0; text-align:center}
 
-/* --- logo ثابت على يسار الشاشة --- */
+/* --- logo ثابت أعلى يسار بدون خلفية --- */
 .brand-fixed{
-  position: fixed; left: 16px; top: 16px; z-index: 100;
-  padding: 6px 8px; border-radius: 12px;
-  background: rgba(18,40,37,.55); backdrop-filter: blur(6px);
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 0;              /* لا حواف */
+  background: transparent; /* لا خلفية */
+  backdrop-filter: none;
 }
-.brand-fixed img{ height: 40px; width:auto; display:block }
-@media (min-width: 1100px){
-  .brand-fixed{ top:50%; transform: translateY(-50%); left:24px }
-  body{ padding-left: 110px; }  /* يترك مسافة يمين المحتوى حتى ما يتغطى */
+.brand-fixed img{
+  height: 36px;            /* غيّرها 32–44 حسب رغبتك */
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.25)); /* ظل خفيف اختياري */
 }
 @media (max-width:700px){
-  .brand-fixed{ top:12px; left:12px }
-  .brand-fixed img{ height:32px }
+  .brand-fixed{ top: 10px; left: 10px }
+  .brand-fixed img{ height: 32px }
 }
 
 /* --- بطاقة تعريف في الهيدر: صورة يمين + نص يسار --- */
