@@ -95,59 +95,39 @@ h1{
 
 /* ========= الشعار + الهيرو (Mobile ≤700px) ========= */
 /* ========= شعار الجوال: كبسولة أوضح ومغطّية للشعار ========= */
+/* شعار الجوال بالوسط تماماً */
 @media (max-width: 700px){
   .brand-fixed{
-    position: sticky;           /* يلصق بالأعلى أثناء التمرير */
+    position: sticky;        /* يلتصق بالأعلى عند التمرير */
     top: 8px;
-    left: 50%;
-    transform: translateX(-50%);/* توسيط أفقي دقيق */
-    display: inline-flex;       /* يلتف حول محتوى الشعار */
+
+    /* التوسيط بطريقة مضمونة */
+    inset-inline: 0;         /* = left:0 و right:0 (تعمل RTL/LTR) */
+    margin-inline: auto;     /* يوسّط العنصر أفقياً */
+    width: max-content;      /* على قدّ المحتوى فقط */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    padding: 6px 12px;          /* حواف الكبسولة */
-    border-radius: 14px;        /* زوايا ناعمة */
-    background: rgba(5, 12, 10, .55); /* شفافية أوضح وأغمق قليلاً */
-    backdrop-filter: blur(6px) saturate(140%); /* ضبابية خفيفة */
-    -webkit-backdrop-filter: blur(6px) saturate(140%); /* دعم iOS */
-    box-shadow: 0 6px 16px rgba(0,0,0,.28);   /* ظل لطيف */
+    /* كبسولة خفيفة خلف الشعار */
+    padding: 6px 12px;
+    border-radius: 14px;
+    background: rgba(5,12,10,.55);
+    backdrop-filter: blur(6px) saturate(140%);
+    -webkit-backdrop-filter: blur(6px) saturate(140%);
+    box-shadow: 0 6px 16px rgba(0,0,0,.28);
     z-index: 1000;
   }
 
   .brand-fixed img{
-    height: 36px;               /* حجم مناسب للجوال */
+    height: 36px;
     width: auto;
     display: block;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); /* ظل خفيف */
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
   }
 
-  /* مساحة بسيطة تحت الشعار حتى لا يلمس الكرت */
-  .hero{
-    padding-top: 72px;          /* عدّلها بين 64–84 إذا حبيت */
-    background: none !important;/* لا خلفية خلف الشعار */
-  }
-}
-
-/* ============ بطاقة التعريف (الصورة + النص) ============ */
-.profile-card{
-  display:flex; flex-direction:row; align-items:center; gap:22px;
-  background:var(--card); border-radius:16px; padding:22px;
-  box-shadow:0 10px 28px rgba(0,0,0,.25);
-}
-.profile-photo{
-  width:180px; height:180px; object-fit:cover;
-  border-radius:14px;
-  border:3px solid rgba(158,230,207,.25);
-  box-shadow:0 6px 18px rgba(0,0,0,.25);
-}
-.profile-body{ text-align:start }
-.lead{ margin:8px 0 14px; color:var(--muted) }
-
-/* على الشاشات الصغيرة: عمودي */
-@media (max-width:720px){
-  .profile-card{ flex-direction:column; text-align:center }
-  .profile-body{ text-align:center }
-  .profile-photo{ width:140px; height:140px }
+  /* مساحة فوق الكرت حتى ما يلمس الشعار */
+  .hero{ padding-top: 72px; }
 }
 
 /* ============ نبذة بنقاط ============ */
