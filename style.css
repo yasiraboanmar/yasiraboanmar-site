@@ -94,40 +94,50 @@ h1{
 }
 
 /* ========= الشعار + الهيرو (Mobile ≤700px) ========= */
-/* ========= شعار الجوال: كبسولة أوضح ومغطّية للشعار ========= */
-/* شعار الجوال بالوسط تماماً */
+/* ===== الشعار: ديسكتوب ثابت أعلى اليسار ===== */
+.brand-fixed{
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 0;
+  background: transparent;
+}
+.brand-fixed img{
+  height: 44px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+}
+
+/* ===== الشعار على الجوال (≤700px): ثابت أعلى الوسط + كبسولة خفيفة ===== */
 @media (max-width: 700px){
   .brand-fixed{
-    position: sticky;        /* يلتصق بالأعلى عند التمرير */
-    top: 8px;
+    position: fixed;          /* موافق إنك تبغاه ثابت */
+    top: 10px;
+    left: 50% !important;     /* نلغي قاعدة الديسكتوب صراحة */
+    right: auto !important;
+    transform: translateX(-50%) !important;
 
-    /* التوسيط بطريقة مضمونة */
-    inset-inline: 0;         /* = left:0 و right:0 (تعمل RTL/LTR) */
-    margin-inline: auto;     /* يوسّط العنصر أفقياً */
-    width: max-content;      /* على قدّ المحتوى فقط */
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    /* كبسولة خفيفة خلف الشعار */
-    padding: 6px 12px;
+    padding: 6px 12px;        /* كبسولة خفيفة */
     border-radius: 14px;
     background: rgba(5,12,10,.55);
     backdrop-filter: blur(6px) saturate(140%);
     -webkit-backdrop-filter: blur(6px) saturate(140%);
     box-shadow: 0 6px 16px rgba(0,0,0,.28);
-    z-index: 1000;
   }
 
   .brand-fixed img{
-    height: 36px;
+    height: 36px;             /* حجم أنسب للجوال */
     width: auto;
-    display: block;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
   }
 
-  /* مساحة فوق الكرت حتى ما يلمس الشعار */
-  .hero{ padding-top: 72px; }
+  /* مساحة علشان ما يتغطى الهيرو */
+  .hero{ padding-top: 86px; }
 }
 
 /* ============ نبذة بنقاط ============ */
