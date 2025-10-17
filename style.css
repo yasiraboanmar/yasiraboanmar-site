@@ -97,15 +97,20 @@ h1{
   .brand-fixed{
     position: sticky;        /* يلتصق بالأعلى أثناء التمرير */
     top: 8px;
-    left: 50%;
-    transform: translateX(-50%); /* توسيط أفقي */
-    margin: 8px auto 0;     /* مسافة بسيطة من الأعلى */
-    background: transparent; /* تأكيد: لا خلفية */
+    /* نلغي أي تموضع سابق */
+    left: auto; right: auto; transform: none;
+    /* نخليه ياخذ عرض السطر ويتوسّط المحتوى */
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 8px auto 0;
+    background: transparent;
     z-index: 1000;
   }
   .brand-fixed img{
     height: 36px;            /* حجم مريح للجوال */
-    filter: none;            /* لو تفضل بدون ظل */
+    margin: 0 auto;          /* توسيط الصورة داخل العنصر */
+    filter: none;
   }
 }
 
