@@ -16,7 +16,7 @@
 html,body{ height:100% }
 body{
   margin:0;
-  font-family: "Cairo", system-ui, -apple-system, Segoe UI, Roboto, "Noto Naskh Arabic", Tahoma, Arial, sans-serif;
+  font-family:"Cairo",system-ui,-apple-system,Segoe UI,Roboto,"Noto Naskh Arabic",Tahoma,Arial,sans-serif;
   background:var(--bg);
   color:var(--text);
   line-height:1.75;
@@ -26,7 +26,7 @@ body{
 a{ color:var(--brand-2); text-decoration:none }
 img{ max-width:100%; display:block }
 
-/* تقليل الحركة للي يفضل ذلك */
+/* تقليل الحركة */
 @media (prefers-reduced-motion: reduce){
   *{ animation:none!important; transition:none!important }
 }
@@ -34,27 +34,20 @@ img{ max-width:100%; display:block }
 /* ============ حاوية عامة ============ */
 .container{ max-width:980px; margin:0 auto; padding:0 20px }
 
-/* ============ الهيدر/الهيرو ============ */
+/* ============ الهيرو ============ */
 .hero{
   padding:36px 0 44px;
   background:linear-gradient(180deg, rgba(46,96,85,.5), rgba(11,31,28,0));
   text-align:center;
 }
-h1{
-  /* يتدرّج تلقائيًا حسب عرض الشاشة */
-  font-size: clamp(28px, 3.4vw + 10px, 44px);
-  margin:0 0 8px;
-}
+h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 .subtitle{ opacity:.9; margin:0 0 18px }
 
 /* أزرار */
 .cta-row{ display:flex; gap:12px; justify-content:center; flex-wrap:wrap }
 .btn{
-  background:var(--brand);
-  color:var(--text);
-  padding:10px 16px;
-  border-radius:12px;
-  display:inline-block;
+  background:var(--brand); color:var(--text);
+  padding:10px 16px; border-radius:12px; display:inline-block;
   transition:transform .15s ease, border-color .15s ease, color .15s ease;
 }
 .btn.outline{ background:transparent; border:1px solid var(--brand-2) }
@@ -76,166 +69,130 @@ h1{
 .footer{ opacity:.7; padding:24px 0; text-align:center }
 
 /* ============ الشعار ============ */
-/* ========= الشعار (Desktop) ========= */
+/* ديسكتوب: ثابت أعلى اليمين وبدون خلفية */
 .brand-fixed{
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  z-index: 1000;
-  padding: 0;
-  background: transparent;
+  position:fixed; top:12px; right:12px; z-index:1000;
+  padding:0; background:transparent;
 }
 .brand-fixed img{
-  height: 44px;
-  width: auto;
-  display: block;
-  /* شادو خفيف أنعم */
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+  height:44px; width:auto; display:block;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));
 }
 
-/* ========= الشعار + الهيرو (Mobile ≤700px) ========= */
-/* ===== الشعار: ديسكتوب ثابت أعلى اليسار ===== */
-.brand-fixed{
-  position: fixed;
-  top: 12px;
-  right: 12px;
-  z-index: 1000;
-  padding: 0;
-  background: transparent;
-}
-.brand-fixed img{
-  height: 44px;
-  width: auto;
-  display: block;
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
-}
-
-/* ===== الشعار على الجوال (≤700px): ثابت أعلى الوسط + كبسولة خفيفة ===== */
-@media (max-width: 700px){
+/* جوال (≤700px): وسط الشاشة داخل كبسولة خفيفة، مع مساحة أعلى للهيرو */
+@media (max-width:700px){
   .brand-fixed{
-    position: fixed;          /* موافق إنك تبغاه ثابت */
-    top: 10px;
-    left: 50% !important;     /* نلغي قاعدة الديسكتوب صراحة */
-    right: auto !important;
-    transform: translateX(-50%) !important;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    padding: 6px 12px;        /* كبسولة خفيفة */
-    border-radius: 14px;
-    background: rgba(5,12,10,.55);
-    backdrop-filter: blur(6px) saturate(140%);
-    -webkit-backdrop-filter: blur(6px) saturate(140%);
-    box-shadow: 0 6px 16px rgba(0,0,0,.28);
+    position:fixed; top:10px; left:50%; right:auto;
+    transform:translateX(-50%);
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:6px 12px; border-radius:14px;
+    background:rgba(5,12,10,.55);
+    backdrop-filter:blur(6px) saturate(140%);
+    -webkit-backdrop-filter:blur(6px) saturate(140%);
+    box-shadow:0 6px 16px rgba(0,0,0,.28);
   }
+  .brand-fixed img{ height:36px }
+  .hero{ padding-top:86px } /* حتى ما يتغطى أول كرت */
+}
 
-  .brand-fixed img{
-    height: 36px;             /* حجم أنسب للجوال */
-    width: auto;
+/* ============ بطاقة التعريف ============ */
+.profile-card{
+  display:flex; align-items:center; gap:22px;
+  background:var(--card); border-radius:16px; padding:22px;
+  box-shadow:0 10px 28px rgba(0,0,0,.25);
+}
+
+/* الصورة مقاس ثابت — لا تتمدد */
+.profile-photo{
+  flex:0 0 180px;
+  width:180px !important;
+  height:180px !important;
+  max-width:none;              /* يتجاوز قاعدة img {max-width:100%} */
+  object-fit:cover;
+  border-radius:14px;
+  border:3px solid rgba(158,230,207,.25);
+  box-shadow:0 6px 18px rgba(0,0,0,.25);
+}
+
+.profile-body{ text-align:start }
+.lead{ margin:8px 0 14px; color:var(--muted) }
+
+/* جوال: عمودي وتصغير الصورة */
+@media (max-width:720px){
+  .profile-card{ flex-direction:column; text-align:center }
+  .profile-body{ text-align:center }
+  .profile-photo{
+    flex:0 0 140px;
+    width:140px !important;
+    height:140px !important;
   }
-
-  /* مساحة علشان ما يتغطى الهيرو */
-  .hero{ padding-top: 86px; }
 }
 
 /* ============ نبذة بنقاط ============ */
 .about-points{
   list-style:none; margin:0; padding:0;
-  display:grid; gap:10px;
-  font-size:1.1rem; line-height:1.9;
+  display:grid; gap:10px; font-size:1.1rem; line-height:1.9;
 }
 .about-points li{ display:flex; align-items:flex-start; gap:10px }
 .about-points .dot{
-  width:10px; height:10px; margin-top:10px;
-  border-radius:50%;
-  background:var(--brand-2);
-  flex:0 0 10px;
+  width:10px; height:10px; margin-top:10px; border-radius:50%;
+  background:var(--brand-2); flex:0 0 10px;
 }
 
 /* ============ اهتمامات ============ */
-.interests{
-  list-style:none; margin:0; padding:0;
-  display:flex; flex-direction:column; gap:14px
-}
+.interests{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px }
 .interests li{
   display:flex; align-items:flex-start; gap:12px;
-  padding:10px 12px; border-radius:12px;
-  background:rgba(255,255,255,.02);
+  padding:10px 12px; border-radius:12px; background:rgba(255,255,255,.02);
 }
 .interests .ico{ line-height:0; color:var(--brand-2) }
 .interests .txt strong{ display:block; font-weight:700 }
 .interests .txt small{ display:block; color:var(--muted) }
 
 /* ============ الإنجازات ============ */
-.achievements{
-  list-style:none; margin:0; padding:0;
-  display:grid; gap:12px
-}
+.achievements{ list-style:none; margin:0; padding:0; display:grid; gap:12px }
 .achievements li{
   display:flex; align-items:flex-start; gap:12px;
-  padding:12px 14px; background:rgba(255,255,255,0.02);
-  border-radius:12px
+  padding:12px 14px; background:rgba(255,255,255,.02); border-radius:12px;
 }
 .achievements .badge{ flex:0 0 22px; color:var(--brand-2); line-height:0 }
 .achievements .text{ line-height:1.9; color:var(--text) }
 
 /* ============ كرت التواصل + الأيقونات + QR ============ */
 .card.contact{
-  display:flex; flex-direction:column;
-  align-items:center; justify-content:center;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
   gap:16px; padding:28px; min-height:420px;
 }
 .card.contact h2{ margin-bottom:8px }
 
-.socials{
-  display:flex; gap:22px; align-items:center; justify-content:center; margin:0
-}
+.socials{ display:flex; gap:22px; align-items:center; justify-content:center; margin:0 }
 .social{
-  position:relative; display:inline-flex;
-  color:var(--text); opacity:.95;
-  transition:transform .15s ease, opacity .15s ease, color .15s ease
+  position:relative; display:inline-flex; color:var(--text); opacity:.95;
+  transition:transform .15s ease, opacity .15s ease, color .15s ease;
 }
 .social:hover{ transform:translateY(-2px) scale(1.06); color:var(--brand-2); opacity:1 }
 .social:focus-visible{ outline:2px solid var(--brand-2); outline-offset:4px; border-radius:999px }
 .social svg{ width:32px; height:32px }
 
 .contact-note{
-  color:var(--muted);
-  margin:6px 0 0; font-size:1rem; line-height:1.9;
-  max-width:34ch; text-align:center
+  color:var(--muted); margin:6px 0 0; font-size:1rem; line-height:1.9;
+  max-width:34ch; text-align:center;
 }
 .cta-row.center{ justify-content:center }
 
 /* QR */
-.qr-wrap{
-  display:flex; flex-direction:column; align-items:center;
-  gap:10px; margin-top:8px
-}
+.qr-wrap{ display:flex; flex-direction:column; align-items:center; gap:10px; margin-top:8px }
 .qr-toggle{ display:flex; gap:8px; flex-wrap:wrap; justify-content:center }
 .chip{
-  padding:6px 12px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
-  color:var(--muted);
-  border-radius:999px; font-size:.92rem;
-  cursor:pointer; user-select:none
+  padding:6px 12px; background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06); color:var(--muted);
+  border-radius:999px; font-size:.92rem; cursor:pointer; user-select:none;
 }
-.qr-toggle .chip.active{
-  background:rgba(158,230,207,.12);
-  border-color:var(--brand-2);
-  color:var(--brand-2)
-}
+.qr-toggle .chip.active{ background:rgba(158,230,207,.12); border-color:var(--brand-2); color:var(--brand-2) }
 .qr-box{
-  padding:10px; border-radius:16px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
-  display:flex; align-items:center; justify-content:center
+  padding:10px; border-radius:16px; background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center;
 }
-.qr-box img{
-  width:210px; height:210px;
-  image-rendering:pixelated; border-radius:12px
-}
+.qr-box img{ width:210px; height:210px; image-rendering:pixelated; border-radius:12px }
 .qr-caption{ color:var(--muted); font-size:.92rem; text-align:center }
 .qr-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap }
