@@ -94,39 +94,37 @@ h1{
 }
 
 /* ========= الشعار + الهيرو (Mobile ≤700px) ========= */
+/* ========= شعار الجوال: كبسولة أوضح ومغطّية للشعار ========= */
 @media (max-width: 700px){
   .brand-fixed{
-    position: sticky;
-    top: 0;
-    left: auto; right: auto; transform: none;
-    display: block;
-    width: 100%;
-    text-align: center;
-    padding: 8px 0;
-    background: transparent;
+    position: sticky;           /* يلصق بالأعلى أثناء التمرير */
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);/* توسيط أفقي دقيق */
+    display: inline-flex;       /* يلتف حول محتوى الشعار */
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px 12px;          /* حواف الكبسولة */
+    border-radius: 14px;        /* زوايا ناعمة */
+    background: rgba(5, 12, 10, .55); /* شفافية أوضح وأغمق قليلاً */
+    backdrop-filter: blur(6px) saturate(140%); /* ضبابية خفيفة */
+    -webkit-backdrop-filter: blur(6px) saturate(140%); /* دعم iOS */
+    box-shadow: 0 6px 16px rgba(0,0,0,.28);   /* ظل لطيف */
     z-index: 1000;
   }
+
   .brand-fixed img{
-    height: 36px;
-    margin: 0 auto;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
+    height: 36px;               /* حجم مناسب للجوال */
+    width: auto;
+    display: block;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,.25)); /* ظل خفيف */
   }
 
-  /* ظل خفيف تحت الشعار (اختياري) */
-  .brand-fixed::after{
-    content: "";
-    position: absolute;
-    left: 0; right: 0; bottom: -6px;
-    height: 18px;
-    background: linear-gradient(to bottom, rgba(0,0,0,.14), rgba(0,0,0,0));
-    pointer-events: none;
-  }
-
-  /* ألغِ أي تدرّج/خلفية للهيرو على الجوال */
+  /* مساحة بسيطة تحت الشعار حتى لا يلمس الكرت */
   .hero{
-    margin-top: 0;          /* لا نحتاج فراغ إضافي */
-    padding-top: 28px;      /* مساحة بسيطة فوق الكرت */
-    background: none !important;
+    padding-top: 72px;          /* عدّلها بين 64–84 إذا حبيت */
+    background: none !important;/* لا خلفية خلف الشعار */
   }
 }
 
