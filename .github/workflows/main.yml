@@ -1,0 +1,23 @@
+name: Optimize images
+on:
+  push:
+    paths:
+      - 'assets/**'
+  pull_request:
+    paths:
+      - 'assets/**'
+  workflow_dispatch:
+
+jobs:
+  optimize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # يضغط PNG/JPG ويفتح PR تلقائيًا (لا يلمس SVG)
+      - name: Compress images
+        uses: calibreapp/image-actions@v1
+        with:
+          githubToken: ${{ secrets.GITHUB_TOKEN }}
+          ignorePaths: |
+            **/*.svg
