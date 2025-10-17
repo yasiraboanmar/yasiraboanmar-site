@@ -76,28 +76,37 @@ h1{
 .footer{ opacity:.7; padding:24px 0; text-align:center }
 
 /* ============ الشعار ============ */
-/* على الديسكتوب: ثابت أعلى اليسار */
+/* ========= الشعار (Desktop) يبقى ثابت أعلى اليسار ========= */
 .brand-fixed{
-  position:fixed;
-  top:12px; left:12px;
-  z-index:1000;
-  padding:0;
-  background:transparent;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1000;
+  padding: 0;
+  background: transparent; /* لا خلفية */
 }
 .brand-fixed img{
-  height:44px; width:auto;
-  filter:drop-shadow(0 1px 3px rgba(0,0,0,.25));
+  height: 44px;
+  width: auto;
+  display: block;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.25)); /* ظل خفيف (اختياري) */
 }
 
-/* على الجوال: اجعله عنصر عادي (غير ثابت) فوق الهيدر */
-@media (max-width:700px){
+/* ========= الشعار (Mobile ≤700px) بالوسط + Sticky ========= */
+@media (max-width: 700px){
   .brand-fixed{
-    position:static;       /* << هذا يلغي الثبات */
-    display:block;
-    width:fit-content;
-    margin:10px 10px 0 0;  /* مسافة بسيطة من الأعلى */
+    position: sticky;        /* يلتصق بالأعلى أثناء التمرير */
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%); /* توسيط أفقي */
+    margin: 8px auto 0;     /* مسافة بسيطة من الأعلى */
+    background: transparent; /* تأكيد: لا خلفية */
+    z-index: 1000;
   }
-  .brand-fixed img{ height:32px }
+  .brand-fixed img{
+    height: 36px;            /* حجم مريح للجوال */
+    filter: none;            /* لو تفضل بدون ظل */
+  }
 }
 
 /* ============ بطاقة التعريف (الصورة + النص) ============ */
