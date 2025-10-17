@@ -96,13 +96,13 @@ h1{
 /* ========= الشعار + الهيرو (Mobile ≤700px) ========= */
 @media (max-width: 700px){
   .brand-fixed{
-    position: sticky;      /* ثابت أعلى */
-    top: 0;                /* نخليه يلصق على الحافة */
+    position: sticky;
+    top: 0;
     left: auto; right: auto; transform: none;
     display: block;
     width: 100%;
     text-align: center;
-    padding: 8px 0;        /* بدل margin عشان ما تفتح فراغات غريبة */
+    padding: 8px 0;
     background: transparent;
     z-index: 1000;
   }
@@ -112,15 +112,21 @@ h1{
     filter: drop-shadow(0 2px 6px rgba(0,0,0,.25));
   }
 
-  /* نزّل الـ hero لتحت بحيث يظهر خلف الشعار لون الخلفية فقط */
+  /* ظل خفيف تحت الشعار (اختياري) */
+  .brand-fixed::after{
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -6px;
+    height: 18px;
+    background: linear-gradient(to bottom, rgba(0,0,0,.14), rgba(0,0,0,0));
+    pointer-events: none;
+  }
+
+  /* ألغِ أي تدرّج/خلفية للهيرو على الجوال */
   .hero{
-    margin-top: 56px;      /* هذا اللي يمنع الشريط الأخضر */
-    padding-top: 36px;     /* رجّع البادينق الطبيعي داخل الكرت */
-    background: linear-gradient(
-      180deg,
-      rgba(46,96,85,.22),   /* تخفيف التدرّج */
-      rgba(11,31,28,0)
-    );
+    margin-top: 0;          /* لا نحتاج فراغ إضافي */
+    padding-top: 28px;      /* مساحة بسيطة فوق الكرت */
+    background: none !important;
   }
 }
 
