@@ -71,7 +71,7 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 /* ============ الشعار ============ */
 /* ديسكتوب: ثابت أعلى اليمين وبدون خلفية */
 .brand-fixed{
-  position:fixed; top:12px; right:12px; z-index:1000;
+  position:fixed; top:12px; right:auto; left:12px; z-index:1000;
   padding:0; background:transparent;
 }
 .brand-fixed img{
