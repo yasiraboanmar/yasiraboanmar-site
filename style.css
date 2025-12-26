@@ -78,12 +78,13 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 .lang-switcher{
   position:fixed; top:12px; right:12px; z-index:1001;
   display:flex; gap:8px; align-items:center;
+  left:auto; /* دائماً على اليمين */
 }
 [dir="rtl"] .lang-switcher{
-  right:auto; left:auto; right:12px;
+  right:12px; left:auto; /* دائماً على اليمين حتى في RTL */
 }
 [dir="ltr"] .lang-switcher{
-  right:12px; left:auto;
+  right:12px; left:auto; /* دائماً على اليمين */
 }
 .lang-btn{
   display:inline-flex; align-items:center; justify-content:center;
@@ -127,6 +128,17 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
     position:static; top:auto; left:auto; right:auto;
     transform:none; padding:0; background:transparent;
     box-shadow:none;
+    margin-right:auto; /* يدفع اللوقو لليسار */
+  }
+  [dir="rtl"] .mobile-top-bar .brand-fixed{
+    margin-right:0; margin-left:auto; /* في RTL: يدفع اللوقو لليمين */
+  }
+  .mobile-top-bar .lang-switcher{
+    margin-left:auto; /* يدفع أزرار اللغات لليمين */
+    margin-right:0; /* دائماً على اليمين */
+  }
+  [dir="rtl"] .mobile-top-bar .lang-switcher{
+    margin-left:auto; margin-right:0; /* دائماً على اليمين حتى في RTL */
   }
   .mobile-top-bar .brand-fixed img{
     height:32px;
@@ -142,13 +154,13 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 }
 
 /* ============ الشعار ============ */
-/* ديسكتوب: ثابت أعلى اليمين وبدون خلفية */
+/* ديسكتوب: ثابت أعلى اليسار وبدون خلفية */
 .brand-fixed{
   position:fixed; top:12px; right:auto; left:12px; z-index:1000;
   padding:0; background:transparent;
 }
 [dir="ltr"] .brand-fixed{
-  left:auto; right:12px;
+  left:12px; right:auto;
 }
 .brand-fixed img{
   height:44px; width:auto; display:block;
