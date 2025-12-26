@@ -82,10 +82,7 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
   position:static; top:auto; left:auto; right:auto;
   transform:none; padding:0; background:transparent;
   box-shadow:none;
-  margin-right:auto; /* يدفع اللوقو لليسار */
-}
-[dir="rtl"] .top-bar .brand-fixed{
-  margin-right:0; margin-left:auto; /* في RTL: يدفع اللوقو لليمين */
+  flex:0 0 auto; /* لا يتمدد */
 }
 .top-bar .brand-fixed img{
   height:44px; width:auto; display:block;
@@ -94,11 +91,11 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 .top-bar .lang-switcher{
   position:static; top:auto; right:auto; left:auto;
   display:flex; gap:8px; align-items:center;
-  margin-left:auto; /* يدفع أزرار اللغات لليمين */
-  margin-right:0;
+  flex:0 0 auto; /* لا يتمدد */
+  margin-left:auto; /* يدفع أزرار اللغات لليمين في LTR */
 }
 [dir="rtl"] .top-bar .lang-switcher{
-  margin-left:auto; margin-right:0; /* دائماً على اليمين حتى في RTL */
+  margin-left:0; margin-right:auto; /* في RTL: يدفع أزرار اللغات لليسار */
 }
 .lang-switcher{
   display:flex; gap:8px; align-items:center;
