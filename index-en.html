@@ -26,14 +26,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Language Switcher -->
-  <div class="lang-switcher">
-    <a href="index.html" class="lang-btn active" aria-label="Arabic">🇸🇦</a>
-    <a href="index-en.html" class="lang-btn" aria-label="English">🇺🇸</a>
+  <!-- Mobile Top Bar (Mobile only) -->
+  <div class="mobile-top-bar">
+    <a class="brand-fixed" href="/" aria-label="Yasir Home">
+      <img src="YasirAboAnmar-white.svg" alt="Yasir Aljiyadi">
+    </a>
+    <div class="lang-switcher">
+      <a href="index.html" class="lang-btn" aria-label="Arabic">🇸🇦</a>
+      <a href="index-en.html" class="lang-btn active" aria-label="English">🇺🇸</a>
+    </div>
   </div>
 
-  <!-- Logo fixed top left -->
-  <a class="brand-fixed" href="/" aria-label="Yasir Home">
+  <!-- Language Switcher (Desktop) -->
+  <div class="lang-switcher desktop-only">
+    <a href="index.html" class="lang-btn" aria-label="Arabic">🇸🇦</a>
+    <a href="index-en.html" class="lang-btn active" aria-label="English">🇺🇸</a>
+  </div>
+
+  <!-- Logo fixed top left (Desktop) -->
+  <a class="brand-fixed desktop-only" href="/" aria-label="Yasir Home">
     <img src="YasirAboAnmar-white.svg" alt="Yasir Aljiyadi">
   </a>
 

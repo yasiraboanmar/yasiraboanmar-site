@@ -69,12 +69,21 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 .footer{ opacity:.7; padding:24px 0; text-align:center }
 
 /* ============ Language Switcher ============ */
+.mobile-top-bar{
+  display:none; /* مخفي على الديسكتوب */
+}
+.desktop-only{
+  display:block;
+}
 .lang-switcher{
   position:fixed; top:12px; right:12px; z-index:1001;
   display:flex; gap:8px; align-items:center;
 }
 [dir="rtl"] .lang-switcher{
-  right:auto; left:12px;
+  right:auto; left:auto; right:12px;
+}
+[dir="ltr"] .lang-switcher{
+  right:12px; left:auto;
 }
 .lang-btn{
   display:inline-flex; align-items:center; justify-content:center;
@@ -99,17 +108,37 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
   box-shadow:0 4px 12px rgba(158,230,207,.3);
 }
 
-/* جوال: تعديل موضع أزرار اللغات */
+/* جوال: Top Bar مع الشعار وأزرار اللغات */
 @media (max-width:700px){
-  .lang-switcher{
-    top:60px; right:12px;
+  .desktop-only{
+    display:none !important; /* إخفاء عناصر الديسكتوب */
   }
-  [dir="rtl"] .lang-switcher{
-    right:auto; left:12px;
+  .mobile-top-bar{
+    display:flex !important; /* إظهار top bar على الجوال */
+    position:fixed; top:0; left:0; right:0; z-index:1002;
+    align-items:center; justify-content:space-between;
+    padding:10px 16px; background:rgba(5,12,10,.85);
+    backdrop-filter:blur(10px) saturate(140%);
+    -webkit-backdrop-filter:blur(10px) saturate(140%);
+    box-shadow:0 4px 16px rgba(0,0,0,.3);
+    border-bottom:1px solid rgba(255,255,255,.05);
   }
-  .lang-btn{
+  .mobile-top-bar .brand-fixed{
+    position:static; top:auto; left:auto; right:auto;
+    transform:none; padding:0; background:transparent;
+    box-shadow:none;
+  }
+  .mobile-top-bar .brand-fixed img{
+    height:32px;
+  }
+  .mobile-top-bar .lang-switcher{
+    position:static; top:auto; right:auto; left:auto;
+    display:flex; gap:6px;
+  }
+  .mobile-top-bar .lang-btn{
     width:36px; height:36px; font-size:18px;
   }
+  .hero{ padding-top:70px }
 }
 
 /* ============ الشعار ============ */
@@ -126,23 +155,11 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
   filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));
 }
 
-/* جوال (≤700px): وسط الشاشة داخل كبسولة خفيفة، مع مساحة أعلى للهيرو */
+/* جوال (≤700px): الشعار في top bar */
 @media (max-width:700px){
-  .brand-fixed{
-    position:fixed; top:10px; left:50%; right:auto;
-    transform:translateX(-50%);
-    display:inline-flex; align-items:center; justify-content:center;
-    padding:6px 12px; border-radius:14px;
-    background:rgba(5,12,10,.55);
-    backdrop-filter:blur(6px) saturate(140%);
-    -webkit-backdrop-filter:blur(6px) saturate(140%);
-    box-shadow:0 6px 16px rgba(0,0,0,.28);
+  .brand-fixed:not(.mobile-top-bar .brand-fixed){
+    display:none; /* إخفاء الشعار القديم على الجوال */
   }
-  [dir="ltr"] .brand-fixed{
-    left:50%; right:auto;
-  }
-  .brand-fixed img{ height:36px }
-  .hero{ padding-top:86px } /* حتى ما يتغطى أول كرت */
 }
 
 /* ============ LTR Support ============ */
@@ -175,12 +192,21 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 
 /* جوال: عمودي وتصغير الصورة */
 @media (max-width:720px){
-  .profile-card{ flex-direction:column; text-align:center }
+  .profile-card{ 
+    flex-direction:column; text-align:center;
+    padding:18px; gap:16px;
+  }
   .profile-body{ text-align:center }
   .profile-photo{
     flex:0 0 140px;
     width:140px !important;
     height:140px !important;
+  }
+  .card{
+    padding:18px;
+  }
+  .container{
+    padding:0 16px;
   }
 }
 
