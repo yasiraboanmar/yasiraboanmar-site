@@ -68,11 +68,58 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 /* ============ الفوتر ============ */
 .footer{ opacity:.7; padding:24px 0; text-align:center }
 
+/* ============ Language Switcher ============ */
+.lang-switcher{
+  position:fixed; top:12px; right:12px; z-index:1001;
+  display:flex; gap:8px; align-items:center;
+}
+[dir="rtl"] .lang-switcher{
+  right:auto; left:12px;
+}
+.lang-btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  width:40px; height:40px; border-radius:10px;
+  background:rgba(5,12,10,.55);
+  backdrop-filter:blur(6px) saturate(140%);
+  -webkit-backdrop-filter:blur(6px) saturate(140%);
+  border:1px solid rgba(255,255,255,.1);
+  font-size:20px; text-decoration:none;
+  transition:all .2s ease;
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+.lang-btn:hover{
+  background:rgba(158,230,207,.15);
+  border-color:var(--brand-2);
+  transform:translateY(-2px);
+  box-shadow:0 6px 16px rgba(0,0,0,.3);
+}
+.lang-btn.active{
+  background:rgba(158,230,207,.2);
+  border-color:var(--brand-2);
+  box-shadow:0 4px 12px rgba(158,230,207,.3);
+}
+
+/* جوال: تعديل موضع أزرار اللغات */
+@media (max-width:700px){
+  .lang-switcher{
+    top:60px; right:12px;
+  }
+  [dir="rtl"] .lang-switcher{
+    right:auto; left:12px;
+  }
+  .lang-btn{
+    width:36px; height:36px; font-size:18px;
+  }
+}
+
 /* ============ الشعار ============ */
 /* ديسكتوب: ثابت أعلى اليمين وبدون خلفية */
 .brand-fixed{
   position:fixed; top:12px; right:auto; left:12px; z-index:1000;
   padding:0; background:transparent;
+}
+[dir="ltr"] .brand-fixed{
+  left:auto; right:12px;
 }
 .brand-fixed img{
   height:44px; width:auto; display:block;
@@ -91,9 +138,18 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
     -webkit-backdrop-filter:blur(6px) saturate(140%);
     box-shadow:0 6px 16px rgba(0,0,0,.28);
   }
+  [dir="ltr"] .brand-fixed{
+    left:50%; right:auto;
+  }
   .brand-fixed img{ height:36px }
   .hero{ padding-top:86px } /* حتى ما يتغطى أول كرت */
 }
+
+/* ============ LTR Support ============ */
+[dir="ltr"] .profile-body{ text-align:start }
+[dir="ltr"] .about-points li{ flex-direction:row }
+[dir="ltr"] .interests li{ flex-direction:row }
+[dir="ltr"] .achievements li{ flex-direction:row }
 
 /* ============ بطاقة التعريف ============ */
 .profile-card{
