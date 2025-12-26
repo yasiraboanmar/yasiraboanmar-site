@@ -68,23 +68,40 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 /* ============ الفوتر ============ */
 .footer{ opacity:.7; padding:24px 0; text-align:center }
 
-/* ============ Language Switcher ============ */
-.mobile-top-bar{
-  display:none; /* مخفي على الديسكتوب */
+/* ============ Top Bar ============ */
+.top-bar{
+  position:fixed; top:0; left:0; right:0; z-index:1002;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 20px; background:rgba(5,12,10,.85);
+  backdrop-filter:blur(10px) saturate(140%);
+  -webkit-backdrop-filter:blur(10px) saturate(140%);
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+  border-bottom:1px solid rgba(255,255,255,.05);
 }
-.desktop-only{
-  display:block;
+.top-bar .brand-fixed{
+  position:static; top:auto; left:auto; right:auto;
+  transform:none; padding:0; background:transparent;
+  box-shadow:none;
+  margin-right:auto; /* يدفع اللوقو لليسار */
+}
+[dir="rtl"] .top-bar .brand-fixed{
+  margin-right:0; margin-left:auto; /* في RTL: يدفع اللوقو لليمين */
+}
+.top-bar .brand-fixed img{
+  height:44px; width:auto; display:block;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));
+}
+.top-bar .lang-switcher{
+  position:static; top:auto; right:auto; left:auto;
+  display:flex; gap:8px; align-items:center;
+  margin-left:auto; /* يدفع أزرار اللغات لليمين */
+  margin-right:0;
+}
+[dir="rtl"] .top-bar .lang-switcher{
+  margin-left:auto; margin-right:0; /* دائماً على اليمين حتى في RTL */
 }
 .lang-switcher{
-  position:fixed; top:12px; right:12px; z-index:1001;
   display:flex; gap:8px; align-items:center;
-  left:auto; /* دائماً على اليمين */
-}
-[dir="rtl"] .lang-switcher{
-  right:12px; left:auto; /* دائماً على اليمين حتى في RTL */
-}
-[dir="ltr"] .lang-switcher{
-  right:12px; left:auto; /* دائماً على اليمين */
 }
 .lang-btn{
   display:inline-flex; align-items:center; justify-content:center;
@@ -109,69 +126,27 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
   box-shadow:0 4px 12px rgba(158,230,207,.3);
 }
 
-/* جوال: Top Bar مع الشعار وأزرار اللغات */
+/* جوال: تعديل Top Bar */
 @media (max-width:700px){
-  .desktop-only{
-    display:none !important; /* إخفاء عناصر الديسكتوب */
+  .top-bar{
+    padding:10px 16px;
   }
-  .mobile-top-bar{
-    display:flex !important; /* إظهار top bar على الجوال */
-    position:fixed; top:0; left:0; right:0; z-index:1002;
-    align-items:center; justify-content:space-between;
-    padding:10px 16px; background:rgba(5,12,10,.85);
-    backdrop-filter:blur(10px) saturate(140%);
-    -webkit-backdrop-filter:blur(10px) saturate(140%);
-    box-shadow:0 4px 16px rgba(0,0,0,.3);
-    border-bottom:1px solid rgba(255,255,255,.05);
-  }
-  .mobile-top-bar .brand-fixed{
-    position:static; top:auto; left:auto; right:auto;
-    transform:none; padding:0; background:transparent;
-    box-shadow:none;
-    margin-right:auto; /* يدفع اللوقو لليسار */
-  }
-  [dir="rtl"] .mobile-top-bar .brand-fixed{
-    margin-right:0; margin-left:auto; /* في RTL: يدفع اللوقو لليمين */
-  }
-  .mobile-top-bar .lang-switcher{
-    margin-left:auto; /* يدفع أزرار اللغات لليمين */
-    margin-right:0; /* دائماً على اليمين */
-  }
-  [dir="rtl"] .mobile-top-bar .lang-switcher{
-    margin-left:auto; margin-right:0; /* دائماً على اليمين حتى في RTL */
-  }
-  .mobile-top-bar .brand-fixed img{
+  .top-bar .brand-fixed img{
     height:32px;
   }
-  .mobile-top-bar .lang-switcher{
-    position:static; top:auto; right:auto; left:auto;
-    display:flex; gap:6px;
+  .top-bar .lang-switcher{
+    gap:6px;
   }
-  .mobile-top-bar .lang-btn{
+  .top-bar .lang-btn{
     width:36px; height:36px; font-size:18px;
   }
   .hero{ padding-top:70px }
 }
 
 /* ============ الشعار ============ */
-/* ديسكتوب: ثابت أعلى اليسار وبدون خلفية */
-.brand-fixed{
-  position:fixed; top:12px; right:auto; left:12px; z-index:1000;
-  padding:0; background:transparent;
-}
-[dir="ltr"] .brand-fixed{
-  left:12px; right:auto;
-}
-.brand-fixed img{
-  height:44px; width:auto; display:block;
-  filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));
-}
-
-/* جوال (≤700px): الشعار في top bar */
-@media (max-width:700px){
-  .brand-fixed:not(.mobile-top-bar .brand-fixed){
-    display:none; /* إخفاء الشعار القديم على الجوال */
-  }
+/* الشعار الآن في top bar فقط */
+.brand-fixed:not(.top-bar .brand-fixed){
+  display:none; /* إخفاء الشعار القديم */
 }
 
 /* ============ LTR Support ============ */
