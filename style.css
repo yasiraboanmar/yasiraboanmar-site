@@ -49,6 +49,7 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
   background:var(--brand); color:var(--text);
   padding:10px 16px; border-radius:12px; display:inline-block;
   transition:transform .15s ease, border-color .15s ease, color .15s ease;
+  border:none; cursor:pointer; font-family:inherit; font-size:inherit;
 }
 .btn.outline{ background:transparent; border:1px solid var(--brand-2) }
 .btn:hover{ transform:translateY(-1px) }
@@ -193,6 +194,21 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
   padding:10px; border-radius:16px; background:rgba(255,255,255,.04);
   border:1px solid rgba(255,255,255,.06); display:flex; align-items:center; justify-content:center;
 }
-.qr-box img{ width:210px; height:210px; image-rendering:pixelated; border-radius:12px }
+.qr-box img{ width:210px; height:210px; image-rendering:pixelated; border-radius:12px; transition:opacity .3s ease }
 .qr-caption{ color:var(--muted); font-size:.92rem; text-align:center }
 .qr-actions{ display:flex; gap:10px; justify-content:center; flex-wrap:wrap }
+
+/* ============ Toast Notification ============ */
+.toast{
+  position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(100px);
+  background:var(--card); color:var(--text);
+  padding:14px 20px; border-radius:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,.4);
+  border:1px solid var(--brand-2);
+  z-index:10000; opacity:0;
+  transition:opacity .3s ease, transform .3s ease;
+  font-size:.95rem; white-space:nowrap;
+}
+.toast.show{
+  opacity:1; transform:translateX(-50%) translateY(0);
+}
