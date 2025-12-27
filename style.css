@@ -207,9 +207,13 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 }
 .about-points li{ 
   display:flex; align-items:flex-start; gap:10px;
+  min-width:0; /* يسمح بالكسر الصحيح في flex */
+}
+.about-points li .text{
+  flex:1; /* يأخذ المساحة المتبقية */
+  min-width:0; /* يسمح بالكسر */
   word-break:normal; /* كسر طبيعي عند الكلمات فقط */
   overflow-wrap:break-word; /* يكسر عند الكلمات الطويلة فقط */
-  hyphens:auto; /* فواصل تلقائية عند الحاجة */
 }
 .about-points .dot{
   width:10px; height:10px; margin-top:10px; border-radius:50%;
