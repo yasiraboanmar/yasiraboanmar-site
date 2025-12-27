@@ -183,10 +183,23 @@ h1{ font-size:clamp(28px, 3.4vw + 10px, 44px); margin:0 0 8px }
 /* جوال: عمودي وتصغير الصورة */
 @media (max-width:720px){
   .profile-card{ 
-    flex-direction:column; text-align:center;
+    flex-direction:column;
     padding:18px; gap:16px;
   }
-  .profile-body{ text-align:center }
+  /* توسيط النصوص في الصفحة الإنجليزية فقط */
+  [dir="ltr"] .profile-card{
+    text-align:center;
+  }
+  [dir="ltr"] .profile-body{
+    text-align:center;
+  }
+  /* الصفحة العربية تبقى كما هي */
+  [dir="rtl"] .profile-card{
+    text-align:right;
+  }
+  [dir="rtl"] .profile-body{
+    text-align:right;
+  }
   .profile-photo{
     flex:0 0 140px;
     width:140px !important;
