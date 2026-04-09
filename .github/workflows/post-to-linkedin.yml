@@ -6,6 +6,12 @@ on:
     paths:
       - 'src/content/blog/**.md'
       - 'src/content/blog/**.mdx'
+  workflow_dispatch:
+    inputs:
+      test_file:
+        description: 'Blog post file to post (e.g. src/content/blog/my-post.md)'
+        required: false
+        default: 'src/content/blog/saudi-labor-law-annual-leave.md'
 
 jobs:
   post-linkedin:
@@ -19,12 +25,22 @@ jobs:
       - name: Detect new blog posts
         id: detect
         run: |
-          NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'src/content/blog/*.md' 'src/content/blog/*.mdx' 2>/dev/null || echo "")
-          if [ -n "$NEW_FILES" ]; then
-            echo "has_new=true" >> $GITHUB_OUTPUT
-            echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TEST_FILE="${{ github.event.inputs.test_file }}"
+            if [ -f "$TEST_FILE" ]; then
+              echo "has_new=true" >> $GITHUB_OUTPUT
+              echo "new_files=$TEST_FILE" >> $GITHUB_OUTPUT
+            else
+              echo "has_new=false" >> $GITHUB_OUTPUT
+            fi
           else
-            echo "has_new=false" >> $GITHUB_OUTPUT
+            NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'src/content/blog/*.md' 'src/content/blog/*.mdx' 2>/dev/null || echo "")
+            if [ -n "$NEW_FILES" ]; then
+              echo "has_new=true" >> $GITHUB_OUTPUT
+              echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
+            else
+              echo "has_new=false" >> $GITHUB_OUTPUT
+            fi
           fi
 
       - name: Post to LinkedIn
