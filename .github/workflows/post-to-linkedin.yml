@@ -79,7 +79,7 @@ ${POST_URL}
               -H "Content-Type: application/json" \
               -H "X-Restli-Protocol-Version: 2.0.0" \
               -d "{
-                \"author\": \"urn:li:person:${LINKEDIN_PERSON_URN}\",
+                \"author\": \"urn:li:member:${LINKEDIN_PERSON_URN}\",
                 \"lifecycleState\": \"PUBLISHED\",
                 \"specificContent\": {
                   \"com.linkedin.ugc.ShareContent\": {
