@@ -19,20 +19,13 @@ jobs:
       - name: Detect new blog posts
         id: detect
         run: |
-          # Find files added in this commit (not modified)
           NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'src/content/blog/*.md' 'src/content/blog/*.mdx' 2>/dev/null || echo "")
-          echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
           if [ -n "$NEW_FILES" ]; then
             echo "has_new=true" >> $GITHUB_OUTPUT
+            echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
           else
             echo "has_new=false" >> $GITHUB_OUTPUT
           fi
-
-      - name: Setup Node.js
-        if: steps.detect.outputs.has_new == 'true'
-        uses: actions/setup-node@v4
-        with:
-          node-version: '22'
 
       - name: Post to LinkedIn
         if: steps.detect.outputs.has_new == 'true'
@@ -41,69 +34,65 @@ jobs:
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
           SITE_URL: https://yasiraboanmar.com
         run: |
-          # Parse frontmatter from new blog post files
           for FILE in ${{ steps.detect.outputs.new_files }}; do
             echo "Processing: $FILE"
 
-            # Extract title and description from frontmatter
-            TITLE=$(grep -m1 '^title:' "$FILE" | sed 's/^title: *"//' | sed 's/"$//' | sed "s/^title: *'//" | sed "s/'$//")
-            DESC=$(grep -m1 '^description:' "$FILE" | sed 's/^description: *"//' | sed 's/"$//' | sed "s/^description: *'//" | sed "s/'$//")
+            TITLE=$(grep -m1 '^title:' "$FILE" | sed 's/^title: *["'"'"']\?//' | sed 's/["'"'"']\?$//')
+            DESC=$(grep -m1 '^description:' "$FILE" | sed 's/^description: *["'"'"']\?//' | sed 's/["'"'"']\?$//')
             DRAFT=$(grep -m1 '^draft:' "$FILE" | awk '{print $2}')
 
-            # Skip drafts
             if [ "$DRAFT" = "true" ]; then
               echo "Skipping draft: $FILE"
               continue
             fi
 
-            # Build post URL from filename
             SLUG=$(basename "$FILE" .md)
             SLUG=$(basename "$SLUG" .mdx)
             POST_URL="${SITE_URL}/blog/${SLUG}/"
 
-            # Compose LinkedIn post text
-            POST_TEXT="${TITLE}
+            HASHTAGS="#الموارد_البشرية #HR #السعودية"
 
-${DESC}
+            POST_TEXT=$(python3 -c "
+          title = '''${TITLE}'''
+          desc = '''${DESC}'''
+          url = '${POST_URL}'
+          tags = '${HASHTAGS}'
+          print(f'{title}\n\n{desc}\n\nاقرأ المقال:\n{url}\n\n{tags}')
+          ")
 
-اقرأ المقال كاملاً:
-${POST_URL}
+            echo "Posting: $TITLE"
 
-#الموارد_البشرية #HR #GOSI #السعودية"
-
-            echo "Posting to LinkedIn: $TITLE"
-
-            # Post via LinkedIn API
-            curl -s -X POST "https://api.linkedin.com/v2/ugcPosts" \
+            RESPONSE=$(curl -s -X POST "https://api.linkedin.com/v2/ugcPosts" \
               -H "Authorization: Bearer ${LINKEDIN_ACCESS_TOKEN}" \
               -H "Content-Type: application/json" \
               -H "X-Restli-Protocol-Version: 2.0.0" \
-              -d "{
-                \"author\": \"urn:li:member:${LINKEDIN_PERSON_URN}\",
-                \"lifecycleState\": \"PUBLISHED\",
-                \"specificContent\": {
-                  \"com.linkedin.ugc.ShareContent\": {
-                    \"shareCommentary\": {
-                      \"text\": $(echo "$POST_TEXT" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read()))')
-                    },
-                    \"shareMediaCategory\": \"ARTICLE\",
-                    \"media\": [{
-                      \"status\": \"READY\",
-                      \"originalUrl\": \"${POST_URL}\",
-                      \"title\": {
-                        \"attributes\": [],
-                        \"text\": $(echo "$TITLE" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')
-                      },
-                      \"description\": {
-                        \"attributes\": [],
-                        \"text\": $(echo "$DESC" | python3 -c 'import json,sys; print(json.dumps(sys.stdin.read().strip()))')
-                      }
-                    }]
-                  }
-                },
-                \"visibility\": {
-                  \"com.linkedin.ugc.MemberNetworkVisibility\": \"PUBLIC\"
-                }
-              }" \
-              --fail-with-body && echo "Successfully posted to LinkedIn!" || echo "LinkedIn post failed"
+              -d "$(python3 -c "
+          import json
+          author = 'urn:li:member:${LINKEDIN_PERSON_URN}'
+          text = '''${POST_TEXT}'''
+          url = '${POST_URL}'
+          title_str = '''${TITLE}'''
+          desc_str = '''${DESC}'''
+          payload = {
+            'author': author,
+            'lifecycleState': 'PUBLISHED',
+            'specificContent': {
+              'com.linkedin.ugc.ShareContent': {
+                'shareCommentary': {'text': text},
+                'shareMediaCategory': 'ARTICLE',
+                'media': [{
+                  'status': 'READY',
+                  'originalUrl': url,
+                  'title': {'attributes': [], 'text': title_str},
+                  'description': {'attributes': [], 'text': desc_str}
+                }]
+              }
+            },
+            'visibility': {'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC'}
+          }
+          print(json.dumps(payload))
+          ")")
+
+            echo "Response: $RESPONSE"
+            echo "$RESPONSE" | python3 -c "import json,sys; r=json.load(sys.stdin); print('SUCCESS: ' + r.get('id','')) if 'id' in r else print('FAILED: ' + r.get('message','unknown error'))"
           done
