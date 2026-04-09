@@ -1,0 +1,191 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const currentPath = Astro.url.pathname;
+---
+
+<Base
+  title="Yasir Aljiyadi | HR Leadership Blog"
+  description="HR leader with 12+ years of experience. Weekly articles on compensation, governance, and Saudi HR systems."
+  lang="en"
+  dir="ltr"
+>
+  <Navbar lang="en" currentPath={currentPath} />
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <img
+          class="hero-photo"
+          src="/Yasir-Aljiyadi-photo.png"
+          alt="Yasir Aljiyadi"
+          width="180" height="180"
+          loading="eager"
+        />
+        <div class="hero-body">
+          <div class="hero-tag">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            Available for consulting
+          </div>
+          <h1 class="hero-name">
+            <span class="en">Yasir Aljiyadi</span>
+            <span class="ar" style="font-size:.6em; color:var(--muted);">ياسر الجيادي</span>
+          </h1>
+          <p class="hero-sub">HR Leader | HR Operations, Governance & Total Rewards</p>
+          <p class="hero-lead">
+            12+ years managing payroll, compliance, and HR operations across multi-entity environments in Saudi Arabia.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="/en/blog/">Read the Blog</a>
+            <a class="btn btn-outline" href="/yasir a C.V.pdf" download>Download CV</a>
+            <a class="btn btn-outline" href="mailto:my@yasiraboanmar.com">Contact</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider" /></div>
+
+  <!-- Stats -->
+  <section class="section">
+    <div class="container">
+      <div class="stats">
+        <div>
+          <div class="stat-num">12+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+        <div>
+          <div class="stat-num">400+</div>
+          <div class="stat-label">Employees Managed</div>
+        </div>
+        <div>
+          <div class="stat-num">4</div>
+          <div class="stat-label">HR Systems</div>
+        </div>
+        <div>
+          <div class="stat-num">7</div>
+          <div class="stat-label">Years Top Performance</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider" /></div>
+
+  <!-- About -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">About</span>
+        <h2 class="section-title">Who I Am</h2>
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        {[
+          'HR Leader at Mansour Holding — managing payroll for 400+ employees.',
+          'Experienced in multi-entity, multi-activity holding companies.',
+          'Proficient in Oracle HR, MenaITech, Logix, Jisr, and Advanced Excel.',
+          'Full compliance with Saudi Labor Law — GOSI, MHRSD, Mudad, Qiwa.',
+        ].map(item => (
+          <div class="card" style="display:flex; gap:12px; align-items:flex-start;">
+            <svg style="flex-shrink:0; margin-top:3px;" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="7.5" stroke="var(--accent-border)"/>
+              <path d="M5 8l2 2 4-4" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span style="font-size:.95rem; color:var(--muted);">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider" /></div>
+
+  <!-- Skills -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Expertise</span>
+        <h2 class="section-title">Skills & Experience</h2>
+      </div>
+      <div class="skills-grid">
+        {[
+          { title: 'HR Systems', chips: ['Oracle HR', 'MenaITech', 'Logix', 'Jisr', 'Advanced Excel'] },
+          { title: 'Payroll & Benefits', chips: ['Payroll', 'Compensation', 'GOSI/SANED', 'End of Service', 'Policies & Procedures'] },
+          { title: 'Compliance & Governance', chips: ['Saudi Labor Law', 'Qiwa', 'Mudad', 'MHRSD'] },
+          { title: 'Modern Interests', chips: ['AI in HR', 'Process Automation', 'Systems Design'] },
+        ].map(group => (
+          <div class="skill-group">
+            <h4>{group.title}</h4>
+            <div class="skill-chips">
+              {group.chips.map(c => <span class="skill-chip">{c}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider" /></div>
+
+  <!-- Latest Posts -->
+  {posts.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-header" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div>
+            <span class="section-label">Blog</span>
+            <h2 class="section-title" style="margin-bottom:0;">Latest Articles</h2>
+          </div>
+          <a class="btn btn-ghost" href="/en/blog/">All Articles →</a>
+        </div>
+        <div class="blog-grid">
+          {posts.map(post => (
+            <a class="blog-card" href={`/en/blog/${post.id}/`}>
+              <div class="blog-card-meta">
+                {post.data.tags[0] && <span class="blog-card-tag">{post.data.tags[0]}</span>}
+                <span>{post.data.pubDate.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' })}</span>
+              </div>
+              <h3 class="blog-card-title">{post.data.titleEn || post.data.title}</h3>
+              <p class="blog-card-desc">{post.data.descriptionEn || post.data.description}</p>
+              <div class="blog-card-footer">
+                Read article
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <div class="container"><hr class="divider" /></div>
+
+  <!-- Contact -->
+  <section class="section">
+    <div class="container" style="max-width:560px;">
+      <div class="section-header">
+        <span class="section-label">Contact</span>
+        <h2 class="section-title">Want to Connect?</h2>
+        <p class="section-desc">I welcome questions, partnerships, and job opportunities. I prefer short, clear messages and respond within one business day.</p>
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="mailto:my@yasiraboanmar.com">Send Email</a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/yasir-aljiyadi-21b514160/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-outline" href="/yasir.vcf" download>Save Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="en" />
+</Base>

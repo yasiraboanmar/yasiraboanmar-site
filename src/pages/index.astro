@@ -1,0 +1,193 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+
+const currentPath = Astro.url.pathname;
+---
+
+<Base
+  title="ياسر الجيادي | مدونة الموارد البشرية"
+  description="قائد موارد بشرية بخبرة 12+ عامًا. مقالات أسبوعية في الرواتب، الحوكمة، وأنظمة الموارد البشرية."
+  lang="ar"
+  dir="rtl"
+>
+  <Navbar lang="ar" currentPath={currentPath} />
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <img
+          class="hero-photo"
+          src="/Yasir-Aljiyadi-photo.png"
+          alt="ياسر الجيادي"
+          width="180" height="180"
+          loading="eager"
+        />
+        <div class="hero-body">
+          <div class="hero-tag">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
+            متاح للتواصل والاستشارات
+          </div>
+          <h1 class="hero-name">
+            <span class="ar">ياسر الجيادي</span>
+            <span class="en">Yasir Aljiyadi</span>
+          </h1>
+          <p class="hero-sub">قائد موارد بشرية | عمليات الموارد البشرية، الحوكمة، والمكافآت الشاملة</p>
+          <p class="hero-lead">
+            خبرة 12+ عامًا في إدارة العمليات، الرواتب، والامتثال لنظام العمل السعودي في بيئات متعددة الكيانات.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="/blog/">اقرأ المدونة</a>
+            <a class="btn btn-outline" href="/yasir a C.V.pdf" download>السيرة الذاتية</a>
+            <a class="btn btn-outline" href="mailto:my@yasiraboanmar.com">تواصل</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+    <hr class="divider" />
+  </div>
+
+  <!-- Stats -->
+  <section class="section">
+    <div class="container">
+      <div class="stats">
+        <div>
+          <div class="stat-num">+12</div>
+          <div class="stat-label">سنة خبرة</div>
+        </div>
+        <div>
+          <div class="stat-num">+400</div>
+          <div class="stat-label">موظف تحت الإدارة</div>
+        </div>
+        <div>
+          <div class="stat-num">4</div>
+          <div class="stat-label">أنظمة HR متخصصة</div>
+        </div>
+        <div>
+          <div class="stat-num">7</div>
+          <div class="stat-label">سنوات أداء متميز</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider" /></div>
+
+  <!-- About -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">نبذة</span>
+        <h2 class="section-title">من أنا</h2>
+      </div>
+      <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+        {[
+          'قائد موارد بشرية في منصور القابضة — إدارة رواتب 400+ موظف.',
+          'خبرة في الشركات القابضة متعددة الأنشطة والكيانات.',
+          'إتقان Oracle HR، MenaITech، Logix، Jisr، وExcel المتقدم.',
+          'امتثال كامل مع نظام العمل السعودي — GOSI، MHRSD، Mudad، Qiwa.',
+        ].map(item => (
+          <div class="card" style="display:flex; gap:12px; align-items:flex-start;">
+            <svg style="flex-shrink:0; margin-top:3px;" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="7.5" stroke="var(--accent-border)"/>
+              <path d="M5 8l2 2 4-4" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span style="font-size:.95rem; color:var(--muted);">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider" /></div>
+
+  <!-- Skills -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">الكفاءات</span>
+        <h2 class="section-title">المهارات والخبرات</h2>
+      </div>
+      <div class="skills-grid">
+        {[
+          { title: 'أنظمة الموارد البشرية', chips: ['Oracle HR', 'MenaITech', 'Logix', 'Jisr', 'Advanced Excel'] },
+          { title: 'الرواتب والاستحقاقات', chips: ['الرواتب', 'التعويضات', 'GOSI/SANED', 'نهاية الخدمة', 'السياسات والإجراءات'] },
+          { title: 'الامتثال والحوكمة',   chips: ['نظام العمل السعودي', 'Qiwa', 'Mudad', 'MHRSD'] },
+          { title: 'الاهتمامات الحديثة',  chips: ['الذكاء الاصطناعي في HR', 'أتمتة العمليات', 'بناء الأنظمة'] },
+        ].map(group => (
+          <div class="skill-group">
+            <h4>{group.title}</h4>
+            <div class="skill-chips">
+              {group.chips.map(c => <span class="skill-chip">{c}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider" /></div>
+
+  <!-- Latest Posts -->
+  {posts.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-header" style="display:flex; align-items:flex-end; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+          <div>
+            <span class="section-label">المدونة</span>
+            <h2 class="section-title" style="margin-bottom:0;">آخر المقالات</h2>
+          </div>
+          <a class="btn btn-ghost" href="/blog/">كل المقالات ←</a>
+        </div>
+        <div class="blog-grid">
+          {posts.map(post => (
+            <a class="blog-card" href={`/blog/${post.id}/`}>
+              <div class="blog-card-meta">
+                {post.data.tags[0] && <span class="blog-card-tag">{post.data.tags[0]}</span>}
+                <span>{post.data.pubDate.toLocaleDateString('ar-SA', { year:'numeric', month:'short', day:'numeric' })}</span>
+              </div>
+              <h3 class="blog-card-title">{post.data.title}</h3>
+              <p class="blog-card-desc">{post.data.description}</p>
+              <div class="blog-card-footer">
+                اقرأ المقال
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <div class="container"><hr class="divider" /></div>
+
+  <!-- Contact -->
+  <section class="section">
+    <div class="container" style="max-width:560px;">
+      <div class="section-header">
+        <span class="section-label">التواصل</span>
+        <h2 class="section-title">هل تريد التواصل؟</h2>
+        <p class="section-desc">أرحب بالأسئلة، الشراكات، وفرص العمل. أفضّل الرسائل القصيرة الواضحة وأرد خلال يوم عمل.</p>
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="mailto:my@yasiraboanmar.com">مراسلة بالبريد</a>
+        <a class="btn btn-outline" href="https://www.linkedin.com/in/yasir-aljiyadi-21b514160/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-outline" href="/yasir.vcf" download>حفظ جهة الاتصال</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="ar" />
+</Base>

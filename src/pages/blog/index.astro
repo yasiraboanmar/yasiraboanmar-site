@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+// All unique tags
+const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
+
+const currentPath = Astro.url.pathname;
+---
+
+<Base
+  title="المدونة — ياسر الجيادي"
+  description="مقالات أسبوعية في الموارد البشرية: الرواتب، الحوكمة، نظام العمل السعودي، وتقنيات HR."
+  lang="ar"
+  dir="rtl"
+>
+  <Navbar lang="ar" currentPath={currentPath} />
+
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label">المدونة</span>
+      <h1 style="margin-bottom:12px;">مقالات الموارد البشرية</h1>
+      <p style="color:var(--muted); max-width:52ch; font-size:1.05rem;">
+        مقالات متخصصة في الرواتب، الحوكمة، الامتثال، وتقنيات إدارة الموارد البشرية في السوق السعودية.
+        مقال جديد كل أسبوع.
+      </p>
+
+      {allTags.length > 0 && (
+        <div class="tags" style="margin-top:24px;">
+          {allTags.map(tag => (
+            <span class="tag">#{tag}</span>
+          ))}
+        </div>
+      )}
+    </div>
+  </div>
+
+  <div class="container" style="padding-bottom:80px;">
+    {allPosts.length === 0 ? (
+      <div style="text-align:center; padding:80px 0; color:var(--muted);">
+        <p style="font-size:1.1rem;">لا توجد مقالات بعد. قريباً...</p>
+      </div>
+    ) : (
+      <div class="blog-grid">
+        {allPosts.map(post => (
+          <a class="blog-card" href={`/blog/${post.id}/`}>
+            <div class="blog-card-meta">
+              {post.data.tags[0] && <span class="blog-card-tag">{post.data.tags[0]}</span>}
+              <span>{post.data.pubDate.toLocaleDateString('ar-SA', { year:'numeric', month:'short', day:'numeric' })}</span>
+            </div>
+            <h2 class="blog-card-title">{post.data.title}</h2>
+            <p class="blog-card-desc">{post.data.description}</p>
+            <div class="blog-card-footer">
+              اقرأ المقال
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <Footer lang="ar" />
+</Base>

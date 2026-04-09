@@ -1,0 +1,47 @@
+---
+export interface Props {
+  lang?: 'ar' | 'en';
+  currentPath?: string;
+}
+
+const { lang = 'ar', currentPath = '/' } = Astro.props;
+
+const isAr = lang === 'ar';
+const links = isAr
+  ? [
+      { href: '/',           label: 'الرئيسية' },
+      { href: '/blog/',      label: 'المدونة'  },
+    ]
+  : [
+      { href: '/en/',        label: 'Home'  },
+      { href: '/en/blog/',   label: 'Blog'  },
+    ];
+
+const altHref = isAr ? '/en/' : '/';
+const altLabel = isAr ? 'EN' : 'ع';
+---
+
+<nav class="navbar" aria-label="التنقل الرئيسي">
+  <div class="navbar-inner">
+    <a class="navbar-logo" href={isAr ? '/' : '/en/'} aria-label="الرئيسية">
+      <img src="/YAA-white.svg" alt="Yasir Aljiyadi" height="36" width="auto" />
+    </a>
+
+    <ul class="navbar-links" role="list">
+      {links.map(l => (
+        <li>
+          <a
+            href={l.href}
+            class={currentPath === l.href || currentPath.startsWith(l.href.replace(/\/$/, '') + '/') && l.href !== '/' && l.href !== '/en/' ? 'active' : ''}
+          >
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="navbar-end">
+      <a href={altHref} class="lang-btn" title="تغيير اللغة">{altLabel}</a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,94 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  lang?: 'ar' | 'en';
+  dir?: 'rtl' | 'ltr';
+}
+
+const {
+  title,
+  description = 'ياسر الجيادي — مدونة الموارد البشرية | HR Blog',
+  image = '/Yasir-Aljiyadi-photo.png',
+  lang = 'ar',
+  dir = 'rtl',
+} = Astro.props;
+
+const canonical = Astro.url.href;
+---
+
+<!doctype html>
+<html lang={lang} dir={dir}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`https://yasiraboanmar.com${image}`} />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`https://yasiraboanmar.com${image}`} />
+
+  <!-- Hreflang -->
+  {lang === 'ar' && <link rel="alternate" hreflang="ar" href="https://yasiraboanmar.com/" />}
+  {lang === 'ar' && <link rel="alternate" hreflang="en" href="https://yasiraboanmar.com/en/" />}
+  {lang === 'en' && <link rel="alternate" hreflang="en" href="https://yasiraboanmar.com/en/" />}
+  {lang === 'en' && <link rel="alternate" hreflang="ar" href="https://yasiraboanmar.com/" />}
+  <link rel="alternate" hreflang="x-default" href="https://yasiraboanmar.com/" />
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="ياسر الجيادي — مدونة HR" href="/rss.xml" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/Y-icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/Y-icon.svg" />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+    media="print"
+    onload="this.media='all'"
+  />
+  <noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" />
+  </noscript>
+
+  <!-- Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Yasir Aljiyadi",
+    "alternateName": "ياسر الجيادي",
+    "url": "https://yasiraboanmar.com",
+    "image": "https://yasiraboanmar.com/Yasir-Aljiyadi-photo.png",
+    "jobTitle": "HR Leader",
+    "sameAs": [
+      "https://x.com/Yasir_Aljiyadi",
+      "https://www.linkedin.com/in/yasir-aljiyadi-21b514160/",
+      "https://github.com/yasiraboomar"
+    ]
+  }
+  </script>
+
+</head>
+<body>
+  <slot />
+</body>
+</html>
