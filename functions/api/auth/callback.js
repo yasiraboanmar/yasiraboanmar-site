@@ -18,12 +18,14 @@ export async function onRequestGet(context) {
     const clientSecret = (env.KEYSTATIC_GITHUB_CLIENT_SECRET || '').trim();
 
     if (!clientId || !clientSecret) {
-      const allKeys = Object.keys(env).join(', ') || '(none)';
+      const raw = env.KEYSTATIC_GITHUB_CLIENT_SECRET;
       return htmlResponse(
         `<p>Config error: env vars missing.<br>` +
         `KEYSTATIC_GITHUB_CLIENT_ID: ${clientId ? 'OK' : 'MISSING'}<br>` +
         `KEYSTATIC_GITHUB_CLIENT_SECRET: ${clientSecret ? 'OK' : 'MISSING'}<br><br>` +
-        `All available env keys: ${allKeys}</p>`
+        `SECRET raw type: ${typeof raw}<br>` +
+        `SECRET raw length: ${raw != null ? raw.length : 'null/undefined'}<br>` +
+        `SECRET first 4 chars: ${raw ? raw.substring(0, 4) : '(empty)'}</p>`
       );
     }
 
