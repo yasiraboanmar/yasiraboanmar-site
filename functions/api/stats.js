@@ -20,31 +20,24 @@ export async function onRequestGet(context) {
   if (!token) return Response.json({ error: 'CF_ANALYTICS_TOKEN not set' }, { status: 500 });
 
   const url = new URL(context.request.url);
-
-  // ?debug=schema  → discover available fields via full introspection
-  if (url.searchParams.get('debug') === 'schema') {
-    const introspect = `{
-      __schema {
-        queryType { name fields { name } }
-        types { name kind }
-      }
-    }`;
-    const json = await gql(token, introspect);
-    // Extract only type names with "rum" or "analytic" in them (case insensitive)
-    const allTypes = json?.data?.__schema?.types ?? [];
-    const rumTypes = allTypes.filter(t => /rum|analytic|web/i.test(t.name));
-    const queryFields = json?.data?.__schema?.queryType?.fields ?? [];
-    return Response.json({ queryFields, rumTypes, raw: json?.errors });
-  }
-
   const now = new Date();
   const today     = now.toISOString().split('T')[0];
   const yesterday = new Date(now - 86400000).toISOString().split('T')[0];
 
+  // ?debug=fields  → inspect what sum/dimensions fields exist on this dataset
+  if (url.searchParams.get('debug') === 'fields') {
+    const introspect = `{
+      sumFields: __type(name: "AccountRumPageloadEventsAdaptiveGroupsSum") { fields { name } }
+      dimFields: __type(name: "AccountRumPageloadEventsAdaptiveGroupsDimensions") { fields { name } }
+      filterFields: __type(name: "AccountRumPageloadEventsAdaptiveGroupsFilter_InputObject") { inputFields { name } }
+    }`;
+    return Response.json(await gql(token, introspect));
+  }
+
   const query = `{
     viewer {
       accounts(filter: {accountTag: "${ACCOUNT_ID}"}) {
-        rumWebsiteEventsAdaptiveGroups(
+        rumPageloadEventsAdaptiveGroups(
           filter: {
             AND: [
               {date_geq: "${yesterday}"}
@@ -55,8 +48,9 @@ export async function onRequestGet(context) {
           limit: 10
           orderBy: [{date_DESC: true}]
         ) {
+          count
           sum { visits pageViews }
-          dimensions { date }
+          dimensions { date siteTag }
         }
       }
     }
@@ -69,15 +63,19 @@ export async function onRequestGet(context) {
       return Response.json({ raw: json, today, yesterday });
     }
 
-    const rows = json?.data?.viewer?.accounts?.[0]?.rumWebsiteEventsAdaptiveGroups ?? [];
+    const rows = json?.data?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups ?? [];
     if (rows.length === 0) return Response.json({ visits: 0, pageViews: 0, today });
 
-    const todayRow  = rows.find(r => r.dimensions?.date === today) ?? rows[0];
-    return Response.json({
-      visits:    todayRow.sum?.visits    ?? 0,
-      pageViews: todayRow.sum?.pageViews ?? 0,
-      date:      todayRow.dimensions?.date,
-    });
+    // Sum up all rows for today
+    let visits = 0, pageViews = 0;
+    for (const row of rows) {
+      if (!row.dimensions?.date || row.dimensions.date === today) {
+        visits    += row.sum?.visits    ?? row.count ?? 0;
+        pageViews += row.sum?.pageViews ?? row.count ?? 0;
+      }
+    }
+
+    return Response.json({ visits, pageViews, date: today });
 
   } catch (err) {
     return Response.json({ error: err.message }, { status: 500 });
