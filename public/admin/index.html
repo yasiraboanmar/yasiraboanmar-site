@@ -79,11 +79,11 @@
       fetch('/api/stats')
         .then(function(r) { return r.json(); })
         .then(function(d) {
-          if (d.visits !== undefined) {
-            var v = d.visits.toLocaleString();
-            var p = d.pageViews.toLocaleString();
-            document.getElementById('visits-today').textContent = v;
-            document.getElementById('views-today').textContent = p;
+          var v = (d.visits !== undefined && d.visits !== null) ? d.visits.toLocaleString() : '—';
+          var p = (d.pageViews !== undefined && d.pageViews !== null) ? d.pageViews.toLocaleString() : '—';
+          document.getElementById('visits-today').textContent = v;
+          document.getElementById('views-today').textContent = p;
+          if (d.visits > 0 || d.pageViews > 0) {
             try {
               localStorage.setItem('cf_stats', JSON.stringify({ visits: v, views: p, ts: Date.now() }));
             } catch(e) {}

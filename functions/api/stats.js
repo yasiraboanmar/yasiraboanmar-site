@@ -13,20 +13,18 @@ export async function onRequestGet(context) {
   }
 
   const now = new Date();
-  const today = now.toISOString().split('T')[0]; // YYYY-MM-DD UTC
-  // Also try yesterday in case of timezone lag
+  const today = now.toISOString().split('T')[0];
   const yesterday = new Date(now - 86400000).toISOString().split('T')[0];
 
+  // Try flat filter (no AND wrapper) — some CF GraphQL datasets require this
   const query = `{
     viewer {
       accounts(filter: {accountTag: "${ACCOUNT_ID}"}) {
         rumWebsiteTagsAdaptiveGroups(
           filter: {
-            AND: [
-              {date_geq: "${yesterday}"}
-              {date_leq: "${today}"}
-              {siteTag: "${SITE_TAG}"}
-            ]
+            siteTag: "${SITE_TAG}"
+            date_geq: "${yesterday}"
+            date_leq: "${today}"
           }
           limit: 10
           orderBy: [{date_DESC: true}]
@@ -49,16 +47,18 @@ export async function onRequestGet(context) {
     });
 
     const json = await res.json();
-
-    // Extract rows
     const rows = json?.data?.viewer?.accounts?.[0]?.rumWebsiteTagsAdaptiveGroups ?? [];
 
-    if (rows.length === 0) {
-      // Return debug info so we can diagnose
-      return Response.json({ debug: json, today, yesterday, rows: [] });
+    // Always expose raw response for diagnosis via ?debug=1
+    const url = new URL(context.request.url);
+    if (url.searchParams.get('debug') === '1') {
+      return Response.json({ raw: json, today, yesterday, rows });
     }
 
-    // Find today's row first, fallback to first row
+    if (rows.length === 0) {
+      return Response.json({ visits: 0, pageViews: 0, note: 'no_rows', today });
+    }
+
     const todayRow = rows.find(r => r.dimensions?.date === today) ?? rows[0];
     const visits    = todayRow.sum?.visits    ?? 0;
     const pageViews = todayRow.sum?.pageViews ?? 0;
