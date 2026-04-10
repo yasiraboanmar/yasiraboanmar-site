@@ -46,7 +46,6 @@ export async function onRequestGet(context) {
             ]
           }
           limit: 10
-          orderBy: [{date_DESC: true}]
         ) {
           count
           sum { visits pageViews }
