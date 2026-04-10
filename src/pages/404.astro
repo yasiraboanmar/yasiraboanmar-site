@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const url = Astro.request.url;
+const isEn = url.includes('/en/');
+const lang = isEn ? 'en' : 'ar';
+const homeHref = isEn ? '/en/' : '/';
+---
+
+<Base
+  title={isEn ? '404 — Page Not Found' : '404 — الصفحة غير موجودة'}
+  description={isEn ? 'This page does not exist.' : 'هذه الصفحة غير موجودة.'}
+  lang={lang}
+  dir={isEn ? 'ltr' : 'rtl'}
+>
+  <Navbar lang={lang} currentPath="/" />
+
+  <div style="min-height:80dvh; display:flex; align-items:center; justify-content:center; padding: 80px 24px;">
+    <div style="text-align:center; max-width:420px;">
+      <div style="font-size:6rem; font-weight:800; color:var(--accent); line-height:1; margin-bottom:16px;">
+        404
+      </div>
+      <h1 style="font-size:1.5rem; margin-bottom:12px;">
+        {isEn ? 'Page Not Found' : 'الصفحة غير موجودة'}
+      </h1>
+      <p style="color:var(--muted); margin-bottom:32px; font-size:1rem;">
+        {isEn
+          ? "The page you're looking for doesn't exist or has been moved."
+          : 'الصفحة التي تبحث عنها غير موجودة أو تم نقلها.'}
+      </p>
+      <a class="btn btn-primary" href={homeHref}>
+        {isEn ? '← Back to Home' : 'العودة للرئيسية →'}
+      </a>
+    </div>
+  </div>
+
+  <Footer lang={lang} />
+</Base>

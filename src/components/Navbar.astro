@@ -7,23 +7,43 @@ export interface Props {
 const { lang = 'ar', currentPath = '/' } = Astro.props;
 
 const isAr = lang === 'ar';
+
 const links = isAr
   ? [
-      { href: '/',           label: 'الرئيسية' },
-      { href: '/blog/',      label: 'المدونة'  },
+      { href: '/',         label: 'الرئيسية' },
+      { href: '/blog/',    label: 'المدونة'  },
     ]
   : [
-      { href: '/en/',        label: 'Home'  },
-      { href: '/en/blog/',   label: 'Blog'  },
+      { href: '/en/',      label: 'Home' },
+      { href: '/en/blog/', label: 'Blog' },
     ];
 
-const altHref = isAr ? '/en/' : '/';
-const altLabel = isAr ? 'EN' : 'ع';
+// Smart language switch: stay on same article if on a blog post
+let altHref: string;
+if (isAr) {
+  if (currentPath.startsWith('/blog/') && currentPath !== '/blog/') {
+    const slug = currentPath.replace('/blog/', '').replace(/\/$/, '');
+    altHref = `/en/blog/${slug}/`;
+  } else {
+    altHref = '/en/';
+  }
+} else {
+  if (currentPath.startsWith('/en/blog/') && currentPath !== '/en/blog/') {
+    const slug = currentPath.replace('/en/blog/', '').replace(/\/$/, '');
+    altHref = `/blog/${slug}/`;
+  } else {
+    altHref = '/';
+  }
+}
+
+// Flag: 🇸🇦 when showing Arabic site (switch to English), 🇺🇸 when showing English (switch to Arabic)
+const altFlag = isAr ? '🇺🇸' : '🇸🇦';
+const altTitle = isAr ? 'English' : 'العربية';
 ---
 
-<nav class="navbar" aria-label="التنقل الرئيسي">
+<nav class="navbar" aria-label={isAr ? 'التنقل الرئيسي' : 'Main navigation'}>
   <div class="navbar-inner">
-    <a class="navbar-logo" href={isAr ? '/' : '/en/'} aria-label="الرئيسية">
+    <a class="navbar-logo" href={isAr ? '/' : '/en/'} aria-label="Home">
       <img src="/YAA-white.svg" alt="Yasir Aljiyadi" height="36" width="auto" />
     </a>
 
@@ -32,7 +52,12 @@ const altLabel = isAr ? 'EN' : 'ع';
         <li>
           <a
             href={l.href}
-            class={currentPath === l.href || currentPath.startsWith(l.href.replace(/\/$/, '') + '/') && l.href !== '/' && l.href !== '/en/' ? 'active' : ''}
+            class={
+              currentPath === l.href ||
+              (currentPath.startsWith(l.href.replace(/\/$/, '') + '/') &&
+               l.href !== '/' && l.href !== '/en/')
+                ? 'active' : ''
+            }
           >
             {l.label}
           </a>
@@ -41,7 +66,9 @@ const altLabel = isAr ? 'EN' : 'ع';
     </ul>
 
     <div class="navbar-end">
-      <a href={altHref} class="lang-btn" title="تغيير اللغة">{altLabel}</a>
+      <a href={altHref} class="lang-btn" title={altTitle} aria-label={altTitle}>
+        {altFlag}
+      </a>
     </div>
   </div>
 </nav>
