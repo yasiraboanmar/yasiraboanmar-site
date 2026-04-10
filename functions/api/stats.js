@@ -48,8 +48,8 @@ export async function onRequestGet(context) {
           limit: 10
         ) {
           count
-          sum { visits pageViews }
-          dimensions { date siteTag }
+          sum { visits }
+          dimensions { date }
         }
       }
     }
@@ -65,16 +65,12 @@ export async function onRequestGet(context) {
     const rows = json?.data?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups ?? [];
     if (rows.length === 0) return Response.json({ visits: 0, pageViews: 0, today });
 
-    // Sum up all rows for today
-    let visits = 0, pageViews = 0;
-    for (const row of rows) {
-      if (!row.dimensions?.date || row.dimensions.date === today) {
-        visits    += row.sum?.visits    ?? row.count ?? 0;
-        pageViews += row.sum?.pageViews ?? row.count ?? 0;
-      }
-    }
+    // Find today's row — visits = unique sessions, count = page views
+    const todayRow = rows.find(r => r.dimensions?.date === today) ?? rows[0];
+    const visits   = todayRow.sum?.visits ?? 0;
+    const pageViews = todayRow.count ?? 0;
 
-    return Response.json({ visits, pageViews, date: today });
+    return Response.json({ visits, pageViews, date: todayRow.dimensions?.date });
 
   } catch (err) {
     return Response.json({ error: err.message }, { status: 500 });
