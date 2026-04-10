@@ -12,15 +12,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.1.8",
     "@astrojs/mdx": "^5.0.3",
-    "@astrojs/react": "^5.0.3",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.7.2",
-    "@keystatic/astro": "^5.0.6",
-    "@keystatic/core": "^0.5.50",
-    "astro": "^6.1.5",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5"
+    "astro": "^6.1.5"
   }
 }
