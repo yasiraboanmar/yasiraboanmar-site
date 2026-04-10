@@ -1,9 +1,6 @@
 /**
  * Cloudflare Pages Function — /api/auth
  * Redirects to GitHub OAuth authorization page.
- *
- * Env vars required (Cloudflare Pages → Settings → Environment variables):
- *   GITHUB_CLIENT_ID
  */
 
 export async function onRequestGet(context) {
