@@ -21,12 +21,15 @@ export async function onRequestGet(context) {
 
   const url = new URL(context.request.url);
 
-  // ?debug=schema  → list all field names available on the Account type
+  // ?debug=schema  → discover correct type names
   if (url.searchParams.get('debug') === 'schema') {
+    // Try multiple known type names
     const introspect = `{
-      __type(name: "AccountQuery") {
-        fields { name }
-      }
+      viewer: __type(name: "viewer") { fields { name } }
+      Viewer: __type(name: "Viewer") { fields { name } }
+      ZoneQuery: __type(name: "ZoneQuery") { fields { name } }
+      AccountQuery: __type(name: "AccountQuery") { fields { name } }
+      Query: __type(name: "Query") { fields { name } }
     }`;
     const json = await gql(token, introspect);
     return Response.json(json);
