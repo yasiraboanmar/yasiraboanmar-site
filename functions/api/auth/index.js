@@ -21,7 +21,12 @@ export async function onRequestGet(context) {
       body: JSON.stringify({ client_id: CLIENT_ID, scope: 'repo user' }),
     });
 
-    const { device_code, user_code, verification_uri_complete, verification_uri, expires_in, interval } = await res.json();
+    const json = await res.json();
+    if (json.error || !json.device_code) {
+      return new Response(`<p>GitHub error: ${json.error_description || json.error || 'Device Flow not enabled on OAuth App'}</p>`,
+        { headers: { 'Content-Type': 'text/html; charset=utf-8' }, status: 500 });
+    }
+    const { device_code, user_code, verification_uri_complete, verification_uri, expires_in, interval } = json;
     const authUrl = verification_uri_complete || `${verification_uri}?user_code=${user_code}`;
     const pollInterval = (interval || 5) * 1000;
     const pollUrl = `/api/auth/poll?device_code=${encodeURIComponent(device_code)}`;
