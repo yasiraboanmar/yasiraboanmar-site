@@ -21,18 +21,20 @@ export async function onRequestGet(context) {
 
   const url = new URL(context.request.url);
 
-  // ?debug=schema  → discover correct type names
+  // ?debug=schema  → discover available fields via full introspection
   if (url.searchParams.get('debug') === 'schema') {
-    // Try multiple known type names
     const introspect = `{
-      viewer: __type(name: "viewer") { fields { name } }
-      Viewer: __type(name: "Viewer") { fields { name } }
-      ZoneQuery: __type(name: "ZoneQuery") { fields { name } }
-      AccountQuery: __type(name: "AccountQuery") { fields { name } }
-      Query: __type(name: "Query") { fields { name } }
+      __schema {
+        queryType { name fields { name } }
+        types { name kind }
+      }
     }`;
     const json = await gql(token, introspect);
-    return Response.json(json);
+    // Extract only type names with "rum" or "analytic" in them (case insensitive)
+    const allTypes = json?.data?.__schema?.types ?? [];
+    const rumTypes = allTypes.filter(t => /rum|analytic|web/i.test(t.name));
+    const queryFields = json?.data?.__schema?.queryType?.fields ?? [];
+    return Response.json({ queryFields, rumTypes, raw: json?.errors });
   }
 
   const now = new Date();
