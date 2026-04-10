@@ -30,7 +30,7 @@ const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURICompone
   lang="ar"
   dir="rtl"
 >
-  <Navbar lang="ar" currentPath="/blog/" />
+  <Navbar lang="ar" currentPath={Astro.url.pathname} />
 
   <header class="post-header">
     <div class="container" style="max-width:800px;">
