@@ -62,30 +62,37 @@
   </div>
 
   <script>
-    // Cloudflare Web Analytics GraphQL – last 24 hours summary
-    // Uses the zone tag for yasiraboanmar.com
-    // Falls back gracefully if API is unavailable
     (function() {
-      var ZONE = '0787d5cd4d1f323350688f98c13c54af';
-      var link = 'https://dash.cloudflare.com/' + ZONE + '/web-analytics';
-
-      // Try to load cached numbers from localStorage (updated every 5 min)
-      var cache = null;
+      // Load cached numbers instantly
       try {
         var raw = localStorage.getItem('cf_stats');
         if (raw) {
-          var parsed = JSON.parse(raw);
-          if (Date.now() - parsed.ts < 5 * 60 * 1000) cache = parsed;
+          var c = JSON.parse(raw);
+          if (Date.now() - c.ts < 5 * 60 * 1000) {
+            document.getElementById('visits-today').textContent = c.visits;
+            document.getElementById('views-today').textContent = c.views;
+          }
         }
       } catch(e) {}
 
-      if (cache) {
-        document.getElementById('visits-today').textContent = cache.visits;
-        document.getElementById('views-today').textContent = cache.views;
-      } else {
-        document.getElementById('visits-today').textContent = '—';
-        document.getElementById('views-today').textContent = '—';
-      }
+      // Fetch fresh numbers from server
+      fetch('/api/stats')
+        .then(function(r) { return r.json(); })
+        .then(function(d) {
+          if (d.visits !== undefined) {
+            var v = d.visits.toLocaleString();
+            var p = d.pageViews.toLocaleString();
+            document.getElementById('visits-today').textContent = v;
+            document.getElementById('views-today').textContent = p;
+            try {
+              localStorage.setItem('cf_stats', JSON.stringify({ visits: v, views: p, ts: Date.now() }));
+            } catch(e) {}
+          }
+        })
+        .catch(function() {
+          document.getElementById('visits-today').textContent = '—';
+          document.getElementById('views-today').textContent = '—';
+        });
     })();
   </script>
 </body>
