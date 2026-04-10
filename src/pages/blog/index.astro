@@ -4,12 +4,10 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
-const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+const allPosts = (await getCollection('blog_ar', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-// All unique tags
 const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
-
 const currentPath = Astro.url.pathname;
 ---
 
@@ -29,12 +27,9 @@ const currentPath = Astro.url.pathname;
         مقالات متخصصة في الرواتب، الحوكمة، الامتثال، وتقنيات إدارة الموارد البشرية في السوق السعودية.
         مقال جديد كل أسبوع.
       </p>
-
       {allTags.length > 0 && (
         <div class="tags" style="margin-top:24px;">
-          {allTags.map(tag => (
-            <span class="tag">#{tag}</span>
-          ))}
+          {allTags.map(tag => <span class="tag">#{tag}</span>)}
         </div>
       )}
     </div>

@@ -5,12 +5,12 @@ import Footer from '../../components/Footer.astro';
 import { getCollection, getEntry, render } from 'astro:content';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getCollection('blog_ar', ({ data }) => !data.draft);
   return posts.map(post => ({ params: { slug: post.id } }));
 }
 
 const { slug } = Astro.params;
-const post = await getEntry('blog', slug as string);
+const post = await getEntry('blog_ar', slug as string);
 if (!post) return Astro.redirect('/blog/');
 
 const { Content } = await render(post);
@@ -32,7 +32,6 @@ const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURICompone
 >
   <Navbar lang="ar" currentPath="/blog/" />
 
-  <!-- Post Header -->
   <header class="post-header">
     <div class="container" style="max-width:800px;">
       <div class="post-meta">
@@ -44,48 +43,30 @@ const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURICompone
         </a>
         <span>·</span>
         <time datetime={post.data.pubDate.toISOString()}>{pubDateFormatted}</time>
-        {post.data.tags.map(tag => (
-          <span class="post-tag">#{tag}</span>
-        ))}
+        {post.data.tags.map(tag => <span class="post-tag">#{tag}</span>)}
       </div>
       <h1 class="post-title">{post.data.title}</h1>
       <p class="post-desc">{post.data.description}</p>
     </div>
   </header>
 
-  <!-- Post Body -->
   <div class="container">
     <article class="post-body">
       <Content />
-
       <hr />
-
-      <!-- Share Box -->
       <div class="share-box">
         <div class="share-box-text">
           <h4>هل أفادك المقال؟</h4>
           <p>شاركه مع زملائك في الموارد البشرية</p>
         </div>
         <div class="share-btns">
-          <a
-            class="btn btn-primary"
-            href={linkedinShareUrl}
-            target="_blank"
-            rel="noopener"
-          >
+          <a class="btn btn-primary" href={linkedinShareUrl} target="_blank" rel="noopener">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
               <path d="M4.98 3.5C4.98 4.88 3.86 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.5h4V23h-4V8.5zm7 0h3.83v1.98h.05c.53-1 1.82-2.06 3.75-2.06 4.01 0 4.75 2.64 4.75 6.07V23h-4v-5.91c0-1.41-.03-3.22-1.96-3.22-1.96 0-2.26 1.53-2.26 3.12V23h-4V8.5z"/>
             </svg>
             شارك على LinkedIn
           </a>
-          <a
-            class="btn btn-outline"
-            href={twitterShareUrl}
-            target="_blank"
-            rel="noopener"
-          >
-            شارك على X
-          </a>
+          <a class="btn btn-outline" href={twitterShareUrl} target="_blank" rel="noopener">شارك على X</a>
         </div>
       </div>
     </article>

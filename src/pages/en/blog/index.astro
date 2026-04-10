@@ -4,11 +4,10 @@ import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
-const allPosts = (await getCollection('blog', ({ data }) => !data.draft))
+const allPosts = (await getCollection('blog_en', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
 const allTags = [...new Set(allPosts.flatMap(p => p.data.tags))];
-
 const currentPath = Astro.url.pathname;
 ---
 
@@ -28,12 +27,9 @@ const currentPath = Astro.url.pathname;
         Specialized articles on payroll, governance, compliance, and HR technology in the Saudi market.
         A new article every week.
       </p>
-
       {allTags.length > 0 && (
         <div class="tags" style="margin-top:24px;">
-          {allTags.map(tag => (
-            <span class="tag">#{tag}</span>
-          ))}
+          {allTags.map(tag => <span class="tag">#{tag}</span>)}
         </div>
       )}
     </div>
@@ -52,8 +48,8 @@ const currentPath = Astro.url.pathname;
               {post.data.tags[0] && <span class="blog-card-tag">{post.data.tags[0]}</span>}
               <span>{post.data.pubDate.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' })}</span>
             </div>
-            <h2 class="blog-card-title">{post.data.titleEn || post.data.title}</h2>
-            <p class="blog-card-desc">{post.data.descriptionEn || post.data.description}</p>
+            <h2 class="blog-card-title">{post.data.title}</h2>
+            <p class="blog-card-desc">{post.data.description}</p>
             <div class="blog-card-footer">
               Read article
               <svg width="14" height="14" viewBox="0 0 16 16" fill="none">

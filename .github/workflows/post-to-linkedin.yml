@@ -4,14 +4,20 @@ on:
   push:
     branches: [main]
     paths:
-      - 'src/content/blog/**.md'
-      - 'src/content/blog/**.mdx'
+      - 'src/content/blog/ar/**.md'
+      - 'src/content/blog/ar/**.mdx'
+      - 'src/content/blog/en/**.md'
+      - 'src/content/blog/en/**.mdx'
   workflow_dispatch:
     inputs:
-      test_file:
-        description: 'Blog post file to post (e.g. src/content/blog/my-post.md)'
+      test_file_ar:
+        description: 'Arabic post (e.g. src/content/blog/ar/my-post.md)'
         required: false
-        default: 'src/content/blog/saudi-labor-law-annual-leave.md'
+        default: ''
+      test_file_en:
+        description: 'English post (e.g. src/content/blog/en/my-post.md)'
+        required: false
+        default: ''
 
 jobs:
   post-linkedin:
@@ -22,36 +28,35 @@ jobs:
         with:
           fetch-depth: 2
 
-      - name: Detect new blog posts
+      - name: Detect new posts
         id: detect
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            TEST_FILE="${{ github.event.inputs.test_file }}"
-            if [ -f "$TEST_FILE" ]; then
-              echo "has_new=true" >> $GITHUB_OUTPUT
-              echo "new_files=$TEST_FILE" >> $GITHUB_OUTPUT
-            else
-              echo "has_new=false" >> $GITHUB_OUTPUT
-            fi
+            AR="${{ github.event.inputs.test_file_ar }}"
+            EN="${{ github.event.inputs.test_file_en }}"
+            echo "ar_files=$AR" >> $GITHUB_OUTPUT
+            echo "en_files=$EN" >> $GITHUB_OUTPUT
+            [ -n "$AR" ] && echo "has_ar=true" >> $GITHUB_OUTPUT || echo "has_ar=false" >> $GITHUB_OUTPUT
+            [ -n "$EN" ] && echo "has_en=true" >> $GITHUB_OUTPUT || echo "has_en=false" >> $GITHUB_OUTPUT
           else
-            NEW_FILES=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'src/content/blog/*.md' 'src/content/blog/*.mdx' 2>/dev/null || echo "")
-            if [ -n "$NEW_FILES" ]; then
-              echo "has_new=true" >> $GITHUB_OUTPUT
-              echo "new_files=$NEW_FILES" >> $GITHUB_OUTPUT
-            else
-              echo "has_new=false" >> $GITHUB_OUTPUT
-            fi
+            AR=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'src/content/blog/ar/*.md' 'src/content/blog/ar/*.mdx' 2>/dev/null || echo "")
+            EN=$(git diff --name-only --diff-filter=A HEAD~1 HEAD -- 'src/content/blog/en/*.md' 'src/content/blog/en/*.mdx' 2>/dev/null || echo "")
+            echo "ar_files=$AR" >> $GITHUB_OUTPUT
+            echo "en_files=$EN" >> $GITHUB_OUTPUT
+            [ -n "$AR" ] && echo "has_ar=true" >> $GITHUB_OUTPUT || echo "has_ar=false" >> $GITHUB_OUTPUT
+            [ -n "$EN" ] && echo "has_en=true" >> $GITHUB_OUTPUT || echo "has_en=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Post to LinkedIn
-        if: steps.detect.outputs.has_new == 'true'
+      # ── Arabic LinkedIn post ──────────────────────────────────────────────
+      - name: Post Arabic to LinkedIn
+        if: steps.detect.outputs.has_ar == 'true'
         env:
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
           SITE_URL: https://yasiraboanmar.com
         run: |
-          for FILE in ${{ steps.detect.outputs.new_files }}; do
-            echo "Processing: $FILE"
+          for FILE in ${{ steps.detect.outputs.ar_files }}; do
+            echo "Processing Arabic: $FILE"
 
             TITLE=$(grep -m1 '^title:' "$FILE" | sed 's/^title: *["'"'"']\?//' | sed 's/["'"'"']\?$//')
             DESC=$(grep -m1 '^description:' "$FILE" | sed 's/^description: *["'"'"']\?//' | sed 's/["'"'"']\?$//')
@@ -65,7 +70,6 @@ jobs:
             SLUG=$(basename "$FILE" .md)
             SLUG=$(basename "$SLUG" .mdx)
             POST_URL="${SITE_URL}/blog/${SLUG}/"
-
             HASHTAGS="#الموارد_البشرية #HR #السعودية"
 
             POST_TEXT=$(python3 -c "
@@ -76,7 +80,77 @@ jobs:
           print(f'{title}\n\n{desc}\n\nاقرأ المقال:\n{url}\n\n{tags}')
           ")
 
-            echo "Posting: $TITLE"
+            echo "Posting Arabic: $TITLE"
+
+            RESPONSE=$(curl -s -X POST "https://api.linkedin.com/v2/ugcPosts" \
+              -H "Authorization: Bearer ${LINKEDIN_ACCESS_TOKEN}" \
+              -H "Content-Type: application/json" \
+              -H "X-Restli-Protocol-Version: 2.0.0" \
+              -d "$(python3 -c "
+          import json
+          author = 'urn:li:person:${LINKEDIN_PERSON_URN}'
+          text = '''${POST_TEXT}'''
+          url = '${POST_URL}'
+          title_str = '''${TITLE}'''
+          desc_str = '''${DESC}'''
+          payload = {
+            'author': author,
+            'lifecycleState': 'PUBLISHED',
+            'specificContent': {
+              'com.linkedin.ugc.ShareContent': {
+                'shareCommentary': {'text': text},
+                'shareMediaCategory': 'ARTICLE',
+                'media': [{
+                  'status': 'READY',
+                  'originalUrl': url,
+                  'title': {'attributes': [], 'text': title_str},
+                  'description': {'attributes': [], 'text': desc_str}
+                }]
+              }
+            },
+            'visibility': {'com.linkedin.ugc.MemberNetworkVisibility': 'PUBLIC'}
+          }
+          print(json.dumps(payload))
+          ")")
+
+            echo "Response: $RESPONSE"
+            echo "$RESPONSE" | python3 -c "import json,sys; r=json.load(sys.stdin); print('SUCCESS: ' + r.get('id','')) if 'id' in r else print('FAILED: ' + r.get('message','unknown error'))"
+          done
+
+      # ── English LinkedIn post ─────────────────────────────────────────────
+      - name: Post English to LinkedIn
+        if: steps.detect.outputs.has_en == 'true'
+        env:
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          LINKEDIN_PERSON_URN: ${{ secrets.LINKEDIN_PERSON_URN }}
+          SITE_URL: https://yasiraboanmar.com
+        run: |
+          for FILE in ${{ steps.detect.outputs.en_files }}; do
+            echo "Processing English: $FILE"
+
+            TITLE=$(grep -m1 '^title:' "$FILE" | sed 's/^title: *["'"'"']\?//' | sed 's/["'"'"']\?$//')
+            DESC=$(grep -m1 '^description:' "$FILE" | sed 's/^description: *["'"'"']\?//' | sed 's/["'"'"']\?$//')
+            DRAFT=$(grep -m1 '^draft:' "$FILE" | awk '{print $2}')
+
+            if [ "$DRAFT" = "true" ]; then
+              echo "Skipping draft: $FILE"
+              continue
+            fi
+
+            SLUG=$(basename "$FILE" .md)
+            SLUG=$(basename "$SLUG" .mdx)
+            POST_URL="${SITE_URL}/en/blog/${SLUG}/"
+            HASHTAGS="#HumanResources #HR #SaudiArabia #HRtech"
+
+            POST_TEXT=$(python3 -c "
+          title = '''${TITLE}'''
+          desc = '''${DESC}'''
+          url = '${POST_URL}'
+          tags = '${HASHTAGS}'
+          print(f'{title}\n\n{desc}\n\nRead the article:\n{url}\n\n{tags}')
+          ")
+
+            echo "Posting English: $TITLE"
 
             RESPONSE=$(curl -s -X POST "https://api.linkedin.com/v2/ugcPosts" \
               -H "Authorization: Bearer ${LINKEDIN_ACCESS_TOKEN}" \

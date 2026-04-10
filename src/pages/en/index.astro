@@ -4,7 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog', ({ data }) => !data.draft))
+const posts = (await getCollection('blog_en', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
@@ -154,8 +154,8 @@ const currentPath = Astro.url.pathname;
                 {post.data.tags[0] && <span class="blog-card-tag">{post.data.tags[0]}</span>}
                 <span>{post.data.pubDate.toLocaleDateString('en-US', { year:'numeric', month:'short', day:'numeric' })}</span>
               </div>
-              <h3 class="blog-card-title">{post.data.titleEn || post.data.title}</h3>
-              <p class="blog-card-desc">{post.data.descriptionEn || post.data.description}</p>
+              <h3 class="blog-card-title">{post.data.title}</h3>
+              <p class="blog-card-desc">{post.data.description}</p>
               <div class="blog-card-footer">
                 Read article
                 <svg width="14" height="14" viewBox="0 0 16 16" fill="none">

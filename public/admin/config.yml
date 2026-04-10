@@ -11,53 +11,88 @@ public_folder: /images/blog
 locale: ar
 
 collections:
-  - name: blog
-    label: المقالات
-    label_singular: مقال
-    folder: src/content/blog
+  - name: blog_ar
+    label: "المقالات (عربي)"
+    label_singular: "مقال عربي"
+    folder: src/content/blog/ar
     create: true
     slug: "{{slug}}"
     fields:
-      - label: عنوان المقال (عربي)
+      - label: "العنوان (عربي)"
         name: title
         widget: string
         required: true
-      - label: عنوان المقال (إنجليزي)
-        name: titleEn
-        widget: string
-        required: false
-      - label: وصف المقال (عربي)
+      - label: "الوصف (عربي)"
         name: description
         widget: text
         required: true
-      - label: وصف المقال (إنجليزي)
-        name: descriptionEn
-        widget: text
-        required: false
-      - label: تاريخ النشر
+      - label: "تاريخ النشر"
         name: pubDate
         widget: datetime
         format: "YYYY-MM-DD"
         date_format: "YYYY-MM-DD"
         time_format: false
         required: true
-      - label: الوسوم
+      - label: "الوسوم"
         name: tags
         widget: list
         required: false
         default: []
-      - label: مسودة (لا ينشر)
+      - label: "مسودة (لا ينشر)"
         name: draft
         widget: boolean
         default: false
-      - label: تم النشر على LinkedIn
+      - label: "تم النشر على LinkedIn"
         name: linkedinPosted
         widget: boolean
         default: false
-      - label: صورة الغلاف (مسار اختياري)
+      - label: "صورة الغلاف (مسار اختياري)"
         name: cover
         widget: string
         required: false
-      - label: محتوى المقال
+      - label: "محتوى المقال (عربي)"
+        name: body
+        widget: markdown
+
+  - name: blog_en
+    label: "Articles (English)"
+    label_singular: "English Article"
+    folder: src/content/blog/en
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Title (English)"
+        name: title
+        widget: string
+        required: true
+      - label: "Description (English)"
+        name: description
+        widget: text
+        required: true
+      - label: "Publish Date"
+        name: pubDate
+        widget: datetime
+        format: "YYYY-MM-DD"
+        date_format: "YYYY-MM-DD"
+        time_format: false
+        required: true
+      - label: "Tags"
+        name: tags
+        widget: list
+        required: false
+        default: []
+      - label: "Draft (don't publish)"
+        name: draft
+        widget: boolean
+        default: false
+      - label: "Posted on LinkedIn"
+        name: linkedinPosted
+        widget: boolean
+        default: false
+      - label: "Cover image (optional path)"
+        name: cover
+        widget: string
+        required: false
+      - label: "Article content (English)"
         name: body
         widget: markdown
