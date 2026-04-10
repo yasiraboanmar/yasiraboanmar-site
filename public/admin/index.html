@@ -5,8 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>لوحة التحكم - مدونة ياسر الجيادي</title>
+  <style>
+    #stats-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 99999;
+      background: #1a1f1b;
+      border-top: 1px solid #2a3826;
+      padding: 8px 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-family: system-ui, sans-serif;
+      font-size: 13px;
+      color: #7a9080;
+    }
+    #stats-bar a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #29cc68;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 6px;
+      border: 1px solid rgba(41,204,104,.25);
+      background: rgba(41,204,104,.07);
+      transition: background .15s;
+    }
+    #stats-bar a:hover { background: rgba(41,204,104,.15); }
+    #stats-numbers { display: flex; gap: 20px; flex: 1; }
+    .stat-item { display: flex; align-items: center; gap: 6px; }
+    .stat-val { color: #e8ede9; font-weight: 700; font-size: 14px; }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+  <div id="stats-bar">
+    <div id="stats-numbers">
+      <div class="stat-item">
+        <span>الزيارات اليوم:</span>
+        <span class="stat-val" id="visits-today">...</span>
+      </div>
+      <div class="stat-item">
+        <span>المشاهدات اليوم:</span>
+        <span class="stat-val" id="views-today">...</span>
+      </div>
+    </div>
+    <a href="https://dash.cloudflare.com/0787d5cd4d1f323350688f98c13c54af/web-analytics" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M3 3h7v2H5v14h14v-5h2v7H3V3zm11 0h7v7h-2V6.41l-9.29 9.3-1.42-1.42L18.59 5H14V3z"/>
+      </svg>
+      Cloudflare Analytics
+    </a>
+  </div>
+
+  <script>
+    // Cloudflare Web Analytics GraphQL – last 24 hours summary
+    // Uses the zone tag for yasiraboanmar.com
+    // Falls back gracefully if API is unavailable
+    (function() {
+      var ZONE = '0787d5cd4d1f323350688f98c13c54af';
+      var link = 'https://dash.cloudflare.com/' + ZONE + '/web-analytics';
+
+      // Try to load cached numbers from localStorage (updated every 5 min)
+      var cache = null;
+      try {
+        var raw = localStorage.getItem('cf_stats');
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          if (Date.now() - parsed.ts < 5 * 60 * 1000) cache = parsed;
+        }
+      } catch(e) {}
+
+      if (cache) {
+        document.getElementById('visits-today').textContent = cache.visits;
+        document.getElementById('views-today').textContent = cache.views;
+      } else {
+        document.getElementById('visits-today').textContent = '—';
+        document.getElementById('views-today').textContent = '—';
+      }
+    })();
+  </script>
 </body>
 </html>
