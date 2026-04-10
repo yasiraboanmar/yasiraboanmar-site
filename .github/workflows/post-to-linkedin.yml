@@ -84,7 +84,7 @@ jobs:
               -H "X-Restli-Protocol-Version: 2.0.0" \
               -d "$(python3 -c "
           import json
-          author = 'urn:li:member:${LINKEDIN_PERSON_URN}'
+          author = 'urn:li:person:${LINKEDIN_PERSON_URN}'
           text = '''${POST_TEXT}'''
           url = '${POST_URL}'
           title_str = '''${TITLE}'''
