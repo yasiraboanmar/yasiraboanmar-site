@@ -12,7 +12,10 @@ export async function onRequestGet(context) {
     return Response.json({ error: 'CF_ANALYTICS_TOKEN not set' }, { status: 500 });
   }
 
-  const today = new Date().toISOString().split('T')[0]; // YYYY-MM-DD
+  const now = new Date();
+  const today = now.toISOString().split('T')[0]; // YYYY-MM-DD UTC
+  // Also try yesterday in case of timezone lag
+  const yesterday = new Date(now - 86400000).toISOString().split('T')[0];
 
   const query = `{
     viewer {
@@ -20,14 +23,16 @@ export async function onRequestGet(context) {
         rumWebsiteTagsAdaptiveGroups(
           filter: {
             AND: [
-              {date_geq: "${today}"}
+              {date_geq: "${yesterday}"}
               {date_leq: "${today}"}
               {siteTag: "${SITE_TAG}"}
             ]
           }
-          limit: 1
+          limit: 10
+          orderBy: [{date_DESC: true}]
         ) {
           sum { visits pageViews }
+          dimensions { date }
         }
       }
     }
@@ -44,13 +49,21 @@ export async function onRequestGet(context) {
     });
 
     const json = await res.json();
-    const groups = json?.data?.viewer?.accounts?.[0]?.rumWebsiteTagsAdaptiveGroups;
 
-    if (groups && groups.length > 0) {
-      const { visits, pageViews } = groups[0].sum;
-      return Response.json({ visits, pageViews });
+    // Extract rows
+    const rows = json?.data?.viewer?.accounts?.[0]?.rumWebsiteTagsAdaptiveGroups ?? [];
+
+    if (rows.length === 0) {
+      // Return debug info so we can diagnose
+      return Response.json({ debug: json, today, yesterday, rows: [] });
     }
-    return Response.json({ visits: 0, pageViews: 0 });
+
+    // Find today's row first, fallback to first row
+    const todayRow = rows.find(r => r.dimensions?.date === today) ?? rows[0];
+    const visits    = todayRow.sum?.visits    ?? 0;
+    const pageViews = todayRow.sum?.pageViews ?? 0;
+
+    return Response.json({ visits, pageViews, date: todayRow.dimensions?.date });
 
   } catch (err) {
     return Response.json({ error: err.message }, { status: 500 });
