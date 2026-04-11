@@ -7,7 +7,6 @@ tags: ["GOSI", "الرواتب", "الامتثال"]
 draft: false
 linkedinPosted: false
 ---
-url_slug: "what-is-gosi-and-why-it-matters"
 
 ## ما هو GOSI؟
 
@@ -54,7 +53,6 @@ url_slug: "what-is-gosi-and-why-it-matters"
 - **عدم الإبلاغ عن الإصابات**: مخالفة قانونية وتعريض الموظف لخسارة حقوقه.
 
 ---
-url_slug: "what-is-gosi-and-why-it-matters"
 
 **خلاصة**: GOSI ليس مجرد استقطاع شهري — هو نظام حماية متكامل. فهمه جيداً يحميك من الغرامات ويضمن حقوق موظفيك كاملة.
 

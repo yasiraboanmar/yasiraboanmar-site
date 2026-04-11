@@ -2,6 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const postSchema = z.object({
+  url_slug: z.string().optional(),
   title: z.string(),
   description: z.string(),
   pubDate: z.coerce.date(),

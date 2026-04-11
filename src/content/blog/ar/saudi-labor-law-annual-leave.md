@@ -7,7 +7,6 @@ tags: ["نظام العمل", "الإجازات", "الامتثال"]
 draft: false
 linkedinPosted: false
 ---
-url_slug: "saudi-labor-law-annual-leave"
 
 ## ما يقوله نظام العمل السعودي
 
@@ -59,6 +58,5 @@ url_slug: "saudi-labor-law-annual-leave"
 احتفظ دائماً بسجل مكتوب لأرصدة إجازاتك. القانون يحميك — لكن الدليل الوثائقي ضروري عند النزاع.
 
 ---
-url_slug: "saudi-labor-law-annual-leave"
 
 *هل عندك سؤال عن إجازتك السنوية؟ راسلني على LinkedIn.*
