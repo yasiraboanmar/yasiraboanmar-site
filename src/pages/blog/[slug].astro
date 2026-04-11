@@ -22,6 +22,10 @@ const pubDateFormatted = post.data.pubDate.toLocaleDateString('ar-SA', {
 const postUrl = `https://yasiraboanmar.com/blog/${slug}/`;
 const linkedinShareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(postUrl)}`;
 const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(postUrl)}&text=${encodeURIComponent(post.data.title)}`;
+
+const AD_CLIENT = 'ca-pub-4997003296069618';
+const AD_SLOT_SIDEBAR = 'XXXXXXXXXX'; // ← استبدل بعد الموافقة
+const AD_SLOT_MOBILE  = 'YYYYYYYYYY'; // ← استبدل بعد الموافقة
 ---
 
 <Base
@@ -50,9 +54,31 @@ const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURICompone
     </div>
   </header>
 
-  <div class="container">
+  <div class="post-with-ads">
+
+    <!-- إعلان جانبي (يمين في RTL) -->
+    <div class="ad-sidebar">
+      <ins class="adsbygoogle"
+           data-ad-client={AD_CLIENT}
+           data-ad-slot={AD_SLOT_SIDEBAR}></ins>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
+    <!-- المحتوى -->
     <article class="post-body">
       <Content />
+
+      <!-- إعلان الجوال (وسط المقال) -->
+      <div class="ad-bottom-mobile">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client={AD_CLIENT}
+             data-ad-slot={AD_SLOT_MOBILE}
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+      </div>
+
       <hr />
       <div class="share-box">
         <div class="share-box-text">
@@ -70,6 +96,15 @@ const twitterShareUrl = `https://twitter.com/intent/tweet?url=${encodeURICompone
         </div>
       </div>
     </article>
+
+    <!-- إعلان جانبي (يسار في RTL) -->
+    <div class="ad-sidebar">
+      <ins class="adsbygoogle"
+           data-ad-client={AD_CLIENT}
+           data-ad-slot={AD_SLOT_SIDEBAR}></ins>
+      <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+
   </div>
 
   <Footer lang="ar" />
