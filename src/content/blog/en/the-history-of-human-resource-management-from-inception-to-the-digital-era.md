@@ -1,4 +1,5 @@
 ---
+url_slug: "the-history-of-human-resource-management-from-inception-to-the-digital-era"
 title: "The History of Human Resource Management: From Inception to the Digital Era"
 description: Between practical experience and academic reference; I share with
   you a reading into the history and evolution of Human Resources over time,
@@ -14,6 +15,7 @@ tags:
 draft: false
 linkedinPosted: false
 ---
+url_slug: "the-history-of-human-resource-management-from-inception-to-the-digital-era"
 Today, Human Resource Management (HRM) is the backbone of any organization striving for sustainable success. However, this concept did not emerge in its current form overnight. By looking at authoritative references, specifically "Armstrong’s Handbook of Human Resource Management Practice," we find that this field has undergone fundamental shifts reflecting the changing perspective of societies and organizations regarding the value of "humans" at work.
 
 ### 1. The Beginnings: Social Welfare and Personnel Management

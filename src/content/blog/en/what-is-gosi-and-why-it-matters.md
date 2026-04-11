@@ -1,4 +1,5 @@
 ---
+url_slug: "what-is-gosi-and-why-it-matters"
 title: "What is GOSI and Why Does Every Employee Need to Know It?"
 description: "A clear breakdown of Saudi Arabia's GOSI system: who benefits, how contributions are calculated, and what it actually protects you from."
 pubDate: 2026-04-07
@@ -6,6 +7,7 @@ tags: ["GOSI", "Payroll", "Compliance"]
 draft: false
 linkedinPosted: false
 ---
+url_slug: "what-is-gosi-and-why-it-matters"
 
 ## What is GOSI?
 
@@ -52,6 +54,7 @@ If you're dismissed for reasons beyond your control, you receive **60% of your a
 - **Not reporting injuries**: Legal violation that may cause employees to lose their rights.
 
 ---
+url_slug: "what-is-gosi-and-why-it-matters"
 
 **Bottom line**: GOSI is not just a monthly deduction — it's a comprehensive protection system. Understanding it protects you from fines and ensures your employees' full rights.
 

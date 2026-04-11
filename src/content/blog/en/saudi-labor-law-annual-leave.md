@@ -1,4 +1,5 @@
 ---
+url_slug: "saudi-labor-law-annual-leave"
 title: "Annual Leave in Saudi Labor Law: Rights Many Don't Know About"
 description: "A comprehensive guide to annual leave rights in Saudi Arabia: entitlement, accrual, cash compensation, and common employer mistakes."
 pubDate: 2026-04-09
@@ -6,6 +7,7 @@ tags: ["Labor Law", "Leave", "Compliance"]
 draft: false
 linkedinPosted: false
 ---
+url_slug: "saudi-labor-law-annual-leave"
 
 ## What Saudi Labor Law Says
 
@@ -57,5 +59,6 @@ Calculation: Remaining days × daily pay rate
 Always keep a written record of your leave balances. The law protects you — but documentation is essential in any dispute.
 
 ---
+url_slug: "saudi-labor-law-annual-leave"
 
 *Have a question about your annual leave? Message me on LinkedIn.*
