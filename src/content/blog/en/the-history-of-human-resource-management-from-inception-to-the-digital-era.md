@@ -6,7 +6,11 @@ description: Between practical experience and academic reference; I share with
   in light of digital transformation.
 pubDate: 2026-04-11
 tags:
-  - HRM | HR_History | HumanResources | DigitalTransformation | PeopleManagement
+  - HRM
+  - HR_History
+  - HumanResources
+  - DigitalTransformation
+  - PeopleManagement
 draft: false
 linkedinPosted: false
 ---
