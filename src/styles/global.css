@@ -1,15 +1,15 @@
 /* ===== Brand Tokens ===== */
 :root {
-  --bg:        #0a0d0b;
-  --surface:   #111510;
-  --card:      #161c14;
-  --border:    #1f2a1c;
-  --border-2:  #2a3826;
+  --bg:        #060e09;
+  --surface:   #0c1a0f;
+  --card:      #102015;
+  --border:    #1a3522;
+  --border-2:  #1b7742;
   --text:      #e8ede9;
   --muted:     #7a9080;
-  --accent:    #00cc66;
-  --accent-dim:rgba(0,204,102,.10);
-  --accent-border:rgba(0,204,102,.25);
+  --accent:    #2ecc71;
+  --accent-dim:rgba(46,204,113,.10);
+  --accent-border:rgba(46,204,113,.25);
   --font:      "Cairo", system-ui, -apple-system, Segoe UI, Roboto, "Noto Naskh Arabic", Arial, sans-serif;
   --radius:    14px;
   --max:       1060px;
@@ -82,7 +82,7 @@ strong { color: var(--text); }
 /* ===== Hero ===== */
 .hero {
   padding: 120px 0 64px;
-  background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(0,204,102,.07), transparent);
+  background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(46,204,113,.07), transparent);
 }
 .hero-inner {
   display: flex; align-items: center; gap: 48px;
@@ -125,9 +125,9 @@ strong { color: var(--text); }
   white-space: nowrap;
 }
 .btn-primary {
-  background: var(--accent); color: #0a0d0b;
+  background: #1b7742; color: #e8ede9;
 }
-.btn-primary:hover { background: #00e070; transform: translateY(-1px); text-decoration: none; color: #0a0d0b; }
+.btn-primary:hover { background: #2ecc71; color: #082213; transform: translateY(-1px); text-decoration: none; }
 .btn-outline {
   background: transparent; color: var(--text);
   border: 1px solid var(--border-2);
@@ -174,7 +174,7 @@ strong { color: var(--text); }
 .blog-card:hover {
   border-color: var(--accent-border);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,204,102,.07);
+  box-shadow: 0 12px 40px rgba(46,204,113,.07);
   text-decoration: none; color: var(--text);
 }
 .blog-card-meta {
