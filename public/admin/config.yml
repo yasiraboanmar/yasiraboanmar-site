@@ -16,8 +16,14 @@ collections:
     label_singular: "مقال عربي"
     folder: src/content/blog/ar
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.url_slug}}"
     fields:
+      - label: "الرابط (slug)"
+        name: url_slug
+        widget: string
+        required: true
+        hint: "أحرف إنجليزية صغيرة وأرقام وشرطات فقط — يجب أن يكون نفسه في المقال الإنجليزي. مثال: hr-history-digital-era"
+        pattern: ['^[a-z0-9][a-z0-9-]*[a-z0-9]$', "أحرف إنجليزية صغيرة وأرقام وشرطات فقط"]
       - label: "العنوان (عربي)"
         name: title
         widget: string
@@ -46,7 +52,7 @@ collections:
         name: linkedinPosted
         widget: boolean
         default: false
-      - label: "صورة الغلاف (مسار اختياري)"
+      - label: "صورة الغلاف (اختياري)"
         name: cover
         widget: string
         required: false
@@ -59,8 +65,14 @@ collections:
     label_singular: "English Article"
     folder: src/content/blog/en
     create: true
-    slug: "{{slug}}"
+    slug: "{{fields.url_slug}}"
     fields:
+      - label: "URL Slug"
+        name: url_slug
+        widget: string
+        required: true
+        hint: "Lowercase letters, numbers, and hyphens only — must match the Arabic post slug exactly."
+        pattern: ['^[a-z0-9][a-z0-9-]*[a-z0-9]$', "Lowercase letters, numbers, and hyphens only"]
       - label: "Title (English)"
         name: title
         widget: string
@@ -89,7 +101,7 @@ collections:
         name: linkedinPosted
         widget: boolean
         default: false
-      - label: "Cover image (optional path)"
+      - label: "Cover image (optional)"
         name: cover
         widget: string
         required: false
