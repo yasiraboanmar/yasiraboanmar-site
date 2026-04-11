@@ -69,7 +69,8 @@ jobs:
 
             SLUG=$(basename "$FILE" .md)
             SLUG=$(basename "$SLUG" .mdx)
-            POST_URL="${SITE_URL}/blog/${SLUG}/"
+            ENCODED_SLUG=$(python3 -c "import sys; from urllib.parse import quote; print(quote(sys.argv[1], safe='-'))" "$SLUG")
+            POST_URL="${SITE_URL}/blog/${ENCODED_SLUG}/"
             HASHTAGS="#الموارد_البشرية #HR #السعودية"
 
             POST_TEXT=$(python3 -c "
