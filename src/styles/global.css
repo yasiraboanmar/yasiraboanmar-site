@@ -7,9 +7,9 @@
   --border-2:  #2a3826;
   --text:      #e8ede9;
   --muted:     #7a9080;
-  --accent:    #3ddc7c;
-  --accent-dim:rgba(61,220,124,.10);
-  --accent-border:rgba(61,220,124,.25);
+  --accent:    #00cc66;
+  --accent-dim:rgba(0,204,102,.10);
+  --accent-border:rgba(0,204,102,.25);
   --font:      "Cairo", system-ui, -apple-system, Segoe UI, Roboto, "Noto Naskh Arabic", Arial, sans-serif;
   --radius:    14px;
   --max:       1060px;
@@ -82,7 +82,7 @@ strong { color: var(--text); }
 /* ===== Hero ===== */
 .hero {
   padding: 120px 0 64px;
-  background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(61,220,124,.07), transparent);
+  background: radial-gradient(ellipse 70% 50% at 50% -10%, rgba(0,204,102,.07), transparent);
 }
 .hero-inner {
   display: flex; align-items: center; gap: 48px;
@@ -127,7 +127,7 @@ strong { color: var(--text); }
 .btn-primary {
   background: var(--accent); color: #0a0d0b;
 }
-.btn-primary:hover { background: #4de888; transform: translateY(-1px); text-decoration: none; color: #0a0d0b; }
+.btn-primary:hover { background: #00e070; transform: translateY(-1px); text-decoration: none; color: #0a0d0b; }
 .btn-outline {
   background: transparent; color: var(--text);
   border: 1px solid var(--border-2);
@@ -174,7 +174,7 @@ strong { color: var(--text); }
 .blog-card:hover {
   border-color: var(--accent-border);
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(61,220,124,.07);
+  box-shadow: 0 12px 40px rgba(0,204,102,.07);
   text-decoration: none; color: var(--text);
 }
 .blog-card-meta {
