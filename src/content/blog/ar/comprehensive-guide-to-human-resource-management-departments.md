@@ -11,9 +11,8 @@ tags:
   - تطوير_الموظفين
   - الاستقطاب
   - الامتثال_العمالي  HR_Management
-  - ""
 draft: false
-linkedinPosted: true
+linkedinPosted: false
 ---
 
 
