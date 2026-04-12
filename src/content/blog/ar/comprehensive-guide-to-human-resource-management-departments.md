@@ -10,7 +10,8 @@ tags:
   - الهيكل_التنظيمي
   - تطوير_الموظفين
   - الاستقطاب
-  - الامتثال_العمالي  HR_Management
+  - الامتثال_العمالي
+  - HR_Management
 draft: false
 linkedinPosted: false
 ---
