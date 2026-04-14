@@ -17,7 +17,7 @@ tags:
   - Business_Operations
 draft: false
 linkedinPosted: true
-cover: public/images/blog/hr-vs-admin.jpeg
+cover: /images/blog/hr-vs-admin.jpeg
 ---
 ## HR vs. Admin: More Than Just Office Management
 
