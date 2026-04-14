@@ -18,21 +18,42 @@ const links = isAr
       { href: '/en/blog/', label: 'Blog' },
     ];
 
-// Smart language switch: stay on same article if on a blog post
+// Smart language switch: stay on same page when switching language
 let altHref: string;
+
+// Page mapping for Arabic to English
+const pageMap: Record<string, string> = {
+  '/': '/en/',
+  '/blog/': '/en/blog/',
+  '/privacy': '/en/privacy',
+  '/terms': '/en/terms',
+  '/disclaimer': '/en/disclaimer',
+};
+
+// Reverse mapping for English to Arabic
+const reversePageMap: Record<string, string> = Object.fromEntries(
+  Object.entries(pageMap).map(([ar, en]) => [en, ar])
+);
+
 if (isAr) {
+  // Arabic -> English
   if (currentPath.startsWith('/blog/') && currentPath !== '/blog/') {
+    // Blog post: switch to English version
     const slug = currentPath.replace('/blog/', '').replace(/\/$/, '');
     altHref = `/en/blog/${slug}/`;
   } else {
-    altHref = '/en/';
+    // Static page: use mapping or default to /en/
+    altHref = pageMap[currentPath] || '/en/';
   }
 } else {
+  // English -> Arabic
   if (currentPath.startsWith('/en/blog/') && currentPath !== '/en/blog/') {
+    // Blog post: switch to Arabic version
     const slug = currentPath.replace('/en/blog/', '').replace(/\/$/, '');
     altHref = `/blog/${slug}/`;
   } else {
-    altHref = '/';
+    // Static page: use reverse mapping or default to /
+    altHref = reversePageMap[currentPath] || '/';
   }
 }
 
