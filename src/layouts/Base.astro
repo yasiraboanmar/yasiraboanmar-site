@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import CookieConsent from '../components/CookieConsent.astro';
 
 export interface Props {
   title: string;
@@ -69,6 +70,21 @@ const canonical = Astro.url.href;
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" />
   </noscript>
 
+  <!-- Google Consent Mode v2 -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+
+    // Default consent to denied (will be updated based on user choice)
+    gtag('consent', 'default', {
+      'analytics_storage': 'denied',
+      'ad_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': 500
+    });
+  </script>
+
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4997003296069618" crossorigin="anonymous"></script>
 
@@ -93,5 +109,6 @@ const canonical = Astro.url.href;
 </head>
 <body>
   <slot />
+  <CookieConsent lang={lang} />
 </body>
 </html>
