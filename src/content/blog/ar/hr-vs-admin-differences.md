@@ -15,7 +15,7 @@ tags:
   - الفرق_بين_HR_و_Admin
 draft: false
 linkedinPosted: true
-cover: public/images/blog/hr-vs-admin.jpeg
+cover: /images/blog/hr-vs-admin.jpeg
 ---
 ### 1. الموارد البشرية (HR): حارس القيمة البشرية
 
