@@ -21,13 +21,13 @@ const links = isAr
 // Smart language switch: stay on same page when switching language
 let altHref: string;
 
-// Page mapping for Arabic to English
+// Page mapping for Arabic to English (with trailing slashes)
 const pageMap: Record<string, string> = {
   '/': '/en/',
   '/blog/': '/en/blog/',
-  '/privacy': '/en/privacy',
-  '/terms': '/en/terms',
-  '/disclaimer': '/en/disclaimer',
+  '/privacy/': '/en/privacy/',
+  '/terms/': '/en/terms/',
+  '/disclaimer/': '/en/disclaimer/',
 };
 
 // Reverse mapping for English to Arabic
