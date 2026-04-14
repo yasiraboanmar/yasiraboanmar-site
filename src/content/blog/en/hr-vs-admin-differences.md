@@ -9,8 +9,12 @@ description: >-
   For a business to scale effectively, it is crucial to distinguish between managing "The People" and managing "The Environment."
 pubDate: 2026-04-14
 tags:
-  - HR_Management - Office_Administration - Saudi_Labor_Law -
-    Organizational_Development - Workplace_Efficiency - Business Operations
+  - HR_Management
+  - Office_Administration
+  - Saudi_Labor_Law
+  - Organizational_Development
+  - Workplace_Efficiency
+  - Business_Operations
 draft: false
 linkedinPosted: true
 cover: public/images/blog/hr-vs-admin.jpeg
