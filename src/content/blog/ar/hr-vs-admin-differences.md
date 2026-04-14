@@ -9,10 +9,10 @@ description: >-
 pubDate: 2026-04-14
 tags:
   - الموارد_البشرية
-  -  الشؤون_الإدارية
-  -   إدارة_المرافق
-  -    الوعي_الوظيفي
-  -  الفرق_بين_HR_و_Admin
+  - الشؤون_الإدارية
+  - إدارة_المرافق
+  - الوعي_الوظيفي
+  - الفرق_بين_HR_و_Admin
 draft: false
 linkedinPosted: true
 cover: public/images/blog/hr-vs-admin.jpeg
