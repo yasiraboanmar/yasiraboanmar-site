@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Disclaimer';
+const description = 'Disclaimer for Yasir Aljiyadi website';
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <article class="prose">
+    <h1>Disclaimer</h1>
+
+    <p class="intro">
+      The content published on this website is for educational and informational purposes only.
+    </p>
+
+    <h2>Nature of Content</h2>
+    <p>
+      The articles and information provided on this website reflect personal opinions and experiences in the field of human resources and management. This content:
+    </p>
+    <ul>
+      <li>Is not official legal or professional advice</li>
+      <li>May change over time and circumstances</li>
+      <li>Should be verified before making important decisions</li>
+    </ul>
+
+    <h2>Legal and Regulatory Information</h2>
+    <p>
+      When discussing laws or regulations (such as Saudi Labor Law or Social Insurance):
+    </p>
+    <ul>
+      <li>Information may change with system updates</li>
+      <li>Refer to official authorities for accurate information</li>
+      <li>Consult a lawyer or specialist for important legal matters</li>
+    </ul>
+
+    <h2>Limitation of Liability</h2>
+    <p>
+      We make every effort to provide accurate and useful information, but we are not responsible for:
+    </p>
+    <ul>
+      <li>Any errors or omissions in the information</li>
+      <li>Decisions made based on the content</li>
+      <li>Consequences resulting from applying the information</li>
+    </ul>
+
+    <h2>Use of Information</h2>
+    <p>
+      By using this website, you agree that:
+    </p>
+    <ul>
+      <li>Content is for educational and general knowledge only</li>
+      <li>You take full responsibility for any decisions you make</li>
+      <li>You will consult specialists before making important decisions</li>
+    </ul>
+
+    <h2>Updates</h2>
+    <p>
+      We strive to update content regularly, but some information may become outdated. Always check the article's publication date.
+    </p>
+
+    <p class="update-date">
+      Last updated: April 2026
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+  }
+
+  p, li {
+    line-height: 1.75;
+    color: var(--gray-700);
+    font-size: 1.0625rem;
+  }
+
+  ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  .update-date {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    font-style: italic;
+  }
+</style>

@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'شروط الاستخدام';
+const description = 'شروط استخدام موقع ياسر الجيادي';
+---
+
+<BaseLayout title={title} description={description} lang="ar">
+  <article class="prose">
+    <h1>شروط الاستخدام</h1>
+
+    <p class="intro">
+      باستخدامك لهذا الموقع، فإنك توافق على الشروط التالية. يُرجى قراءتها بعناية.
+    </p>
+
+    <h2>استخدام المحتوى</h2>
+    <p>
+      جميع المقالات والمحتوى المنشور في هذا الموقع مملوك لياسر الجيادي ومحمي بحقوق النشر.
+    </p>
+    <p>
+      يمكنك:
+    </p>
+    <ul>
+      <li>قراءة ومشاركة المقالات</li>
+      <li>الاقتباس مع ذكر المصدر</li>
+      <li>استخدام المحتوى لأغراض تعليمية</li>
+    </ul>
+    <p>
+      لا يمكنك:
+    </p>
+    <ul>
+      <li>نسخ المحتوى كاملاً دون إذن</li>
+      <li>استخدام المحتوى لأغراض تجارية دون موافقة</li>
+      <li>إعادة نشر المحتوى كما هو في مواقع أخرى</li>
+    </ul>
+
+    <h2>المسؤولية</h2>
+    <p>
+      المحتوى المقدم في هذا الموقع هو للتثقيف والمعرفة العامة. نبذل جهدنا لضمان دقة المعلومات، لكن:
+    </p>
+    <ul>
+      <li>لا نتحمل مسؤولية أي أخطاء قد تحدث</li>
+      <li>المحتوى لا يُعتبر استشارة قانونية أو مهنية</li>
+      <li>يُنصح بالرجوع لمختصين للقرارات المهمة</li>
+    </ul>
+
+    <h2>الروابط الخارجية</h2>
+    <p>
+      قد يحتوي الموقع على روابط لمواقع خارجية. نحن غير مسؤولين عن محتوى أو سياسات هذه المواقع.
+    </p>
+
+    <h2>التعديلات</h2>
+    <p>
+      نحتفظ بالحق في تعديل هذه الشروط في أي وقت. التحديثات ستُنشر على هذه الصفحة.
+    </p>
+
+    <p class="update-date">
+      آخر تحديث: أبريل 2026
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+  }
+
+  p, li {
+    line-height: 1.75;
+    color: var(--gray-700);
+    font-size: 1.0625rem;
+  }
+
+  ul {
+    margin: 1rem 0;
+    padding-right: 1.5rem;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  .update-date {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    font-style: italic;
+  }
+</style>

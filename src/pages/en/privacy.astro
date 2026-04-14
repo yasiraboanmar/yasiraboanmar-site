@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Privacy Policy';
+const description = 'Privacy Policy for Yasir Aljiyadi website';
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <article class="prose">
+    <h1>Privacy Policy</h1>
+
+    <p class="intro">
+      We respect your privacy and are committed to protecting it. This page explains how we handle your information when you visit our website.
+    </p>
+
+    <h2>Information We Collect</h2>
+    <p>
+      When you visit our website, we may collect basic information such as:
+    </p>
+    <ul>
+      <li>The type of browser you use</li>
+      <li>Pages you visit</li>
+      <li>Time spent on the site</li>
+    </ul>
+    <p>
+      This information helps us improve your experience and develop better content.
+    </p>
+
+    <h2>Cookies</h2>
+    <p>
+      We use cookies to understand how you use the website. You can disable them from your browser settings at any time.
+    </p>
+
+    <h2>Information Sharing</h2>
+    <p>
+      We do not sell or share your personal information with third parties. The information we collect is used solely to improve the website.
+    </p>
+
+    <h2>Your Rights</h2>
+    <p>
+      You can at any time:
+    </p>
+    <ul>
+      <li>Request deletion of your information</li>
+      <li>Access the collected data</li>
+      <li>Disable cookies</li>
+    </ul>
+
+    <h2>Contact Us</h2>
+    <p>
+      If you have any questions about privacy, you can contact us via the email provided on the website.
+    </p>
+
+    <p class="update-date">
+      Last updated: April 2026
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+  }
+
+  p, li {
+    line-height: 1.75;
+    color: var(--gray-700);
+    font-size: 1.0625rem;
+  }
+
+  ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  .update-date {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    font-style: italic;
+  }
+</style>

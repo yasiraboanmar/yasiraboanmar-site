@@ -1,0 +1,110 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const title = 'Terms of Use';
+const description = 'Terms of Use for Yasir Aljiyadi website';
+---
+
+<BaseLayout title={title} description={description} lang="en">
+  <article class="prose">
+    <h1>Terms of Use</h1>
+
+    <p class="intro">
+      By using this website, you agree to the following terms. Please read them carefully.
+    </p>
+
+    <h2>Content Usage</h2>
+    <p>
+      All articles and content published on this website are owned by Yasir Aljiyadi and protected by copyright.
+    </p>
+    <p>
+      You may:
+    </p>
+    <ul>
+      <li>Read and share articles</li>
+      <li>Quote with proper attribution</li>
+      <li>Use content for educational purposes</li>
+    </ul>
+    <p>
+      You may not:
+    </p>
+    <ul>
+      <li>Copy entire content without permission</li>
+      <li>Use content for commercial purposes without consent</li>
+      <li>Republish content as-is on other websites</li>
+    </ul>
+
+    <h2>Liability</h2>
+    <p>
+      The content provided on this website is for educational and general knowledge purposes. We make every effort to ensure accuracy, however:
+    </p>
+    <ul>
+      <li>We are not responsible for any errors that may occur</li>
+      <li>Content should not be considered legal or professional advice</li>
+      <li>Consult with professionals for important decisions</li>
+    </ul>
+
+    <h2>External Links</h2>
+    <p>
+      The website may contain links to external sites. We are not responsible for the content or policies of these websites.
+    </p>
+
+    <h2>Modifications</h2>
+    <p>
+      We reserve the right to modify these terms at any time. Updates will be published on this page.
+    </p>
+
+    <p class="update-date">
+      Last updated: April 2026
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+  }
+
+  p, li {
+    line-height: 1.75;
+    color: var(--gray-700);
+    font-size: 1.0625rem;
+  }
+
+  ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  .update-date {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    font-style: italic;
+  }
+</style>

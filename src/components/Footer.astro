@@ -8,9 +8,23 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="container">
     <div class="footer-inner">
-      <span>
-        {isAr ? `© ${year} ياسر الجيادي` : `© ${year} Yasir Aljiyadi`}
-      </span>
+      <div class="footer-left">
+        <span class="copyright">
+          {isAr ? `© ${year} ياسر الجيادي` : `© ${year} Yasir Aljiyadi`}
+        </span>
+
+        <nav class="footer-links" aria-label={isAr ? 'روابط قانونية' : 'Legal links'}>
+          <a href={isAr ? '/privacy' : '/en/privacy'}>
+            {isAr ? 'الخصوصية' : 'Privacy'}
+          </a>
+          <a href={isAr ? '/terms' : '/en/terms'}>
+            {isAr ? 'الشروط' : 'Terms'}
+          </a>
+          <a href={isAr ? '/disclaimer' : '/en/disclaimer'}>
+            {isAr ? 'إخلاء المسؤولية' : 'Disclaimer'}
+          </a>
+        </nav>
+      </div>
 
       <nav class="footer-social" aria-label="روابط التواصل">
         <!-- LinkedIn -->
@@ -35,3 +49,64 @@ const year = new Date().getFullYear();
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-left {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+
+  .copyright {
+    white-space: nowrap;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.875rem;
+  }
+
+  .footer-links a {
+    color: var(--gray-600);
+    text-decoration: none;
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+
+  .footer-links a:hover {
+    color: var(--gray-900);
+    text-decoration: underline;
+  }
+
+  .footer-social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 640px) {
+    .footer-inner {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .footer-left {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .footer-links {
+      gap: 0.75rem;
+    }
+  }
+</style>

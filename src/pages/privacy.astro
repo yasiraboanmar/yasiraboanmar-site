@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const title = 'سياسة الخصوصية';
+const description = 'سياسة الخصوصية لموقع ياسر الجيادي';
+---
+
+<BaseLayout title={title} description={description} lang="ar">
+  <article class="prose">
+    <h1>سياسة الخصوصية</h1>
+
+    <p class="intro">
+      نحترم خصوصيتك ونلتزم بحمايتها. هذه الصفحة توضح كيف نتعامل مع معلوماتك عند زيارة الموقع.
+    </p>
+
+    <h2>المعلومات التي نجمعها</h2>
+    <p>
+      عند زيارتك للموقع، قد نجمع معلومات أساسية مثل:
+    </p>
+    <ul>
+      <li>نوع المتصفح الذي تستخدمه</li>
+      <li>الصفحات التي تزورها</li>
+      <li>مدة بقائك في الموقع</li>
+    </ul>
+    <p>
+      هذه المعلومات تساعدنا على تحسين تجربتك وتطوير المحتوى.
+    </p>
+
+    <h2>ملفات تعريف الارتباط (Cookies)</h2>
+    <p>
+      نستخدم ملفات تعريف الارتباط لفهم كيفية استخدامك للموقع. يمكنك إيقافها من إعدادات المتصفح في أي وقت.
+    </p>
+
+    <h2>مشاركة المعلومات</h2>
+    <p>
+      لا نبيع أو نشارك معلوماتك الشخصية مع أطراف خارجية. المعلومات التي نجمعها تُستخدم فقط لتحسين الموقع.
+    </p>
+
+    <h2>حقوقك</h2>
+    <p>
+      يمكنك في أي وقت:
+    </p>
+    <ul>
+      <li>طلب حذف معلوماتك</li>
+      <li>الاطلاع على البيانات المجمعة</li>
+      <li>إيقاف ملفات تعريف الارتباط</li>
+    </ul>
+
+    <h2>التواصل</h2>
+    <p>
+      إذا كان لديك أي استفسار حول الخصوصية، يمكنك التواصل معنا عبر البريد الإلكتروني المتوفر في الموقع.
+    </p>
+
+    <p class="update-date">
+      آخر تحديث: أبريل 2026
+    </p>
+  </article>
+</BaseLayout>
+
+<style>
+  .prose {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+  }
+
+  h2 {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+  }
+
+  p, li {
+    line-height: 1.75;
+    color: var(--gray-700);
+    font-size: 1.0625rem;
+  }
+
+  ul {
+    margin: 1rem 0;
+    padding-right: 1.5rem;
+  }
+
+  li {
+    margin: 0.5rem 0;
+  }
+
+  .update-date {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    font-style: italic;
+  }
+</style>
