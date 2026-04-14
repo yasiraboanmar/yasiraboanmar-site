@@ -1,11 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 
 const title = 'شروط الاستخدام';
 const description = 'شروط استخدام موقع ياسر الجيادي';
+const currentPath = Astro.url.pathname;
 ---
 
 <Base title={title} description={description} lang="ar">
+  <Navbar lang="ar" currentPath={currentPath} />
   <article class="prose">
     <h1>شروط الاستخدام</h1>
 
@@ -58,6 +62,7 @@ const description = 'شروط استخدام موقع ياسر الجيادي';
       آخر تحديث: أبريل 2026
     </p>
   </article>
+  <Footer lang="ar" />
 </Base>
 
 <style>

@@ -1,11 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
 
 const title = 'Terms of Use';
 const description = 'Terms of Use for Yasir Aljiyadi website';
+const currentPath = Astro.url.pathname;
 ---
 
 <Base title={title} description={description} lang="en">
+  <Navbar lang="en" currentPath={currentPath} />
   <article class="prose">
     <h1>Terms of Use</h1>
 
@@ -58,6 +62,7 @@ const description = 'Terms of Use for Yasir Aljiyadi website';
       Last updated: April 2026
     </p>
   </article>
+  <Footer lang="en" />
 </Base>
 
 <style>
