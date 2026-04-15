@@ -208,7 +208,7 @@ strong { color: var(--text); }
 .post-title { margin-bottom: 14px; }
 .post-desc { font-size: 1.1rem; color: var(--muted); max-width: 62ch; }
 
-.post-body {
+.post-body {h
   padding: 56px 0 80px;
   max-width: 720px;
 }
@@ -412,7 +412,7 @@ strong { color: var(--text); }
   .post-body table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
   /* Share box → column */
-  .share-box { flex-direction: column; align-items: flex-start; padding: 20px; }
+    .share-box { flex-direction: column; align-items: flex-start; padding: 20px; margin: 0 16px; }
   .share-btns { width: 100%; }
   .share-btns .btn { flex: 1; justify-content: center; }
 
