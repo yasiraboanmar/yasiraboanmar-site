@@ -64,6 +64,6 @@ Cost-saving starts here. This includes all expenses from advertising to intervie
 ---
 
 ### Final Thought
-Numbers don't lie, but they require an expert to read between the lines. Transforming these metrics into tangible reality is what distinguishes a traditional manager from a strategic leader who guides their organization toward sustainable growth.
+Numbers don't lie, but they require an expert to read between the lines.
+Transforming these metrics into tangible reality is what distinguishes a traditional manager from a strategic leader who guides their organization toward sustainable growth.
 
----
