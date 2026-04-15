@@ -74,7 +74,7 @@ strong { color: var(--text); }
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 40px; height: 36px; padding: 0 8px; border-radius: 8px;
   background: var(--surface); border: 1px solid var(--border-2);
-  font-size: 1.25rem; line-height: 1;
+    font-size: 1.25rem; line-height: 1; flex-shrink: 0;
   cursor: pointer; transition: all .18s;
 }
 .lang-btn:hover { border-color: var(--accent-border); transform: scale(1.08); text-decoration: none; }
