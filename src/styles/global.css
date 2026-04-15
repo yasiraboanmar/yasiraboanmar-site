@@ -339,6 +339,7 @@ strong { color: var(--text); }
   .post-with-ads {
     grid-template-columns: 1fr;
     max-width: 800px;
+    padding: 0 16px;
   }
   .ad-sidebar { display: none; }
   .ad-bottom-mobile {
