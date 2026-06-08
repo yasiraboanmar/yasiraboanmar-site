@@ -16,155 +16,81 @@
 
   <style>
     /* =====================================================================
-       Theme tokens — soft dark palette, aligned with the stats bar
-       ===================================================================== */
-    :root {
-      --cms-bg:       #141a16;   /* soft dark app background */
-      --cms-surface:  #1b211d;   /* panels / top bar */
-      --cms-card:     #1f2620;   /* inputs / cards */
-      --cms-border:   #2c352d;
-      --cms-text:     #e6ebe7;
-      --cms-muted:    #8a9a8e;
-      --cms-accent:   #29cc68;
-      --cms-accent-ink: #082213;
-      --cms-accent-dim: rgba(41,204,104,.10);
-      --cms-accent-border: rgba(41,204,104,.30);
-      --cms-font: "Cairo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-      --stats-bar-h: 48px;
-    }
-
-    /* =====================================================================
-       Stats bar (fixed footer) — unchanged
+       Stats bar (fixed footer) — light mode
        ===================================================================== */
     #stats-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 99999;
-      background: #1a1f1b;
-      border-top: 1px solid #2a3826;
+      height: 48px;
+      background: #f4f6f5;
+      border-top: 1px solid #d9e0db;
       padding: 8px 20px;
       display: flex;
       align-items: center;
       gap: 16px;
-      font-family: system-ui, sans-serif;
+      font-family: "Cairo", system-ui, sans-serif;
       font-size: 13px;
-      color: #7a9080;
+      color: #5a6b5e;
     }
     #stats-bar a {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: #29cc68;
+      color: #1b9e4b;
       text-decoration: none;
       font-weight: 600;
       padding: 4px 12px;
       border-radius: 6px;
-      border: 1px solid rgba(41,204,104,.25);
-      background: rgba(41,204,104,.07);
+      border: 1px solid rgba(27,158,75,.30);
+      background: rgba(27,158,75,.08);
       transition: background .15s;
     }
-    #stats-bar a:hover { background: rgba(41,204,104,.15); }
+    #stats-bar a:hover { background: rgba(27,158,75,.15); }
     #stats-numbers { display: flex; gap: 20px; flex: 1; }
     .stat-item { display: flex; align-items: center; gap: 6px; }
-    .stat-val { color: #e8ede9; font-weight: 700; font-size: 14px; }
+    .stat-val { color: #1a1f1b; font-weight: 700; font-size: 14px; }
 
     /* =====================================================================
-       Decap CMS — simple dark + RTL theme
-       Principle: don't fight Decap's layout engine. Let the app fill the
-       full width (fixes the black gap), set RTL flow so collections sit on
-       the right, theme only the surfaces that matter (bg, text, inputs).
+       Decap CMS — default light theme kept intact.
+       Only three tweaks: Cairo font, RTL flow, full-width layout fix.
        ===================================================================== */
 
-    /* (1) Full-bleed app — no stray black area on the side */
+    /* Full-bleed app — no stray empty area on the side */
     html, body {
       margin: 0;
       width: 100%;
       min-height: 100vh;
-      background: var(--cms-bg);
       overflow-x: hidden;
     }
     body {
-      font-family: var(--cms-font);
-      padding-bottom: var(--stats-bar-h);   /* clear the fixed stats bar */
+      padding-bottom: 48px;   /* clear the fixed stats bar */
     }
-    #nc-root {
-      width: 100% !important;
-      min-height: 100vh;
-      background: var(--cms-bg) !important;
-      color: var(--cms-text);
-    }
-    /* Force every top-level wrapper to span the full width so RTL flex
-       reversal can't expose an empty strip on the left */
+    #nc-root { width: 100% !important; min-height: 100vh; }
     #nc-root > div,
     #nc-root [class*="AppMain"],
     #nc-root [class*="App-"] {
       width: 100% !important;
       max-width: none !important;
-      background: var(--cms-bg) !important;
     }
 
-    /* (2) RTL flow → collections list & nav align to the right */
+    /* RTL flow → collections list & nav align to the right */
     #nc-root { direction: rtl; text-align: right; }
 
-    /* Base typography everywhere */
+    /* Cairo font everywhere */
     #nc-root,
     #nc-root input, #nc-root textarea, #nc-root select, #nc-root button {
-      font-family: var(--cms-font) !important;
+      font-family: "Cairo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
     }
 
-    /* (3) Clean dark surfaces — kept minimal */
-    #nc-root [class*="Card"],
-    #nc-root [class*="Sidebar"],
-    #nc-root header,
-    #nc-root [class*="AppHeader"] {
-      background: var(--cms-surface) !important;
-      border-color: var(--cms-border) !important;
-      color: var(--cms-text) !important;
-    }
-
-    #nc-root h1, #nc-root h2, #nc-root h3, #nc-root h4 {
-      color: var(--cms-text) !important;
-    }
-    #nc-root label, #nc-root [class*="Label"] {
-      color: var(--cms-muted) !important;
-    }
-
-    /* Inputs + markdown editor */
+    /* Let long-form fields follow their content's direction
+       (Arabic → RTL, English → LTR) */
     #nc-root input,
     #nc-root textarea,
-    #nc-root select,
     #nc-root [contenteditable="true"] {
-      background: var(--cms-card) !important;
-      color: var(--cms-text) !important;
-      border: 1px solid var(--cms-border) !important;
-      border-radius: 8px !important;
-      direction: auto;            /* Arabic → RTL, English → LTR per content */
+      direction: auto;
       text-align: start;
-      line-height: 1.9;
     }
-    #nc-root input:focus,
-    #nc-root textarea:focus,
-    #nc-root [contenteditable="true"]:focus {
-      border-color: var(--cms-accent-border) !important;
-      outline: none !important;
-      box-shadow: 0 0 0 2px var(--cms-accent-dim) !important;
-    }
-    #nc-root input::placeholder,
-    #nc-root textarea::placeholder { color: var(--cms-muted) !important; }
-
-    /* Primary action buttons */
-    #nc-root button[class*="Primary"],
-    #nc-root [class*="button"][class*="primary"] {
-      background: var(--cms-accent) !important;
-      color: var(--cms-accent-ink) !important;
-      border-radius: 8px !important;
-    }
-
-    /* Dark scrollbars */
-    #nc-root *::-webkit-scrollbar { width: 8px; height: 8px; }
-    #nc-root *::-webkit-scrollbar-track { background: var(--cms-bg); }
-    #nc-root *::-webkit-scrollbar-thumb { background: var(--cms-border); border-radius: 4px; }
-    #nc-root *::-webkit-scrollbar-thumb:hover { background: var(--cms-accent); }
   </style>
 </head>
 <body>
@@ -190,20 +116,13 @@
     </a>
   </div>
 
-  <!-- Match the live preview pane to the dark/RTL theme -->
+  <!-- Preview pane: Cairo font + RTL only (default light background kept) -->
   <script>
     if (window.CMS && typeof window.CMS.registerPreviewStyle === 'function') {
       window.CMS.registerPreviewStyle(
         'data:text/css;charset=utf-8,' + encodeURIComponent(
           '@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap");' +
-          'html,body{background:#141a16;color:#e6ebe7;font-family:"Cairo",system-ui,sans-serif;' +
-          'direction:rtl;line-height:1.9;padding:16px;}' +
-          'h1,h2,h3,h4{color:#e6ebe7;font-weight:800;}' +
-          'a{color:#29cc68;}' +
-          'blockquote{border-inline-start:3px solid #29cc68;background:rgba(41,204,104,.10);' +
-          'margin:1.5em 0;padding:12px 18px;border-radius:0 10px 10px 0;color:#8a9a8e;}' +
-          'code{background:#1f2620;border:1px solid #2c352d;border-radius:5px;padding:2px 7px;}' +
-          'table{width:100%;border-collapse:collapse;}th,td{border:1px solid #2c352d;padding:8px 14px;text-align:start;}'
+          'html,body{font-family:"Cairo",system-ui,sans-serif;direction:rtl;line-height:1.9;}'
         ),
         { raw: true }
       );
