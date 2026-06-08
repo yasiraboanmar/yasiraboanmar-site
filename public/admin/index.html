@@ -52,8 +52,8 @@
     .stat-val { color: #1a1f1b; font-weight: 700; font-size: 14px; }
 
     /* =====================================================================
-       Decap CMS — default light theme kept intact.
-       Only three tweaks: Cairo font, RTL flow, full-width layout fix.
+       Decap CMS — default light LTR theme kept fully intact.
+       Only two tweaks: Cairo font + full-width layout fix.
        ===================================================================== */
 
     /* Full-bleed app — no stray empty area on the side */
@@ -74,22 +74,10 @@
       max-width: none !important;
     }
 
-    /* RTL flow → collections list & nav align to the right */
-    #nc-root { direction: rtl; text-align: right; }
-
     /* Cairo font everywhere */
     #nc-root,
     #nc-root input, #nc-root textarea, #nc-root select, #nc-root button {
       font-family: "Cairo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif !important;
-    }
-
-    /* Let long-form fields follow their content's direction
-       (Arabic → RTL, English → LTR) */
-    #nc-root input,
-    #nc-root textarea,
-    #nc-root [contenteditable="true"] {
-      direction: auto;
-      text-align: start;
     }
   </style>
 </head>
@@ -116,13 +104,13 @@
     </a>
   </div>
 
-  <!-- Preview pane: Cairo font + RTL only (default light background kept) -->
+  <!-- Preview pane: Cairo font only (default light LTR layout kept) -->
   <script>
     if (window.CMS && typeof window.CMS.registerPreviewStyle === 'function') {
       window.CMS.registerPreviewStyle(
         'data:text/css;charset=utf-8,' + encodeURIComponent(
           '@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap");' +
-          'html,body{font-family:"Cairo",system-ui,sans-serif;direction:rtl;line-height:1.9;}'
+          'html,body{font-family:"Cairo",system-ui,sans-serif;line-height:1.9;}'
         ),
         { raw: true }
       );
