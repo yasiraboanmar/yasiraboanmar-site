@@ -51,7 +51,12 @@ const canonical = Astro.url.href;
   <link rel="alternate" hreflang="x-default" href="https://yasiraboanmar.com/" />
 
   <!-- RSS -->
-  <link rel="alternate" type="application/rss+xml" title="ياسر الجيادي — مدونة HR" href="/rss.xml" />
+  <link
+    rel="alternate"
+    type="application/rss+xml"
+    title={lang === 'ar' ? 'ياسر الجيادي — مدونة HR' : 'Yasir Aljiyadi — HR Blog'}
+    href={lang === 'ar' ? '/rss.xml' : '/en/rss.xml'}
+  />
 
   <!-- Favicon -->
   <link rel="icon" href="/Y-icon.svg" type="image/svg+xml" />

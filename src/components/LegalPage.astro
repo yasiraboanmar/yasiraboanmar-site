@@ -1,0 +1,79 @@
+---
+import Base from '../layouts/Base.astro';
+import Navbar from './Navbar.astro';
+import Footer from './Footer.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  lang?: 'ar' | 'en';
+  dir?: 'rtl' | 'ltr';
+}
+
+const {
+  title,
+  description,
+  lang = 'ar',
+  dir = lang === 'ar' ? 'rtl' : 'ltr',
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+---
+
+<Base title={title} description={description} lang={lang} dir={dir}>
+  <Navbar lang={lang} currentPath={currentPath} />
+  <article class="prose">
+    <slot />
+  </article>
+  <Footer lang={lang} />
+</Base>
+
+<style>
+  .prose {
+    max-width: 65ch;
+    margin: 0 auto;
+    padding: 6rem 1rem 2rem;
+  }
+
+  .prose :global(.intro) {
+    font-size: 1.125rem;
+    color: var(--gray-600);
+    margin-bottom: 2rem;
+  }
+
+  .prose :global(h1) {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-900);
+  }
+
+  .prose :global(h2) {
+    font-size: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--gray-800);
+  }
+
+  .prose :global(p),
+  .prose :global(li) {
+    line-height: 1.75;
+    color: var(--gray-700);
+    font-size: 1.0625rem;
+  }
+
+  .prose :global(ul) {
+    margin: 1rem 0;
+    padding-inline-start: 1.5rem;
+  }
+
+  .prose :global(li) {
+    margin: 0.5rem 0;
+  }
+
+  .prose :global(.update-date) {
+    margin-top: 3rem;
+    font-size: 0.875rem;
+    color: var(--gray-500);
+    font-style: italic;
+  }
+</style>
