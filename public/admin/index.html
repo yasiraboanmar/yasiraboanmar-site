@@ -5,42 +5,178 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>لوحة التحكم - مدونة ياسر الجيادي</title>
+
+  <!-- Arabic font (matches the public site) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap"
+  />
+
   <style>
+    /* =====================================================================
+       Theme tokens — aligned with the stats bar / public site palette
+       ===================================================================== */
+    :root {
+      --cms-bg:       #0c1410;
+      --cms-surface:  #1a1f1b;
+      --cms-card:     #102015;
+      --cms-border:   #2a3826;
+      --cms-text:     #e8ede9;
+      --cms-muted:    #7a9080;
+      --cms-accent:   #29cc68;
+      --cms-accent-dim: rgba(41,204,104,.10);
+      --cms-accent-border: rgba(41,204,104,.28);
+      --cms-font: "Cairo", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      --stats-bar-h: 48px;
+    }
+
+    /* =====================================================================
+       Stats bar (fixed footer)
+       ===================================================================== */
     #stats-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 99999;
-      background: #1a1f1b;
-      border-top: 1px solid #2a3826;
+      height: var(--stats-bar-h);
+      background: var(--cms-surface);
+      border-top: 1px solid var(--cms-border);
       padding: 8px 20px;
       display: flex;
       align-items: center;
       gap: 16px;
-      font-family: system-ui, sans-serif;
+      font-family: var(--cms-font);
       font-size: 13px;
-      color: #7a9080;
+      color: var(--cms-muted);
     }
     #stats-bar a {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: #29cc68;
+      color: var(--cms-accent);
       text-decoration: none;
       font-weight: 600;
       padding: 4px 12px;
       border-radius: 6px;
-      border: 1px solid rgba(41,204,104,.25);
-      background: rgba(41,204,104,.07);
+      border: 1px solid var(--cms-accent-border);
+      background: var(--cms-accent-dim);
       transition: background .15s;
     }
-    #stats-bar a:hover { background: rgba(41,204,104,.15); }
+    #stats-bar a:hover { background: rgba(41,204,104,.18); }
     #stats-numbers { display: flex; gap: 20px; flex: 1; }
     .stat-item { display: flex; align-items: center; gap: 6px; }
-    .stat-val { color: #e8ede9; font-weight: 700; font-size: 14px; }
+    .stat-val { color: var(--cms-text); font-weight: 700; font-size: 14px; }
+
+    /* =====================================================================
+       Decap CMS theming
+       Decap renders a React app into #nc-root using emotion-generated class
+       names, so we theme the stable surfaces (app root, inputs, buttons,
+       headings, cards) plus broad element selectors. Generated classes are
+       targeted with attribute substring selectors where stable enough.
+       ===================================================================== */
+
+    /* (2) Keep editor content clear of the fixed stats bar */
+    body {
+      margin: 0;
+      padding-bottom: var(--stats-bar-h);
+      background: var(--cms-bg);
+    }
+    /* Decap's root + scroll containers also need the bottom breathing room */
+    #nc-root,
+    #nc-root [class*="AppMainContainer"],
+    #nc-root [class*="EditorContainer"],
+    #nc-root [class*="ControlPaneContainer"] {
+      padding-bottom: var(--stats-bar-h);
+    }
+
+    /* Base typography + app background */
+    html, body, #nc-root,
+    #nc-root input, #nc-root textarea, #nc-root select, #nc-root button {
+      font-family: var(--cms-font) !important;
+    }
+    #nc-root { background: var(--cms-bg) !important; color: var(--cms-text); }
+
+    /* App chrome: top bar / sidebar / cards */
+    #nc-root [class*="AppHeader"],
+    #nc-root [class*="SidebarContainer"],
+    #nc-root [class*="Card"] {
+      background: var(--cms-surface) !important;
+      border-color: var(--cms-border) !important;
+      color: var(--cms-text) !important;
+    }
+
+    /* Headings + body text */
+    #nc-root h1, #nc-root h2, #nc-root h3, #nc-root h4,
+    #nc-root [class*="Heading"] {
+      color: var(--cms-text) !important;
+      font-weight: 700;
+    }
+    #nc-root label, #nc-root [class*="Label"] {
+      color: var(--cms-muted) !important;
+      letter-spacing: .01em;
+    }
+
+    /* Inputs, textareas, the markdown editor surface */
+    #nc-root input,
+    #nc-root textarea,
+    #nc-root select,
+    #nc-root [class*="control-input"],
+    #nc-root [class*="CardWrapper"] [contenteditable="true"] {
+      background: var(--cms-card) !important;
+      color: var(--cms-text) !important;
+      border: 1px solid var(--cms-border) !important;
+      border-radius: 8px !important;
+    }
+    #nc-root input:focus,
+    #nc-root textarea:focus,
+    #nc-root [contenteditable="true"]:focus {
+      border-color: var(--cms-accent-border) !important;
+      outline: none !important;
+      box-shadow: 0 0 0 2px var(--cms-accent-dim) !important;
+    }
+    #nc-root input::placeholder,
+    #nc-root textarea::placeholder { color: var(--cms-muted) !important; }
+
+    /* Primary / action buttons */
+    #nc-root [class*="button"][class*="primary"],
+    #nc-root button[class*="Primary"],
+    #nc-root [class*="ToolbarButton"]:hover {
+      background: var(--cms-accent) !important;
+      color: #082213 !important;
+      border-radius: 8px !important;
+    }
+
+    /* (3) RTL + Arabic refinements
+       The CMS locale is ar, so the chrome reads RTL. Long-form text inputs
+       use `auto` so Arabic posts render RTL while English (Latin) posts in
+       the blog_en collection naturally fall back to LTR per content. */
+    #nc-root { direction: rtl; }
+    #nc-root input[type="text"],
+    #nc-root textarea,
+    #nc-root [contenteditable="true"] {
+      direction: auto;
+      text-align: start;
+      line-height: 1.9;        /* comfortable Arabic line spacing */
+    }
+
+    /* Slightly larger, crisper Arabic body in the markdown editor */
+    #nc-root [class*="CardWrapper"] [contenteditable="true"] {
+      font-size: 1.02rem;
+    }
+
+    /* Custom scrollbars to match the dark theme */
+    #nc-root *::-webkit-scrollbar { width: 8px; height: 8px; }
+    #nc-root *::-webkit-scrollbar-track { background: var(--cms-bg); }
+    #nc-root *::-webkit-scrollbar-thumb {
+      background: var(--cms-border); border-radius: 4px;
+    }
+    #nc-root *::-webkit-scrollbar-thumb:hover { background: var(--cms-accent); }
   </style>
 </head>
 <body>
-  <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <!-- (1) Decap CMS pinned to an exact version (was ^3.0.0) -->
+  <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
 
   <div id="stats-bar">
     <div id="stats-numbers">
@@ -60,6 +196,26 @@
       Cloudflare Analytics
     </a>
   </div>
+
+  <!-- Apply the same dark/RTL styling to the live preview pane -->
+  <script>
+    if (window.CMS && typeof window.CMS.registerPreviewStyle === 'function') {
+      window.CMS.registerPreviewStyle(
+        'data:text/css;charset=utf-8,' + encodeURIComponent(
+          '@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap");' +
+          'html,body{background:#0c1410;color:#e8ede9;font-family:"Cairo",system-ui,sans-serif;' +
+          'direction:rtl;line-height:1.9;padding:16px;}' +
+          'h1,h2,h3,h4{color:#e8ede9;font-weight:800;}' +
+          'a{color:#29cc68;}' +
+          'blockquote{border-inline-start:3px solid #29cc68;background:rgba(41,204,104,.10);' +
+          'margin:1.5em 0;padding:12px 18px;border-radius:0 10px 10px 0;color:#7a9080;}' +
+          'code{background:#102015;border:1px solid #2a3826;border-radius:5px;padding:2px 7px;}' +
+          'table{width:100%;border-collapse:collapse;}th,td{border:1px solid #2a3826;padding:8px 14px;text-align:start;}'
+        ),
+        { raw: true }
+      );
+    }
+  </script>
 
   <script>
     (function() {
