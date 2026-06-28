@@ -12,7 +12,7 @@ tags:
   - Workplace Fairness
   - Policies
 draft: false
-linkedinPosted: true
+linkedinPosted: false
 ---
 
 Early in my HR career, I watched one organization promote an employee simply because "the manager liked him," and dismiss another because the manager "didn't like his attitude" — with no written criterion guiding either decision. In another organization, every promotion, dismissal, or salary increase passed through a clear standard, documentation, and review. The difference between the two wasn't budget or headcount. It was the presence — or absence — of **governance**.
@@ -157,4 +157,4 @@ Every organization starts with personal-style management in its early phase — 
  
 My practical advice: don't wait until the organization grows to start building governance. Starting early with simple, clear policies is far easier than trying to "correct" a management culture built on personal decision-making over years.
  
-Governance doesn't mean losing human flexibility in management it means that flexibility itself becomes a *declared standard*, not a mood-based exception granted to some employees and withheld from others.
+Governance doesn't mean losing human flexibility in management — it means that flexibility itself becomes a *declared standard*, not a mood-based exception granted to some employees and withheld from others.
