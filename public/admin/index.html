@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="../Y-icon.svg" />
   <title>لوحة التحكم - مدونة ياسر الجيادي</title>
 
   <!-- Arabic font (matches the public site) -->
@@ -83,27 +84,50 @@
 
     /* =====================================================================
        Responsive — tablet & mobile
+       Target IDs are emotion hashes, deterministic for decap-cms@3.3.3:
+         eh2m33j2 = AppMainContainer   (min-width:800px baked in)
+         e1rbzf6g4 = AppHeaderContent  (min-width:800px baked in)
+         e1nx103k4 = EditorContainer   (min-width:800px baked in)
+         e1t18l343 = SidebarContainer  (position:fixed; width:250px)
+         e1sogrfi2 = CollectionMain    (padding-left:280px)
        ===================================================================== */
 
-    /* Tablet (≤ 768px) */
+    /* ── Tablet (≤ 768px) ──────────────────────────────────────── */
     @media (max-width: 768px) {
-      #stats-bar {
-        padding: 8px 14px;
-        gap: 10px;
-        font-size: 12px;
-      }
+      /* Stats bar: tighter spacing */
+      #stats-bar { padding: 8px 14px; gap: 10px; font-size: 12px; }
       #stats-numbers { gap: 14px; }
       .stat-val { font-size: 13px; }
       #stats-bar a { padding: 4px 10px; }
 
-      /* Decap sidebar: prevent overflow on narrow viewports */
-      #nc-root [class*="Sidebar"],
-      #nc-root [class*="sidebar"] {
+      /* Kill the 800px min-width floor causing horizontal overflow */
+      #nc-root .eh2m33j2,
+      #nc-root .e1rbzf6g4,
+      #nc-root .e1nx103k4 {
         min-width: 0 !important;
+        max-width: 100% !important;
+      }
+
+      /* Sidebar: shrink 250px → 190px */
+      #nc-root .e1t18l343 { width: 190px !important; }
+
+      /* CollectionMain: match narrower sidebar (190 + 16px gap) */
+      #nc-root .e1sogrfi2 { padding-left: 206px !important; }
+
+      /* Editor SplitPane: hide preview pane, give editor 100% width */
+      #nc-root .Pane2 { display: none !important; }
+      #nc-root .Pane1 { width: 100% !important; }
+
+      /* Collection table: stop title cells from pushing past viewport */
+      #nc-root table { table-layout: fixed; width: 100%; }
+      #nc-root td, #nc-root th {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
     }
 
-    /* Mobile (≤ 480px): two-row bar */
+    /* ── Mobile (≤ 480px): stats two-row + sidebar stacked ─────── */
     @media (max-width: 480px) {
       #stats-bar {
         height: auto;
@@ -113,11 +137,7 @@
         gap: 4px 12px;
       }
       body { padding-bottom: 68px; }
-      #stats-numbers {
-        flex: 0 0 100%;
-        gap: 16px;
-        font-size: 12px;
-      }
+      #stats-numbers { flex: 0 0 100%; gap: 16px; font-size: 12px; }
       .stat-val { font-size: 13px; }
       #stats-bar a {
         flex: 1;
@@ -125,9 +145,19 @@
         padding: 3px 8px;
         font-size: 12px;
       }
+
+      /* Sidebar: un-fix → stacks above the collection/editor area */
+      #nc-root .e1t18l343 {
+        position: relative !important;
+        width: 100% !important;
+        max-height: none !important;
+        overflow: visible !important;
+      }
+      /* No left-padding needed when sidebar is no longer fixed beside */
+      #nc-root .e1sogrfi2 { padding-left: 0 !important; }
     }
 
-    /* Very small (≤ 360px): icon-only link */
+    /* ── Very small (≤ 360px): icon-only Cloudflare link ───────── */
     @media (max-width: 360px) {
       .cf-label { display: none; }
       #stats-numbers { gap: 10px; }
