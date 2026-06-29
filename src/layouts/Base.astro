@@ -138,15 +138,21 @@ const canonical = Astro.url.href;
       100% { color: #1b7742; }
     }
 
-    /* 8 bubbles — sizes 200–500px, opacity 14–17%, color animated via color-cycle */
-    .b1 { width:280px; left: 4%;  --op:.15; animation:bubble-rise-r 22s   0s linear infinite, color-cycle 35s   0s ease-in-out infinite; }
-    .b2 { width:220px; left:22%;  --op:.16; animation:bubble-rise-l 18s  -8s linear infinite, color-cycle 38s -12s ease-in-out infinite; }
-    .b3 { width:460px; left:38%;  --op:.14; animation:bubble-rise-r 28s -15s linear infinite, color-cycle 32s -25s ease-in-out infinite; }
-    .b4 { width:240px; left:62%;  --op:.15; animation:bubble-rise-l 20s  -5s linear infinite, color-cycle 40s  -7s ease-in-out infinite; }
-    .b5 { width:380px; left:72%;  --op:.14; animation:bubble-rise-r 25s -12s linear infinite, color-cycle 36s -18s ease-in-out infinite; }
-    .b6 { width:200px; left:13%;  --op:.17; animation:bubble-rise-l 16s -20s linear infinite, color-cycle 33s -30s ease-in-out infinite; }
-    .b7 { width:500px; left:44%;  --op:.14; animation:bubble-rise-r 30s  -3s linear infinite, color-cycle 37s  -4s ease-in-out infinite; }
-    .b8 { width:320px; left:30%;  --op:.16; animation:bubble-rise-l 19s  -9s linear infinite, color-cycle 34s -22s ease-in-out infinite; }
+    /*
+     * 8 bubbles — sizes 120–280px, distributed in ~11% left intervals.
+     * Adjacent positions carry maximally different delays to keep bubbles
+     * at different heights simultaneously (no two neighbours share a phase):
+     *   left:  3  14  25  37  50  62  74  85  (≥11% apart)
+     *   delay: 0 -12  -6 -18  -3 -15  -9 -21  (≥6s apart between neighbours)
+     */
+    .b1 { width:150px; left: 3%;  --op:.15; animation:bubble-rise-r 22s   0s linear infinite, color-cycle 35s   0s ease-in-out infinite; }
+    .b2 { width:200px; left:14%;  --op:.16; animation:bubble-rise-l 18s -12s linear infinite, color-cycle 38s -12s ease-in-out infinite; }
+    .b3 { width:130px; left:25%;  --op:.14; animation:bubble-rise-r 26s  -6s linear infinite, color-cycle 32s -25s ease-in-out infinite; }
+    .b4 { width:250px; left:37%;  --op:.15; animation:bubble-rise-l 20s -18s linear infinite, color-cycle 40s  -7s ease-in-out infinite; }
+    .b5 { width:180px; left:50%;  --op:.14; animation:bubble-rise-r 24s  -3s linear infinite, color-cycle 36s -18s ease-in-out infinite; }
+    .b6 { width:120px; left:62%;  --op:.17; animation:bubble-rise-l 16s -15s linear infinite, color-cycle 33s -30s ease-in-out infinite; }
+    .b7 { width:280px; left:74%;  --op:.14; animation:bubble-rise-r 28s  -9s linear infinite, color-cycle 37s  -4s ease-in-out infinite; }
+    .b8 { width:160px; left:85%;  --op:.16; animation:bubble-rise-l 22s -21s linear infinite, color-cycle 34s -22s ease-in-out infinite; }
   </style>
 
   <!-- Schema -->
