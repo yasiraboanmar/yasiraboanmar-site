@@ -93,6 +93,48 @@ const canonical = Astro.url.href;
   <!-- Google AdSense -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4997003296069618" crossorigin="anonymous"></script>
 
+  <!-- Floating bubbles: CSS-only, no JS -->
+  <style>
+    /* z-index:-1 renders between the canvas background and page content.
+       prefers-reduced-motion in global.css disables all animations globally. */
+    .bubbles-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      overflow: hidden;      /* clips bubbles at viewport edges — prevents horizontal scroll */
+    }
+    .bubble {
+      position: absolute;
+      bottom: -200px;        /* start off-screen below */
+      --op: .06;             /* default opacity (overridden per-bubble) */
+    }
+    .bubble img { display: block; width: 100%; height: auto; }
+
+    @keyframes bubble-rise-r {
+      0%   { transform: translateY(0) translateX(0);    opacity: 0; }
+      8%   { opacity: var(--op); }
+      92%  { opacity: var(--op); }
+      100% { transform: translateY(-120vh) translateX(20px); opacity: 0; }
+    }
+    @keyframes bubble-rise-l {
+      0%   { transform: translateY(0) translateX(0);     opacity: 0; }
+      8%   { opacity: var(--op); }
+      92%  { opacity: var(--op); }
+      100% { transform: translateY(-120vh) translateX(-20px); opacity: 0; }
+    }
+
+    /* 8 bubbles — sizes 60–180 px, staggered via negative delay */
+    .b1 { width:110px; left: 4%;  --op:.06; filter:grayscale(1);    animation:bubble-rise-r 22s   0s linear infinite; }
+    .b2 { width: 70px; left:22%;  --op:.07;                         animation:bubble-rise-l 18s  -8s linear infinite; }
+    .b3 { width:160px; left:42%;  --op:.05; filter:saturate(.4);    animation:bubble-rise-r 28s -15s linear infinite; }
+    .b4 { width: 85px; left:64%;  --op:.06; filter:grayscale(.8);   animation:bubble-rise-l 20s  -5s linear infinite; }
+    .b5 { width:130px; left:78%;  --op:.05; filter:grayscale(1);    animation:bubble-rise-r 25s -12s linear infinite; }
+    .b6 { width: 60px; left:13%;  --op:.07;                         animation:bubble-rise-l 16s -20s linear infinite; }
+    .b7 { width:180px; left:52%;  --op:.05; filter:saturate(.3);    animation:bubble-rise-r 30s  -3s linear infinite; }
+    .b8 { width: 95px; left:35%;  --op:.06; filter:grayscale(.6);   animation:bubble-rise-l 19s  -9s linear infinite; }
+  </style>
+
   <!-- Schema -->
   <script type="application/ld+json">
   {
@@ -113,6 +155,16 @@ const canonical = Astro.url.href;
 
 </head>
 <body>
+  <div class="bubbles-bg" aria-hidden="true">
+    <div class="bubble b1"><img src="/YasirAboAnmar.svg" alt="" /></div>
+    <div class="bubble b2"><img src="/YasirAboAnmar.svg" alt="" /></div>
+    <div class="bubble b3"><img src="/YasirAboAnmar.svg" alt="" /></div>
+    <div class="bubble b4"><img src="/YasirAboAnmar.svg" alt="" /></div>
+    <div class="bubble b5"><img src="/YasirAboAnmar.svg" alt="" /></div>
+    <div class="bubble b6"><img src="/YasirAboAnmar.svg" alt="" /></div>
+    <div class="bubble b7"><img src="/YasirAboAnmar.svg" alt="" /></div>
+    <div class="bubble b8"><img src="/YasirAboAnmar.svg" alt="" /></div>
+  </div>
   <slot />
   <CookieConsent lang={lang} />
 </body>
