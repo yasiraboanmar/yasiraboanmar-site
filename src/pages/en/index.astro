@@ -3,17 +3,19 @@ import Base from '../../layouts/Base.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import { getCollection } from 'astro:content';
+import homeData from '../../data/home-en.json';
 
 const posts = (await getCollection('blog_en', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
 const currentPath = Astro.url.pathname;
+const { meta, hero, stats, about, skills, contact } = homeData;
 ---
 
 <Base
-  title="Yasir Aljiyadi | HR Leadership Blog"
-  description="HR leader with 12+ years of experience. Weekly articles on compensation, governance, and Saudi HR systems."
+  title={meta.title}
+  description={meta.description}
   lang="en"
   dir="ltr"
 >
@@ -25,28 +27,26 @@ const currentPath = Astro.url.pathname;
       <div class="hero-inner">
         <img
           class="hero-photo"
-          src="/Yasir-Aljiyadi-photo.png"
-          alt="Yasir Aljiyadi"
+          src={hero.photo}
+          alt={hero.name_en}
           width="180" height="180"
           loading="eager"
         />
         <div class="hero-body">
           <div class="hero-tag">
             <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor"><circle cx="6" cy="6" r="6"/></svg>
-            Available for consulting
+            {hero.badge}
           </div>
           <h1 class="hero-name">
-            <span class="en">Yasir Aljiyadi</span>
-            <span class="ar" style="font-size:.6em; color:var(--muted);">ياسر الجيادي</span>
+            <span class="en">{hero.name_en}</span>
+            <span class="ar" style="font-size:.6em; color:var(--muted);">{hero.name_ar}</span>
           </h1>
-          <p class="hero-sub">HR Leader | HR Operations, Governance & Total Rewards</p>
-          <p class="hero-lead">
-            12+ years managing payroll, compliance, and HR operations across multi-entity environments in Saudi Arabia.
-          </p>
+          <p class="hero-sub">{hero.subtitle}</p>
+          <p class="hero-lead">{hero.lead}</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="/en/blog/">Read the Blog</a>
-            <a class="btn btn-outline" href="/yasir a C.V.pdf" download>Download CV</a>
-            <a class="btn btn-outline" href="mailto:my@yasiraboanmar.com">Contact</a>
+            <a class="btn btn-outline" href={hero.cv_file} download>Download CV</a>
+            <a class="btn btn-outline" href={`mailto:${hero.email}`}>Contact</a>
           </div>
         </div>
       </div>
@@ -59,22 +59,12 @@ const currentPath = Astro.url.pathname;
   <section class="section">
     <div class="container">
       <div class="stats">
-        <div>
-          <div class="stat-num">12+</div>
-          <div class="stat-label">Years of Experience</div>
-        </div>
-        <div>
-          <div class="stat-num">400+</div>
-          <div class="stat-label">Employees Managed</div>
-        </div>
-        <div>
-          <div class="stat-num">4</div>
-          <div class="stat-label">HR Systems</div>
-        </div>
-        <div>
-          <div class="stat-num">7</div>
-          <div class="stat-label">Years Top Performance</div>
-        </div>
+        {stats.map(stat => (
+          <div>
+            <div class="stat-num">{stat.number}</div>
+            <div class="stat-label">{stat.label}</div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -89,12 +79,7 @@ const currentPath = Astro.url.pathname;
         <h2 class="section-title">Who I Am</h2>
       </div>
       <div class="about-grid">
-        {[
-          'HR Leader at Mansour Holding — managing payroll for 400+ employees.',
-          'Experienced in multi-entity, multi-activity holding companies.',
-          'Proficient in Oracle HR, MenaITech, Logix, Jisr, and Advanced Excel.',
-          'Full compliance with Saudi Labor Law — GOSI, MHRSD, Mudad, Qiwa.',
-        ].map(item => (
+        {about.map(item => (
           <div class="card" style="display:flex; gap:12px; align-items:flex-start;">
             <svg style="flex-shrink:0; margin-top:3px;" width="16" height="16" viewBox="0 0 16 16" fill="none">
               <circle cx="8" cy="8" r="7.5" stroke="var(--accent-border)"/>
@@ -117,12 +102,7 @@ const currentPath = Astro.url.pathname;
         <h2 class="section-title">Skills & Experience</h2>
       </div>
       <div class="skills-grid">
-        {[
-          { title: 'HR Systems', chips: ['Oracle HR', 'MenaITech', 'Logix', 'Jisr', 'Advanced Excel'] },
-          { title: 'Payroll & Benefits', chips: ['Payroll', 'Compensation', 'GOSI/SANED', 'End of Service', 'Policies & Procedures'] },
-          { title: 'Compliance & Governance', chips: ['Saudi Labor Law', 'Qiwa', 'Mudad', 'MHRSD'] },
-          { title: 'Modern Interests', chips: ['AI in HR', 'Process Automation', 'Systems Design'] },
-        ].map(group => (
+        {skills.map(group => (
           <div class="skill-group">
             <h4>{group.title}</h4>
             <div class="skill-chips">
@@ -176,13 +156,13 @@ const currentPath = Astro.url.pathname;
     <div class="container" style="max-width:560px;">
       <div class="section-header">
         <span class="section-label">Contact</span>
-        <h2 class="section-title">Want to Connect?</h2>
-        <p class="section-desc">I welcome questions, partnerships, and job opportunities. I prefer short, clear messages and respond within one business day.</p>
+        <h2 class="section-title">{contact.title}</h2>
+        <p class="section-desc">{contact.description}</p>
       </div>
       <div style="display:flex; gap:12px; flex-wrap:wrap;">
-        <a class="btn btn-primary" href="mailto:my@yasiraboanmar.com">Send Email</a>
-        <a class="btn btn-outline" href="https://www.linkedin.com/in/yasir-aljiyadi-21b514160/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="btn btn-outline" href="/yasir.vcf" download>Save Contact</a>
+        <a class="btn btn-primary" href={`mailto:${contact.email}`}>Send Email</a>
+        <a class="btn btn-outline" href={contact.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn btn-outline" href={contact.vcf_file} download>Save Contact</a>
       </div>
     </div>
   </section>

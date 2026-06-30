@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "Yasir Aljiyadi | HR Leadership Blog",
+    "description": "HR leader with 12+ years of experience. Weekly articles on compensation, governance, and Saudi HR systems."
+  },
+  "hero": {
+    "photo": "/Yasir-Aljiyadi-photo.png",
+    "badge": "Available for consulting",
+    "name_ar": "ياسر الجيادي",
+    "name_en": "Yasir Aljiyadi",
+    "subtitle": "HR Leader | HR Operations, Governance & Total Rewards",
+    "lead": "12+ years managing payroll, compliance, and HR operations across multi-entity environments in Saudi Arabia.",
+    "cv_file": "/yasir a C.V.pdf",
+    "email": "my@yasiraboanmar.com"
+  },
+  "stats": [
+    { "number": "12+", "label": "Years of Experience" },
+    { "number": "400+", "label": "Employees Managed" },
+    { "number": "4", "label": "HR Systems" },
+    { "number": "7", "label": "Years Top Performance" }
+  ],
+  "about": [
+    "HR Leader at Mansour Holding — managing payroll for 400+ employees.",
+    "Experienced in multi-entity, multi-activity holding companies.",
+    "Proficient in Oracle HR, MenaITech, Logix, Jisr, and Advanced Excel.",
+    "Full compliance with Saudi Labor Law — GOSI, MHRSD, Mudad, Qiwa."
+  ],
+  "skills": [
+    { "title": "HR Systems", "chips": ["Oracle HR", "MenaITech", "Logix", "Jisr", "Advanced Excel"] },
+    { "title": "Payroll & Benefits", "chips": ["Payroll", "Compensation", "GOSI/SANED", "End of Service", "Policies & Procedures"] },
+    { "title": "Compliance & Governance", "chips": ["Saudi Labor Law", "Qiwa", "Mudad", "MHRSD"] },
+    { "title": "Modern Interests", "chips": ["AI in HR", "Process Automation", "Systems Design"] }
+  ],
+  "contact": {
+    "title": "Want to Connect?",
+    "description": "I welcome questions, partnerships, and job opportunities. I prefer short, clear messages and respond within one business day.",
+    "email": "my@yasiraboanmar.com",
+    "linkedin": "https://www.linkedin.com/in/yasir-aljiyadi-21b514160/",
+    "vcf_file": "/yasir.vcf"
+  }
+}
