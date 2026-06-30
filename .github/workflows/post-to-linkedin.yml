@@ -82,7 +82,7 @@ jobs:
           ")
 
             echo "Posting Arabic: $TITLE"
-            sleep 8
+            sleep 15
 
             RESPONSE=$(curl -s -X POST "https://api.linkedin.com/v2/ugcPosts" \
               -H "Authorization: Bearer ${LINKEDIN_ACCESS_TOKEN}" \
@@ -153,7 +153,7 @@ jobs:
           ")
 
             echo "Posting English: $TITLE"
-            sleep 8
+            sleep 15
 
             RESPONSE=$(curl -s -X POST "https://api.linkedin.com/v2/ugcPosts" \
               -H "Authorization: Bearer ${LINKEDIN_ACCESS_TOKEN}" \
