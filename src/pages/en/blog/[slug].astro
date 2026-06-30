@@ -55,6 +55,16 @@ const AD_SLOT_MOBILE  = 'YYYYYYYYYY'; // ← replace after approval
     </div>
   </header>
 
+  {post.data.cover && (
+    <div class="container" style="max-width:800px; padding-block:0 1.5rem;">
+      <img
+        src={post.data.cover}
+        alt={post.data.title}
+        style="width:100%; max-height:420px; object-fit:cover; border-radius:10px; display:block;"
+      />
+    </div>
+  )}
+
   <div class="post-with-ads">
 
     <!-- Left sidebar ad (LTR) -->
