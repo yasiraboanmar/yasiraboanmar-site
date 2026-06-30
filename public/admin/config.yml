@@ -54,7 +54,7 @@ collections:
         default: false
       - label: "صورة الغلاف (اختياري)"
         name: cover
-        widget: string
+        widget: image
         required: false
       - label: "محتوى المقال (عربي)"
         name: body
@@ -103,7 +103,7 @@ collections:
         default: false
       - label: "Cover image (optional)"
         name: cover
-        widget: string
+        widget: image
         required: false
       - label: "Article content (English)"
         name: body
