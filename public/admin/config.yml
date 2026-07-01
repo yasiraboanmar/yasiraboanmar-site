@@ -13,7 +13,7 @@ locale: ar
 collections:
   - name: pages
     label: "الصفحات"
-    media_folder: "public/images/profile"
+    media_folder: "/public/images/profile"
     public_folder: "/images/profile"
     files:
       - name: home_ar
