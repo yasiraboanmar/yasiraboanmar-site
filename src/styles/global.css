@@ -582,6 +582,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    -webkit-text-fill-color: transparent;
   }
   @media (max-width: 600px) {
     .stats-panel { grid-template-columns: 1fr 1fr; }
