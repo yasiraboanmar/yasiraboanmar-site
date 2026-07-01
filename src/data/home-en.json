@@ -4,7 +4,7 @@
     "description": "HR leader with 12+ years of experience. Weekly articles on compensation, governance, and Saudi HR systems."
   },
   "hero": {
-    "photo": "/Yasir-Aljiyadi-photo.png",
+    "photo": "/images/profile/yasir-aljiyadi-profile.jpg.png",
     "badge": "Available for consulting",
     "name_ar": "ياسر الجيادي",
     "name_en": "Yasir Aljiyadi",
@@ -14,10 +14,22 @@
     "email": "my@yasiraboanmar.com"
   },
   "stats": [
-    { "number": "12+", "label": "Years of Experience" },
-    { "number": "400+", "label": "Employees Managed" },
-    { "number": "4", "label": "HR Systems" },
-    { "number": "7", "label": "Years Top Performance" }
+    {
+      "number": "12+",
+      "label": "Years of Experience"
+    },
+    {
+      "number": "400+",
+      "label": "Employees Managed"
+    },
+    {
+      "number": "4",
+      "label": "HR Systems"
+    },
+    {
+      "number": "7",
+      "label": "Years Top Performance"
+    }
   ],
   "about": [
     "HR Leader at Mansour Holding — managing payroll for 400+ employees.",
@@ -26,10 +38,43 @@
     "Full compliance with Saudi Labor Law — GOSI, MHRSD, Mudad, Qiwa."
   ],
   "skills": [
-    { "title": "HR Systems", "chips": ["Oracle HR", "MenaITech", "Logix", "Jisr", "Advanced Excel"] },
-    { "title": "Payroll & Benefits", "chips": ["Payroll", "Compensation", "GOSI/SANED", "End of Service", "Policies & Procedures"] },
-    { "title": "Compliance & Governance", "chips": ["Saudi Labor Law", "Qiwa", "Mudad", "MHRSD"] },
-    { "title": "Modern Interests", "chips": ["AI in HR", "Process Automation", "Systems Design"] }
+    {
+      "title": "HR Systems",
+      "chips": [
+        "Oracle HR",
+        "MenaITech",
+        "Logix",
+        "Jisr",
+        "Advanced Excel"
+      ]
+    },
+    {
+      "title": "Payroll & Benefits",
+      "chips": [
+        "Payroll",
+        "Compensation",
+        "GOSI/SANED",
+        "End of Service",
+        "Policies & Procedures"
+      ]
+    },
+    {
+      "title": "Compliance & Governance",
+      "chips": [
+        "Saudi Labor Law",
+        "Qiwa",
+        "Mudad",
+        "MHRSD"
+      ]
+    },
+    {
+      "title": "Modern Interests",
+      "chips": [
+        "AI in HR",
+        "Process Automation",
+        "Systems Design"
+      ]
+    }
   ],
   "contact": {
     "title": "Want to Connect?",
