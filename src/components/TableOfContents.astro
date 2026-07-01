@@ -1,0 +1,63 @@
+---
+export interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+  label?: string;
+}
+const { headings, label = 'فهرس المحتويات' } = Astro.props;
+const h2s = headings.filter(h => h.depth === 2);
+---
+
+{h2s.length > 1 && (
+  <>
+    <nav class="toc" aria-label={label}>
+      <p class="toc-title">{label}</p>
+      <ol class="toc-list">
+        {h2s.map(h => (
+          <li>
+            <a class="toc-link" href={`#${h.slug}`}>{h.text}</a>
+          </li>
+        ))}
+      </ol>
+    </nav>
+
+    <details class="toc-mobile">
+      <summary class="toc-mobile-summary">{label}</summary>
+      <ol class="toc-mobile-list">
+        {h2s.map(h => (
+          <li><a href={`#${h.slug}`}>{h.text}</a></li>
+        ))}
+      </ol>
+    </details>
+  </>
+)}
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('.toc-link');
+  if (links.length) {
+    const headingEls = [...links].map(l =>
+      document.querySelector(l.getAttribute('href')!)
+    ).filter(Boolean) as HTMLElement[];
+
+    const setActive = (el: HTMLElement) => {
+      links.forEach(l => {
+        l.classList.remove('toc-active');
+        l.removeAttribute('aria-current');
+      });
+      const active = [...links].find(
+        l => l.getAttribute('href') === '#' + el.id
+      );
+      if (active) {
+        active.classList.add('toc-active');
+        active.setAttribute('aria-current', 'location');
+      }
+    };
+
+    const observer = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) setActive(entry.target as HTMLElement);
+      }
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    headingEls.forEach(el => observer.observe(el));
+  }
+</script>

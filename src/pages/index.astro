@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
 import homeData from '../data/home-ar.json';
+import ArticleCard from '../components/ArticleCard.astro';
 
 const posts = (await getCollection('blog_ar', ({ data }) => !data.draft))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
@@ -45,7 +46,7 @@ const { meta, hero, stats, about, skills, contact } = homeData;
           <p class="hero-lead">{hero.lead}</p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="/blog/">اقرأ المدونة</a>
-            <a class="btn btn-outline" href={hero.cv_file} download>السيرة الذاتية</a>
+            <a class="btn btn-ghost" href={hero.cv_file} download>السيرة الذاتية</a>
             <a class="btn btn-outline" href={`mailto:${hero.email}`}>تواصل</a>
           </div>
         </div>
@@ -57,12 +58,12 @@ const { meta, hero, stats, about, skills, contact } = homeData;
     <hr class="divider" />
   </div>
 
-  <!-- Stats -->
-  <section class="section">
+  <!-- Stats Panel -->
+  <section class="section" style="padding-top:0;">
     <div class="container">
-      <div class="stats">
-        {stats.map(stat => (
-          <div>
+      <div class="stats-panel">
+        {stats.map((stat, i) => (
+          <div class={`stats-panel-item${i === 0 ? ' stats-panel-hero' : ''}`}>
             <div class="stat-num">{stat.number}</div>
             <div class="stat-label">{stat.label}</div>
           </div>
@@ -104,11 +105,13 @@ const { meta, hero, stats, about, skills, contact } = homeData;
         <h2 class="section-title">المهارات والخبرات</h2>
       </div>
       <div class="skills-grid">
-        {skills.map(group => (
+        {skills.map((group, gi) => (
           <div class="skill-group">
             <h4>{group.title}</h4>
             <div class="skill-chips">
-              {group.chips.map(c => <span class="skill-chip">{c}</span>)}
+              {group.chips.map(c => (
+                <span class={`skill-chip${gi === skills.length - 1 ? ' skill-chip-dim' : ''}`}>{c}</span>
+              ))}
             </div>
           </div>
         ))}
@@ -131,20 +134,16 @@ const { meta, hero, stats, about, skills, contact } = homeData;
         </div>
         <div class="blog-grid">
           {posts.map(post => (
-            <a class="blog-card" href={`/blog/${post.id}/`}>
-              <div class="blog-card-meta">
-                {post.data.tags[0] && <span class="blog-card-tag">{post.data.tags[0]}</span>}
-                <span>{post.data.pubDate.toLocaleDateString('ar-SA', { year:'numeric', month:'short', day:'numeric' })}</span>
-              </div>
-              <h3 class="blog-card-title">{post.data.title}</h3>
-              <p class="blog-card-desc">{post.data.description}</p>
-              <div class="blog-card-footer">
-                اقرأ المقال
-                <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
-                  <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </div>
-            </a>
+            <ArticleCard
+              href={`/blog/${post.id}/`}
+              title={post.data.title}
+              description={post.data.description}
+              cover={post.data.cover}
+              tags={post.data.tags}
+              pubDate={post.data.pubDate}
+              body={post.body}
+              lang="ar"
+            />
           ))}
         </div>
       </div>

@@ -1,0 +1,83 @@
+---
+import { getCategory, readingTime, CATEGORY_MAP, CATEGORY_MAP_EN } from '../utils/blog';
+
+export interface Props {
+  href: string;
+  title: string;
+  description: string;
+  cover?: string;
+  tags: string[];
+  pubDate: Date;
+  body?: string;
+  lang?: 'ar' | 'en';
+  variant?: 'normal' | 'wide';
+}
+
+const {
+  href, title, description, cover, tags, pubDate,
+  body, lang = 'ar', variant = 'normal',
+} = Astro.props;
+
+const map = lang === 'en' ? CATEGORY_MAP_EN : CATEGORY_MAP;
+const cat = getCategory(tags, map);
+const mins = readingTime(body);
+const locale = lang === 'en' ? 'en-US' : 'ar-SA';
+const dateStr = pubDate.toLocaleDateString(locale, { year: 'numeric', month: 'short', day: 'numeric' });
+const readLabel = lang === 'en' ? 'min read' : 'دقائق';
+const ctaLabel = lang === 'en' ? 'Read article' : 'اقرأ المقال';
+const fallbackGradient = cat?.gradient ?? 'linear-gradient(135deg,#0c2a1a,#1b7742)';
+---
+
+{variant === 'wide' ? (
+  <a class="blog-card-wide" href={href} data-category={cat?.label ?? ''}>
+    {cover
+      ? <img class="blog-card-wide-img" src={cover} alt={title} />
+      : <div class="blog-card-wide-gradient" style={`background:${fallbackGradient}`}></div>
+    }
+    <div class="blog-card-wide-body">
+      <div class="blog-card-meta">
+        {cat && (
+          <span class="blog-card-tag" style={`color:${cat.color};border-color:${cat.color}33`}>
+            {cat.label}
+          </span>
+        )}
+        <span>{dateStr}</span>
+        {mins > 0 && <span>{mins} {readLabel}</span>}
+      </div>
+      <h2 class="blog-card-title" style="font-size:clamp(1.2rem,2vw,1.5rem);">
+        {title}
+      </h2>
+      <p class="blog-card-desc">{description}</p>
+      <div class="blog-card-footer">
+        {ctaLabel}
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+          <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </a>
+) : (
+  <a class="blog-card" href={href} data-category={cat?.label ?? ''}>
+    {cover
+      ? <img class="blog-card-cover" src={cover} alt={title} loading="lazy" />
+      : <div class="blog-card-cover-gradient" style={`background:${fallbackGradient}`}></div>
+    }
+    <div class="blog-card-meta">
+      {cat && (
+        <span class="blog-card-tag" style={`color:${cat.color};border-color:${cat.color}33`}>
+          {cat.label}
+        </span>
+      )}
+      <span>{dateStr}</span>
+      {mins > 0 && <span>{mins} {readLabel}</span>}
+    </div>
+    <h3 class="blog-card-title">{title}</h3>
+    <p class="blog-card-desc">{description}</p>
+    <div class="blog-card-footer">
+      {ctaLabel}
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </a>
+)}

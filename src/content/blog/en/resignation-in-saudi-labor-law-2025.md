@@ -6,7 +6,7 @@ description: "Everything you need to know about resignation after the February
   2025 update: the difference between fixed-term and open-ended contracts,
   procedures, timelines, and end-of-service benefits under Article 79 bis"
 pubDate: 2026-06-08
-tags: []
+tags: [Labor Law, Compliance]
 draft: false
 linkedinPosted: true
 ---
