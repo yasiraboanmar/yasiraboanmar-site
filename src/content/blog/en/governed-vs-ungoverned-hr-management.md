@@ -13,6 +13,7 @@ tags:
   - Policies
 draft: false
 linkedinPosted: false
+cover: /images/blog/en-governed-vs-ungoverned-hr-management.png
 ---
 
 Early in my HR career, I watched one organization promote an employee simply because "the manager liked him," and dismiss another because the manager "didn't like his attitude" — with no written criterion guiding either decision. In another organization, every promotion, dismissal, or salary increase passed through a clear standard, documentation, and review. The difference between the two wasn't budget or headcount. It was the presence — or absence — of **governance**.
