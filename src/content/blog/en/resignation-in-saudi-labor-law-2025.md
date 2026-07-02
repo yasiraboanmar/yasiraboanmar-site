@@ -6,9 +6,12 @@ description: "Everything you need to know about resignation after the February
   2025 update: the difference between fixed-term and open-ended contracts,
   procedures, timelines, and end-of-service benefits under Article 79 bis"
 pubDate: 2026-06-08
-tags: [Labor Law, Compliance]
+tags:
+  - Labor Law
+  - Compliance
 draft: false
 linkedinPosted: true
+cover: /images/blog/resignation-in-saudi-labor-law-2025.png
 ---
 Before February 2025, Saudi Labor Law contained no legal definition of the word "resignation" — a gap that fueled countless disputes and allowed some employers to weaponize undated resignation letters against employees in cases of conflict.
 
