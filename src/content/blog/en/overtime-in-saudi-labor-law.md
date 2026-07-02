@@ -16,6 +16,7 @@ tags:
   - Working Hours
 draft: false
 linkedinPosted: true
+cover: /images/blog/overtime-in-saudi-labor-law.png
 ---
 Overtime in Saudi workplaces is one of the most misunderstood topics in HR — 
 whether it's employees unaware of their full entitlements, or employers 
