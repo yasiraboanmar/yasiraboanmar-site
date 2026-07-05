@@ -41,6 +41,7 @@
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
     min-height: 100dvh;
+    overflow-x: hidden;
   }
   img { max-width: 100%; display: block; }
   a { color: var(--accent); text-decoration: none; }
@@ -322,6 +323,7 @@
   .post-body {
     padding: 56px 0 80px;
     max-width: 720px;
+    min-width: 0;
   }
   .post-body h2 { margin: 2.5em 0 .8em; padding-bottom: .4em; border-bottom: 1px solid var(--border); }
   .post-body h3 { margin: 2em 0 .6em; }
@@ -356,7 +358,7 @@
     .post-body h2 { font-size: 1.25rem; margin: 2em 0 .6em; }
     .post-body h3 { font-size: 1.1rem; }
     /* Scrollable tables on mobile */
-    .post-body table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .post-body table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; min-width: 0; max-width: 100%; }
   }
 
   /* ----- TOC sidebar (desktop) ----- */
@@ -458,6 +460,8 @@
       display: block;
       margin: 32px 0;
       text-align: center;
+      max-width: 100%;
+      overflow: hidden;
     }
   }
 
@@ -476,29 +480,6 @@
   }
   .author-mini-role {
     display: block; font-size: .78rem; color: var(--muted);
-  }
-
-  .author-box {
-    display: flex; align-items: center; gap: 16px;
-    padding: 20px 24px;
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: var(--radius);
-    margin: 40px 0 0;
-  }
-  .author-box-photo {
-    width: 72px; height: 72px; border-radius: 50%;
-    object-fit: cover; flex-shrink: 0;
-    border: 2px solid var(--accent-border);
-  }
-  .author-box-label {
-    font-size: .72rem; font-weight: 700; letter-spacing: .08em;
-    text-transform: uppercase; color: var(--accent); margin-bottom: 4px;
-  }
-  .author-box-name { font-size: 1rem; font-weight: 700; color: var(--text); }
-  .author-box-role { font-size: .88rem; color: var(--muted); margin-top: 2px; }
-
-  @media (max-width: 600px) {
-    .author-box { flex-direction: column; align-items: flex-start; gap: 12px; }
   }
 
   /* ----- Share box ----- */
