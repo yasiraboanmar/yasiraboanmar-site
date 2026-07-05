@@ -215,3 +215,135 @@ collections:
       - label: "Article content (English)"
         name: body
         widget: markdown
+
+  - name: quizzes_ar
+    label: "الاختبارات (عربي)"
+    label_singular: "اختبار عربي"
+    folder: src/content/quizzes/ar
+    create: true
+    extension: json
+    format: json
+    slug: "{{fields.slug}}"
+    fields:
+      - label: "معرّف الاختبار (slug)"
+        name: slug
+        widget: string
+        required: true
+        hint: "أحرف إنجليزية صغيرة وأرقام وشرطات فقط. مثال: general-employees"
+        pattern: ['^[a-z0-9][a-z0-9-]*[a-z0-9]$', "أحرف إنجليزية صغيرة وأرقام وشرطات فقط"]
+      - label: "عنوان الاختبار (عربي)"
+        name: title
+        widget: string
+        required: true
+      - label: "وصف الاختبار (عربي)"
+        name: description
+        widget: text
+        required: true
+      - label: "الجمهور المستهدف (عربي)"
+        name: audience
+        widget: string
+        required: true
+      - label: "عدد الأسئلة"
+        name: total_questions
+        widget: number
+        value_type: int
+        required: true
+      - label: "الأسئلة"
+        name: questions
+        widget: list
+        label_singular: "سؤال"
+        fields:
+          - label: "نص السؤال (عربي)"
+            name: question
+            widget: string
+            required: true
+          - label: "الخيارات"
+            name: options
+            widget: list
+            field: { label: "خيار", name: option, widget: string }
+            required: true
+          - label: "رقم الإجابة الصحيحة (يبدأ من 0)"
+            name: correct
+            widget: number
+            value_type: int
+            required: true
+            hint: "0 = الخيار الأول، 1 = الثاني، وهكذا"
+          - label: "التلميح (اختياري)"
+            name: hint
+            widget: text
+            required: false
+          - label: "مستوى الصعوبة"
+            name: difficulty
+            widget: select
+            options: ["سهل", "متوسط", "صعب"]
+            required: false
+          - label: "المرجع النظامي"
+            name: reference
+            widget: string
+            required: false
+
+  - name: quizzes_en
+    label: "Quizzes (English)"
+    label_singular: "English Quiz"
+    folder: src/content/quizzes/en
+    create: true
+    extension: json
+    format: json
+    slug: "{{fields.slug}}"
+    fields:
+      - label: "Quiz slug"
+        name: slug
+        widget: string
+        required: true
+        hint: "Lowercase letters, numbers, and hyphens only. Must match the Arabic quiz slug."
+        pattern: ['^[a-z0-9][a-z0-9-]*[a-z0-9]$', "Lowercase letters, numbers, and hyphens only"]
+      - label: "Quiz title (English)"
+        name: title
+        widget: string
+        required: true
+      - label: "Quiz description (English)"
+        name: description
+        widget: text
+        required: true
+      - label: "Target audience (English)"
+        name: audience
+        widget: string
+        required: true
+      - label: "Total questions"
+        name: total_questions
+        widget: number
+        value_type: int
+        required: true
+      - label: "Questions"
+        name: questions
+        widget: list
+        label_singular: "Question"
+        fields:
+          - label: "Question text (English)"
+            name: question
+            widget: string
+            required: true
+          - label: "Options"
+            name: options
+            widget: list
+            field: { label: "Option", name: option, widget: string }
+            required: true
+          - label: "Correct answer index (0-based)"
+            name: correct
+            widget: number
+            value_type: int
+            required: true
+            hint: "0 = first option, 1 = second, etc."
+          - label: "Hint (optional)"
+            name: hint
+            widget: text
+            required: false
+          - label: "Difficulty"
+            name: difficulty
+            widget: select
+            options: ["Easy", "Medium", "Hard"]
+            required: false
+          - label: "Legal reference"
+            name: reference
+            widget: string
+            required: false

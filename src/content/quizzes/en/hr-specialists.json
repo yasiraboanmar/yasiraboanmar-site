@@ -1,0 +1,169 @@
+{
+  "slug": "hr-specialists",
+  "title": "Specialist Quiz: Saudi Labor Law for HR Professionals",
+  "description": "An advanced quiz for HR specialists in Saudi Arabia, covering contract conversion, statute of limitations, work injuries, protections for female employees, and disciplinary termination under the Saudi Labor Law (as amended up to Royal Decree No. M/44 dated 8/2/1446H)",
+  "audience": "HR Specialists",
+  "total_questions": 20,
+  "questions": [
+    {
+      "question": "When does a fixed-term contract automatically convert into an indefinite-term contract if both parties continue to perform it?",
+      "options": ["After two consecutive renewals only", "After three consecutive renewals, or once the total term reaches 4 years, whichever comes first", "After 5 years from the date of the first contract", "It never converts unless both parties agree to it in writing"],
+      "correct": 1,
+      "hint": "The Law applies whichever threshold is reached first: the number of renewals or the total accumulated term.",
+      "difficulty": "Medium",
+      "reference": "Article (55), Paragraph (2) of the Saudi Labor Law"
+    },
+    {
+      "question": "What overtime premium is owed for each overtime hour, in addition to the basic hourly wage?",
+      "options": ["25%", "50%", "100%", "75%"],
+      "correct": 1,
+      "hint": "The premium equals half the regular hourly wage, making the total overtime hourly rate 150% of the basic hourly wage.",
+      "difficulty": "Easy",
+      "reference": "Article (107) of the Saudi Labor Law"
+    },
+    {
+      "question": "If an employer does not respond to an employee's resignation request and defers acceptance for the maximum period the Law allows, what is the total maximum period (original period + deferral) before the resignation is deemed accepted?",
+      "options": ["30 days only", "60 days", "90 days (30 + 60)", "120 days"],
+      "correct": 2,
+      "hint": "The original period is 30 days, and the employer may extend it with a justified written explanation if work interests require it, up to an additional maximum set by the article.",
+      "difficulty": "Hard",
+      "reference": "Article (79 bis) of the Saudi Labor Law"
+    },
+    {
+      "question": "If a non-Saudi employee's contract does not state its duration, what term is it deemed to have by law, from the date the employee actually starts work?",
+      "options": ["6 months", "One year", "Two years", "Whatever was verbally agreed between the parties"],
+      "correct": 1,
+      "hint": "If work continues after this period ends, the contract is automatically deemed renewed for a similar period.",
+      "difficulty": "Medium",
+      "reference": "Article (37) of the Saudi Labor Law"
+    },
+    {
+      "question": "As a general rule (before any ministerial exception), what is the minimum percentage of Saudi employees an establishment must maintain?",
+      "options": ["50%", "65%", "75%", "90%"],
+      "correct": 2,
+      "hint": "The Minister may temporarily reduce this percentage where the required technical qualifications or academic credentials are not available among citizens.",
+      "difficulty": "Easy",
+      "reference": "Article (26) of the Saudi Labor Law"
+    },
+    {
+      "question": "Within what period does an employee's right to file a claim before the labor court lapse, counted from the date the employment relationship ends?",
+      "options": ["6 months", "One year (12 months)", "Two years", "3 years"],
+      "correct": 1,
+      "hint": "The court may still accept the case after this period if the plaintiff provides an excuse the court accepts, or if the defendant explicitly acknowledges the right.",
+      "difficulty": "Hard",
+      "reference": "Article (234) of the Saudi Labor Law"
+    },
+    {
+      "question": "If an employee's contract ends due to force majeure entirely beyond their control, are they entitled to end-of-service gratuity?",
+      "options": ["No gratuity is due in this case", "Yes, the full gratuity is due as an exception, regardless of length of service", "Only a third of the gratuity is due", "Only due if their service exceeded 5 years"],
+      "correct": 1,
+      "hint": "This same exception appears in the article that also grants full gratuity to a female employee who resigns due to marriage or childbirth within specified periods.",
+      "difficulty": "Medium",
+      "reference": "Article (87) of the Saudi Labor Law"
+    },
+    {
+      "question": "Which of the following are all considered forms of 'continuous service' despite involving an actual interruption?",
+      "options": ["Statutory leaves and holidays only", "The interruption period for sitting exams as provided for in the Law, only", "Unpaid absence not exceeding twenty intermittent days during the work year, only", "All three of the above cases combined"],
+      "correct": 3,
+      "hint": "The definition of 'continuous service' in Article Two groups these three cases under a single concept, even though each one represents an actual break from work.",
+      "difficulty": "Hard",
+      "reference": "Article Two (Definitions) of the Saudi Labor Law"
+    },
+    {
+      "question": "What is the maximum disciplinary fine an employer may impose on an employee for a single violation?",
+      "options": ["One day's wage", "Five days' wage", "Ten days' wage", "Half a month's wage"],
+      "correct": 1,
+      "hint": "This same figure roughly recurs as the cap on total monthly wage deductions and as the maximum unpaid suspension period allowed within a single month.",
+      "difficulty": "Medium",
+      "reference": "Article (70) of the Saudi Labor Law"
+    },
+    {
+      "question": "When is an employer prohibited from dismissing or warning of dismissal of a female employee due to illness arising from pregnancy or childbirth?",
+      "options": ["Only during maternity leave, capped at two months", "Throughout pregnancy and while on maternity leave, provided her resulting absence does not exceed 180 days in the year", "There is no such prohibition in the Law", "Only during the six weeks immediately following childbirth"],
+      "correct": 1,
+      "hint": "This protection requires the illness to be proven by a certified medical certificate, and shares an annual time cap with the general sick leave provisions.",
+      "difficulty": "Medium",
+      "reference": "Article (155) of the Saudi Labor Law"
+    },
+    {
+      "question": "How long is the fully paid mourning ('iddah) leave for a Muslim female employee whose husband passes away?",
+      "options": ["One month", "45 days", "4 months and 10 days", "6 months"],
+      "correct": 2,
+      "hint": "This religiously-mandated period differs from the leave granted to a non-Muslim female employee in the same situation, which is only 15 days.",
+      "difficulty": "Hard",
+      "reference": "Article (160) of the Saudi Labor Law"
+    },
+    {
+      "question": "What is the mandatory employment quota for professionally qualified persons with disabilities in establishments employing 25 or more workers?",
+      "options": ["2%", "4%", "10%", "There is no mandatory quota in the Law"],
+      "correct": 1,
+      "hint": "This percentage is calculated from the establishment's total workforce, and can be met through referrals from government employment channels or otherwise.",
+      "difficulty": "Easy",
+      "reference": "Article (28) of the Saudi Labor Law"
+    },
+    {
+      "question": "What is the maximum number of actual daily working hours for a juvenile (aged 15–18) outside the month of Ramadan?",
+      "options": ["4 hours", "6 hours", "7 hours", "8 hours"],
+      "correct": 1,
+      "hint": "During Ramadan specifically, this figure drops to just 4 hours for this age group.",
+      "difficulty": "Medium",
+      "reference": "Article (164) of the Saudi Labor Law"
+    },
+    {
+      "question": "When is a work injury deemed a permanent total disability requiring termination of the contract and payment of the prescribed compensation?",
+      "options": ["Immediately upon the injury occurring", "If treatment lasts a full year, or it is medically determined that recovery is not expected and the worker can no longer work at all", "After 90 days from the injury without noticeable improvement", "By the employer's sole decision, without any need for a medical report"],
+      "correct": 1,
+      "hint": "Before reaching this threshold, the injured worker is entitled to a temporary financial allowance equal to their full wage for a period, then a percentage of it afterward, throughout the actual treatment period.",
+      "difficulty": "Hard",
+      "reference": "Article (137) of the Saudi Labor Law"
+    },
+    {
+      "question": "What is the minimum compensation amount prescribed by law if a work injury results in permanent total disability or death?",
+      "options": ["SAR 30,000", "SAR 54,000 (equivalent to a minimum of 3 years' wages)", "SAR 100,000", "It is left entirely to the employer's discretion"],
+      "correct": 1,
+      "hint": "This amount is only a floor; the actual compensation is calculated based on the injured worker's wage over a 3-year period, and if the result is less than this figure, the minimum must still be paid.",
+      "difficulty": "Hard",
+      "reference": "Article (138) of the Saudi Labor Law"
+    },
+    {
+      "question": "In remote areas far from urban centers, an employee's weekly rest days may be accumulated by agreement and with Ministry approval, for a maximum period of:",
+      "options": ["4 weeks", "6 weeks", "8 weeks", "12 weeks"],
+      "correct": 2,
+      "hint": "When calculating this accumulated period, it is taken into account that it should not start counting from the moment the workers reach the nearest city with transportation services.",
+      "difficulty": "Medium",
+      "reference": "Article (105) of the Saudi Labor Law"
+    },
+    {
+      "question": "What is the maximum number of working days per year during which an employer may disregard the normal weekly rest rules, for work such as annual stocktaking and budget preparation?",
+      "options": ["15 days", "20 days", "30 days", "45 days"],
+      "correct": 2,
+      "hint": "This exception is not limited to stocktaking work; it also covers preventing a hazardous accident or dealing with unusual work pressure.",
+      "difficulty": "Medium",
+      "reference": "Article (106) of the Saudi Labor Law"
+    },
+    {
+      "question": "In the permitted exceptional cases (such as stocktaking and dealing with unusual work pressure), what is the maximum number of actual working hours allowed per day or per week?",
+      "options": ["8 hours/day — 48 hours/week", "10 hours/day — 60 hours/week", "12 hours/day — 72 hours/week", "There is no maximum in these exceptional cases"],
+      "correct": 1,
+      "hint": "The Minister determines by decision the maximum permissible overtime hours allowed per year specifically under this exception.",
+      "difficulty": "Hard",
+      "reference": "Article (106) of the Saudi Labor Law"
+    },
+    {
+      "question": "If a female employee resigns due to marriage, when is she entitled to the full end-of-service gratuity despite not meeting the normal required length of service?",
+      "options": ["If her contract ends within one month of the marriage date", "If her contract ends within 6 months of her marriage contract date", "If her contract ends within one full year of the marriage", "There is no such exception in the Law"],
+      "correct": 1,
+      "hint": "A similar but shorter period is prescribed for a female employee resigning due to childbirth — 3 months from that date.",
+      "difficulty": "Easy",
+      "reference": "Article (87) of the Saudi Labor Law"
+    },
+    {
+      "question": "How many cases are set out in the article granting the employer the right to terminate a contract without gratuity, notice, or compensation (disciplinary dismissal)?",
+      "options": ["7 cases", "9 cases", "12 cases", "5 cases only"],
+      "correct": 1,
+      "hint": "Among these cases: assaulting the employer or the responsible manager, disclosing industrial or trade secrets, and unexcused absence in both its continuous and intermittent thresholds.",
+      "difficulty": "Medium",
+      "reference": "Article (80) of the Saudi Labor Law"
+    }
+  ]
+}

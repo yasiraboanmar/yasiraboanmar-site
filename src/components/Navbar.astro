@@ -10,12 +10,14 @@ const isAr = lang === 'ar';
 
 const links = isAr
   ? [
-      { href: '/',         label: 'الرئيسية' },
-      { href: '/blog/',    label: 'المدونة'  },
+      { href: '/',            label: 'الرئيسية'   },
+      { href: '/blog/',       label: 'المدونة'    },
+      { href: '/quizzes/',    label: 'الاختبارات' },
     ]
   : [
-      { href: '/en/',      label: 'Home' },
-      { href: '/en/blog/', label: 'Blog' },
+      { href: '/en/',         label: 'Home'    },
+      { href: '/en/blog/',    label: 'Blog'    },
+      { href: '/en/quizzes/', label: 'Quizzes' },
     ];
 
 // Smart language switch: stay on same page when switching language
@@ -28,6 +30,9 @@ const pageMap: Record<string, string> = {
   '/privacy/': '/en/privacy/',
   '/terms/': '/en/terms/',
   '/disclaimer/': '/en/disclaimer/',
+  '/quizzes/': '/en/quizzes/',
+  '/quizzes/general-employees/': '/en/quizzes/general-employees/',
+  '/quizzes/hr-specialists/': '/en/quizzes/hr-specialists/',
 };
 
 // Reverse mapping for English to Arabic

@@ -1,0 +1,89 @@
+{
+  "slug": "general-employees",
+  "title": "Quiz: How well do you know Saudi Labor Law?",
+  "description": "Test your knowledge of the Saudi Labor Law (issued by Royal Decree No. M/51, as amended up to Royal Decree No. M/44 dated 8/2/1446H)",
+  "audience": "Private sector employees",
+  "total_questions": 10,
+  "questions": [
+    {
+      "question": "What is the official weekly rest day for all employees under the Labor Law?",
+      "options": ["Saturday", "Friday", "Sunday", "Fully up to the employer to decide"],
+      "correct": 1,
+      "hint": "Think of the day an employer may substitute for some employees with the labor office's approval, while still allowing them to observe their religious duties.",
+      "difficulty": "Easy",
+      "reference": "Article (104) of the Saudi Labor Law"
+    },
+    {
+      "question": "What is the maximum number of actual working hours per day if the employer applies the daily standard?",
+      "options": ["6 hours", "7 hours", "8 hours", "10 hours"],
+      "correct": 2,
+      "hint": "This number drops to just 6 hours during Ramadan for Muslim employees.",
+      "difficulty": "Easy",
+      "reference": "Article (98) of the Saudi Labor Law"
+    },
+    {
+      "question": "How many days is the basic annual leave for an employee with less than 5 years of service?",
+      "options": ["15 days", "21 days", "30 days", "14 days"],
+      "correct": 1,
+      "hint": "This number rises to a full 30 days once the employee completes 5 consecutive years with the same employer.",
+      "difficulty": "Easy",
+      "reference": "Article (109) of the Saudi Labor Law"
+    },
+    {
+      "question": "What is the maximum total duration of a probation period in an employment contract, no matter how many agreements are made?",
+      "options": ["90 days", "120 days", "180 days", "365 days"],
+      "correct": 2,
+      "hint": "This period is roughly equivalent to six months, and any leave days the employee takes during it are not counted within it.",
+      "difficulty": "Medium",
+      "reference": "Article (53) of the Saudi Labor Law"
+    },
+    {
+      "question": "For an indefinite-term contract with a monthly wage, how many days' notice must the employer give the employee if the employer wants to end the contract?",
+      "options": ["30 days", "60 days", "15 days", "90 days"],
+      "correct": 1,
+      "hint": "The notice period the employer must give differs from — and is longer than — the one the employee must give if they are the one ending the contract.",
+      "difficulty": "Medium",
+      "reference": "Article (75) of the Saudi Labor Law"
+    },
+    {
+      "question": "How is the end-of-service gratuity calculated for each of the first five years of an employee's service?",
+      "options": ["A full month's wage", "Half a month's wage", "A third of a month's wage", "Two weeks' wage"],
+      "correct": 1,
+      "hint": "This rate doubles to a full month's wage for each year of service beyond the first five years.",
+      "difficulty": "Medium",
+      "reference": "Article (84) of the Saudi Labor Law"
+    },
+    {
+      "question": "An employee's resignation request is automatically deemed accepted if a certain period passes without a response from the employer. What is that period?",
+      "options": ["15 days", "30 days", "45 days", "60 days"],
+      "correct": 1,
+      "hint": "The employer has the right to defer acceptance of the resignation for longer than this if work interests require it, provided a justified written explanation is given.",
+      "difficulty": "Medium",
+      "reference": "Article (79 bis) of the Saudi Labor Law"
+    },
+    {
+      "question": "An employer may dismiss an employee without gratuity, notice, or compensation if the employee is absent without a legitimate excuse for a consecutive period exceeding how many days (after a prior written warning)?",
+      "options": ["7 days", "10 days", "15 days", "30 days"],
+      "correct": 2,
+      "hint": "The same article contains another case involving intermittent absence during a single contract year, with a threshold roughly double this number.",
+      "difficulty": "Hard",
+      "reference": "Article (80), Paragraph (7) of the Saudi Labor Law"
+    },
+    {
+      "question": "What is the maximum percentage an employer may deduct monthly from an employee's wage to recover a loan given to the employee (without the employee's written consent to a higher rate)?",
+      "options": ["5%", "10%", "20%", "25%"],
+      "correct": 1,
+      "hint": "This percentage differs from other deduction cases, such as disciplinary fines or enforcing court judgments, which can reach up to three-quarters of the wage.",
+      "difficulty": "Hard",
+      "reference": "Article (92) of the Saudi Labor Law"
+    },
+    {
+      "question": "An employee is entitled to a paid leave to perform Hajj once during their employment, provided they have completed a continuous period of service with the employer of at least:",
+      "options": ["One year", "Two consecutive years", "3 consecutive years", "5 consecutive years"],
+      "correct": 1,
+      "hint": "The leave itself ranges between 10 and 15 days, inclusive of the Eid al-Adha holiday.",
+      "difficulty": "Hard",
+      "reference": "Article (114) of the Saudi Labor Law"
+    }
+  ]
+}

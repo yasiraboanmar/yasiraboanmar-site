@@ -1,0 +1,16 @@
+---
+import QuizPage from '../../../components/QuizPage.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const quizzes = await getCollection('quizzes_en');
+  return quizzes.map(q => ({
+    params: { slug: q.id },
+    props:  { quiz: q.data },
+  }));
+}
+
+const { quiz } = Astro.props;
+---
+
+<QuizPage lang="en" quiz={quiz} currentPath={Astro.url.pathname} />

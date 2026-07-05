@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/Base.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const quizzes = (await getCollection('quizzes_ar'))
+  .sort((a, b) => {
+    const order = ['general-employees', 'hr-specialists'];
+    return order.indexOf(a.id) - order.indexOf(b.id);
+  });
+
+const currentPath = Astro.url.pathname;
+---
+
+<Base
+  title="الاختبارات — ياسر الجيادي"
+  description="اختبارات تفاعلية في نظام العمل السعودي. اختبر معرفتك وتعلّم من الأسئلة المستندة إلى نصوص نظام العمل."
+  lang="ar"
+  dir="rtl"
+>
+  <Navbar lang="ar" currentPath={currentPath} />
+
+  <div class="page-header">
+    <div class="container">
+      <span class="section-label">اختبارات تفاعلية</span>
+      <h1 class="section-title">الاختبارات</h1>
+      <p class="section-desc">اختبر معرفتك بنظام العمل السعودي واكتشف مستواك في أسئلة مستندة مباشرة إلى نصوص النظام.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <section class="section">
+    <div class="container">
+      <div class="quizzes-grid">
+        {quizzes.map(q => (
+          <a href={`/quizzes/${q.id}/`} class="quiz-card card">
+            <div class="quiz-card-header">
+              <span class="quiz-card-badge">اختبار تفاعلي</span>
+            </div>
+            <h2 class="quiz-card-title">{q.data.title}</h2>
+            <p class="quiz-card-desc">{q.data.description}</p>
+            <div class="quiz-card-meta">
+              <div class="quiz-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>{q.data.audience}</span>
+              </div>
+              <div class="quiz-meta-item">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                <span>{q.data.total_questions} سؤال</span>
+              </div>
+            </div>
+            <div class="quiz-card-cta">
+              ابدأ الاختبار
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer lang="ar" />
+</Base>
+
+<style>
+  .quizzes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+  }
+
+  .quiz-card {
+    display: flex; flex-direction: column; gap: 12px;
+    padding: 28px; text-decoration: none; color: var(--text);
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+  }
+  .quiz-card:hover {
+    border-color: var(--accent-border);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(158,230,207,.07);
+    text-decoration: none; color: var(--text);
+  }
+
+  .quiz-card-header { margin-bottom: 2px; }
+  .quiz-card-badge {
+    display: inline-block; padding: 3px 12px; border-radius: 999px;
+    background: var(--accent-dim); border: 1px solid var(--accent-border);
+    color: var(--accent); font-size: .75rem; font-weight: 700;
+  }
+
+  .quiz-card-title { font-size: 1.1rem; font-weight: 800; line-height: 1.4; }
+  .quiz-card-desc  { font-size: .88rem; color: var(--muted); line-height: 1.7; flex: 1; }
+
+  .quiz-card-meta  { display: flex; flex-direction: column; gap: 6px; }
+  .quiz-meta-item  { display: flex; align-items: center; gap: 6px; font-size: .82rem; color: var(--muted); }
+
+  .quiz-card-cta {
+    display: flex; align-items: center; gap: 6px;
+    font-size: .88rem; color: var(--accent); font-weight: 700;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 600px) {
+    .quizzes-grid { grid-template-columns: 1fr; }
+  }
+</style>
