@@ -53,23 +53,24 @@ const ui = {
   yourScore:     isAr ? 'نتيجتك' : 'Your Score',
   correctAns:    isAr ? 'إجابات صحيحة' : 'correct answers',
   yourRating:    isAr ? 'تقييمك' : 'Your Rating',
-  printBtn:      isAr ? 'طباعة' : 'Print',
+  printBtn:      isAr ? 'طباعة الشهادة' : 'Print Certificate',
   emailBtn:      isAr ? 'أرسل لي النتيجة' : 'Email me my result',
   retake:        isAr ? 'أعِد الاختبار' : 'Retake Quiz',
   sending:       isAr ? 'جارٍ الإرسال...' : 'Sending...',
   sent:          isAr ? 'تم الإرسال!' : 'Sent!',
   sendError:     isAr ? 'فشل الإرسال، حاول لاحقاً' : 'Failed to send, please try again',
-  printOn:       isAr ? 'نتيجة اختبار' : 'Quiz Result',
-  dateLabel:     isAr ? 'التاريخ:' : 'Date:',
   diffEasy:      isAr ? 'سهل' : 'Easy',
   diffMedium:    isAr ? 'متوسط' : 'Medium',
   diffHard:      isAr ? 'صعب' : 'Hard',
+  certAnon:      isAr ? 'مشارك' : 'Participant',
+  certCompleted: isAr ? 'عن إتمام اختبار' : 'for completing the quiz',
+  certSucc:      isAr ? 'بنجاح' : 'successfully',
   grades: {
-    excellent: { label: isAr ? 'ممتاز'    : 'Excellent',   color: '#9ee6cf', bg: 'rgba(158,230,207,.13)', msg: isAr ? 'رائع! تمتلك معرفة استثنائية بنظام العمل السعودي. أنت نموذج يُحتذى به.'                                     : "Outstanding! Your knowledge of Saudi labor law is exceptional. You're a true role model." },
-    veryGood:  { label: isAr ? 'جيد جداً' : 'Very Good',   color: '#5bb8d4', bg: 'rgba(91,184,212,.13)',  msg: isAr ? 'أداء ممتاز! أنت على طريق الاحتراف. مراجعة بسيطة للنقاط التي فاتتك ستجعلك خبيراً كاملاً.' : 'Great job! You\'re on the path to mastery. Reviewing the missed points will make you a full expert.' },
-    good:      { label: isAr ? 'جيد'       : 'Good',        color: '#e8c07a', bg: 'rgba(232,192,122,.13)', msg: isAr ? 'جيد! أنت تعرف الأساسيات. تصفح مقالاتنا لتعزيز معرفتك وترقية مستواك.'                                      : 'Good effort! You know the basics. Browse our articles to deepen your knowledge.' },
-    acceptable:{ label: isAr ? 'مقبول'    : 'Acceptable',  color: '#f4a261', bg: 'rgba(244,162,97,.13)',  msg: isAr ? 'المعرفة بنظام العمل تحمي حقوقك. استثمر وقتاً في قراءة مقالاتنا لتحسين نتيجتك.'                       : 'Knowledge of labor law protects your rights. Invest time in our articles to improve.' },
-    weak:      { label: isAr ? 'ضعيف'     : 'Weak',        color: '#e07070', bg: 'rgba(224,112,112,.13)', msg: isAr ? 'لا بأس، الجميع يبدأ من مكان ما! تصفح مقالاتنا عن نظام العمل وستتفاجأ بتحسّنك.'                       : 'Everyone starts somewhere! Browse our labor law articles and you\'ll be amazed at your progress.' },
+    excellent: { label: isAr ? 'ممتاز'    : 'Excellent',   color: '#9ee6cf', bg: 'rgba(158,230,207,.1)', sealColor: '#b8912f', sealBg: 'rgba(184,145,47,.08)',  msg: isAr ? 'رائع! تمتلك معرفة استثنائية بنظام العمل السعودي. أنت نموذج يُحتذى به.'                                     : "Outstanding! Your knowledge of Saudi labor law is exceptional. You're a true role model." },
+    veryGood:  { label: isAr ? 'جيد جداً' : 'Very Good',   color: '#5bb8d4', bg: 'rgba(91,184,212,.1)',  sealColor: '#3f8f74', sealBg: 'rgba(63,143,116,.08)',   msg: isAr ? 'أداء ممتاز! أنت على طريق الاحتراف. مراجعة بسيطة للنقاط التي فاتتك ستجعلك خبيراً كاملاً.' : 'Great job! You\'re on the path to mastery. Reviewing the missed points will make you a full expert.' },
+    good:      { label: isAr ? 'جيد'       : 'Good',        color: '#e8c07a', bg: 'rgba(232,192,122,.1)', sealColor: '#e8c07a', sealBg: 'rgba(232,192,122,.08)', msg: isAr ? 'جيد! أنت تعرف الأساسيات. تصفح مقالاتنا لتعزيز معرفتك وترقية مستواك.'                                      : 'Good effort! You know the basics. Browse our articles to deepen your knowledge.' },
+    acceptable:{ label: isAr ? 'مقبول'    : 'Acceptable',  color: '#f4a261', bg: 'rgba(244,162,97,.1)',  sealColor: '#f4a261', sealBg: 'rgba(244,162,97,.08)',  msg: isAr ? 'المعرفة بنظام العمل تحمي حقوقك. استثمر وقتاً في قراءة مقالاتنا لتحسين نتيجتك.'                       : 'Knowledge of labor law protects your rights. Invest time in our articles to improve.' },
+    weak:      { label: isAr ? 'ضعيف'     : 'Weak',        color: '#e07070', bg: 'rgba(224,112,112,.1)', sealColor: '#e07070', sealBg: 'rgba(224,112,112,.08)', msg: isAr ? 'لا بأس، الجميع يبدأ من مكان ما! تصفح مقالاتنا عن نظام العمل وستتفاجأ بتحسّنك.'                       : 'Everyone starts somewhere! Browse our labor law articles and you\'ll be amazed at your progress.' },
   },
 };
 
@@ -127,41 +128,37 @@ const uiDataStr   = JSON.stringify(ui);
     <div id="screen-quiz" class="quiz-screen section" hidden>
       <div class="container" style="max-width:700px;">
 
-        <!-- Progress -->
+        <!-- Segmented progress -->
         <div class="quiz-progress-wrap">
           <div class="quiz-progress-label">
-            <span id="q-current">1</span>
-            <span style="color:var(--muted);"> {ui.questionOf} </span>
-            <span id="q-total">{quiz.total_questions}</span>
+            <span id="q-label">{isAr ? 'السؤال 1' : 'Question 1'}</span>
           </div>
-          <div class="quiz-progress-bar-track">
-            <div class="quiz-progress-bar-fill" id="progress-fill" style="width:0%"></div>
-          </div>
+          <div class="quiz-segs" id="progress-segs"></div>
         </div>
 
         <!-- Question Card -->
         <div class="quiz-question-card card">
           <div class="quiz-question-header">
-            <span class="quiz-difficulty-badge" id="diff-badge"></span>
+            <span class="quiz-diff-badge" id="diff-badge"></span>
           </div>
           <p class="quiz-question-text" id="question-text"></p>
 
           <!-- Options -->
-          <div class="quiz-options" id="options-container"></div>
+          <div class="quiz-opts" id="options-container"></div>
 
-          <!-- Hint -->
-          <div class="quiz-hint-wrap" id="hint-wrap" hidden>
-            <button class="quiz-hint-btn" id="hint-btn" type="button">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          <!-- Hint (collapsible dotted box) -->
+          <div class="hint-wrap" id="hint-wrap" hidden>
+            <button class="hint-toggle" id="hint-btn" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
               <span id="hint-btn-label">{ui.showHint}</span>
             </button>
-            <p class="quiz-hint-text" id="hint-text" hidden></p>
+            <p class="hint-body" id="hint-text" hidden></p>
           </div>
 
           <!-- Feedback (shown after answer) -->
           <div class="quiz-feedback" id="feedback" hidden>
-            <div class="quiz-feedback-result" id="feedback-result"></div>
-            <p class="quiz-feedback-ref" id="feedback-ref"></p>
+            <div class="quiz-fb-result" id="feedback-result"></div>
+            <p class="quiz-fb-ref" id="feedback-ref"></p>
           </div>
 
           <!-- Next button -->
@@ -204,34 +201,32 @@ const uiDataStr   = JSON.stringify(ui);
     <div id="screen-result" class="quiz-screen section" hidden>
       <div class="container" style="max-width:600px;">
 
-        <!-- Print-only header -->
-        <div class="print-only print-header">
-          <strong>{ui.printOn}: </strong><span id="print-quiz-title"></span><br/>
-          <span id="print-name-line"></span>
-          <span>{ui.dateLabel} </span><span id="print-date"></span>
+        <div class="result-wrap">
+          <!-- Glow layer (activated for excellent / veryGood) -->
+          <div class="result-glow" id="result-glow"></div>
+
+          <div class="quiz-result-card card" id="result-card">
+            <!-- Seal -->
+            <div class="result-seal-wrap">
+              <div class="result-seal" id="result-seal">
+                <span class="result-seal-lbl" id="result-seal-label"></span>
+              </div>
+            </div>
+
+            <div class="quiz-result-name" id="result-name" hidden></div>
+
+            <div class="quiz-result-score">
+              <span class="quiz-score-num" id="score-num"></span>
+              <span class="quiz-score-sep"> / </span>
+              <span class="quiz-score-total" id="score-total"></span>
+            </div>
+            <div class="quiz-score-percent" id="score-percent"></div>
+
+            <p class="quiz-result-msg" id="result-msg"></p>
+          </div>
         </div>
 
-        <div class="quiz-result-card card" id="result-card">
-          <div class="quiz-result-badge-wrap">
-            <div class="quiz-result-badge" id="result-badge"></div>
-          </div>
-
-          <div class="quiz-result-name" id="result-name" hidden></div>
-
-          <div class="quiz-result-score">
-            <span class="quiz-score-num" id="score-num"></span>
-            <span class="quiz-score-sep"> / </span>
-            <span class="quiz-score-total" id="score-total"></span>
-          </div>
-          <div class="quiz-score-percent" id="score-percent"></div>
-
-          <div class="quiz-result-label">{ui.yourRating}</div>
-          <div class="quiz-result-classification" id="result-class"></div>
-
-          <p class="quiz-result-msg" id="result-msg"></p>
-        </div>
-
-        <!-- Action buttons (hidden when printing) -->
+        <!-- Action buttons -->
         <div class="quiz-result-actions no-print">
           <button id="btn-print" class="btn btn-outline">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
@@ -253,6 +248,54 @@ const uiDataStr   = JSON.stringify(ui);
 
   </main>
 
+  <!-- ═══ PRINT CERTIFICATE (outside main, shown only in @media print) ═══ -->
+  <div class="cert-print" id="cert-print" aria-hidden="true">
+    <div class="cert-frame"></div>
+    <div class="cert-content">
+      <div class="cert-site-mark">
+        <img src="/YAA.svg" alt={isAr ? 'ياسر الجيادي' : 'Yasir Aljiyadi'} class="cert-logo-img" />
+        <span class="cert-domain">yasiraboanmar.com</span>
+      </div>
+
+      <div class="cert-eyebrow">{isAr ? 'شهادة اجتياز اختبار' : 'Certificate of Completion'}</div>
+      <h2 class="cert-title-el" id="cert-title">{quiz.title}</h2>
+      <div class="cert-subtitle">{isAr ? 'Certificate of Completion' : 'شهادة اجتياز اختبار'}</div>
+
+      <div class="cert-grants">{isAr ? 'تُمنح هذه الشهادة إلى' : 'This certificate is awarded to'}</div>
+      <div class="cert-pname" id="cert-name"></div>
+      <div class="cert-completed" id="cert-quiz-completed"></div>
+
+      <div class="cert-score-row">
+        <div class="cert-score-block">
+          <div class="cert-score-num" id="cert-score"></div>
+          <div class="cert-score-lbl">{isAr ? 'النتيجة' : 'Score'}</div>
+        </div>
+        <div class="cert-dv"></div>
+        <div class="cert-seal" id="cert-seal-print">
+          <span class="cert-seal-lbl" id="cert-seal-label-print"></span>
+        </div>
+        <div class="cert-dv"></div>
+        <div class="cert-score-block">
+          <div class="cert-score-num" id="cert-pct"></div>
+          <div class="cert-score-lbl">{isAr ? 'النسبة' : 'Percentage'}</div>
+        </div>
+      </div>
+
+      <p class="cert-quote" id="cert-quote"></p>
+
+      <div class="cert-footer-row">
+        <div class="cert-footer-item">
+          <div class="cert-footer-val" id="cert-date"></div>
+          <div>{isAr ? 'التاريخ' : 'Date'}</div>
+        </div>
+        <div class="cert-footer-item">
+          <div class="cert-footer-val">yasiraboanmar.com</div>
+          <div>{isAr ? 'المصدر' : 'Source'}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Embedded data for JS -->
   <script id="quiz-data" type="application/json" set:html={quizDataStr}></script>
   <script id="ui-data"   type="application/json" set:html={uiDataStr}></script>
@@ -263,14 +306,19 @@ const uiDataStr   = JSON.stringify(ui);
     const quiz = JSON.parse(document.getElementById('quiz-data').textContent);
     const ui   = JSON.parse(document.getElementById('ui-data').textContent);
     const meta = JSON.parse(document.getElementById('quiz-meta').textContent);
+    const isAr = meta.lang === 'ar';
+
+    const LETTERS_AR = ['أ', 'ب', 'ج', 'د'];
+    const LETTERS_EN = ['A', 'B', 'C', 'D'];
+    const letters    = isAr ? LETTERS_AR : LETTERS_EN;
 
     // ── State ──────────────────────────────────────────────────────────────
-    let currentQ   = 0;
-    let score      = 0;
-    let answered   = false;
-    let hintOpen   = false;
-    let userName   = '';
-    let userEmail  = '';
+    let currentQ  = 0;
+    let score     = 0;
+    let answered  = false;
+    let hintOpen  = false;
+    let userName  = '';
+    let userEmail = '';
 
     // ── Screens ─────────────────────────────────────────────────────────────
     const screens = {
@@ -289,7 +337,7 @@ const uiDataStr   = JSON.stringify(ui);
     // ── Helpers ─────────────────────────────────────────────────────────────
     function difficultyLabel(d) {
       if (!d) return '';
-      if (meta.lang === 'ar') return d;
+      if (isAr) return d;
       const map = { 'سهل': ui.diffEasy, 'متوسط': ui.diffMedium, 'صعب': ui.diffHard };
       return map[d] || d;
     }
@@ -307,38 +355,61 @@ const uiDataStr   = JSON.stringify(ui);
       return 'weak';
     }
 
+    // ── Segmented progress ───────────────────────────────────────────────────
+    function renderSegments(currentIdx, total) {
+      const segs = document.getElementById('progress-segs');
+      segs.innerHTML = '';
+      for (let i = 0; i < total; i++) {
+        const s = document.createElement('div');
+        s.className = 'q-seg' + (i < currentIdx ? ' done' : i === currentIdx ? ' active' : '');
+        segs.appendChild(s);
+      }
+      const lbl = isAr
+        ? 'السؤال ' + (currentIdx + 1) + ' من ' + total
+        : 'Question ' + (currentIdx + 1) + ' of ' + total;
+      document.getElementById('q-label').textContent = lbl;
+    }
+
     // ── Render Question ──────────────────────────────────────────────────────
     function renderQuestion(idx) {
       answered = false;
       hintOpen = false;
       const q     = quiz.questions[idx];
       const total = quiz.questions.length;
-      const pct   = Math.round((idx / total) * 100);
 
-      document.getElementById('q-current').textContent = idx + 1;
-      document.getElementById('q-total').textContent   = total;
-      document.getElementById('progress-fill').style.width = pct + '%';
+      renderSegments(idx, total);
 
+      // Difficulty badge
       const badge = document.getElementById('diff-badge');
       if (q.difficulty) {
-        badge.textContent  = difficultyLabel(q.difficulty);
-        badge.className    = 'quiz-difficulty-badge diff-' + difficultyClass(q.difficulty);
-        badge.hidden       = false;
+        badge.textContent = difficultyLabel(q.difficulty);
+        badge.className   = 'quiz-diff-badge diff-' + difficultyClass(q.difficulty);
+        badge.hidden      = false;
       } else {
         badge.hidden = true;
       }
 
       document.getElementById('question-text').textContent = q.question;
 
-      // Options
+      // Options with letter badges
       const container = document.getElementById('options-container');
       container.innerHTML = '';
-      q.options.forEach((opt, i) => {
+      q.options.forEach(function(opt, i) {
         const btn = document.createElement('button');
-        btn.type       = 'button';
-        btn.className  = 'quiz-option';
-        btn.textContent = opt;
-        btn.addEventListener('click', () => selectAnswer(i));
+        btn.type      = 'button';
+        btn.className = 'quiz-opt';
+
+        const ltr = document.createElement('span');
+        ltr.className   = 'opt-ltr';
+        ltr.textContent = letters[i] || String(i + 1);
+
+        const txt = document.createElement('span');
+        txt.className   = 'opt-txt';
+        txt.textContent = opt;
+
+        btn.appendChild(ltr);
+        btn.appendChild(txt);
+        btn.addEventListener('click', function() { selectAnswer(i); });
         container.appendChild(btn);
       });
 
@@ -346,7 +417,7 @@ const uiDataStr   = JSON.stringify(ui);
       const hintWrap = document.getElementById('hint-wrap');
       if (q.hint) {
         hintWrap.hidden = false;
-        document.getElementById('hint-text').hidden = true;
+        document.getElementById('hint-text').hidden    = true;
         document.getElementById('hint-text').textContent = q.hint;
         document.getElementById('hint-btn-label').textContent = ui.showHint;
         hintOpen = false;
@@ -368,38 +439,36 @@ const uiDataStr   = JSON.stringify(ui);
       const isRight = chosen === correct;
       if (isRight) score++;
 
-      // Highlight options
-      const options = document.querySelectorAll('.quiz-option');
-      options.forEach((btn, i) => {
+      const options = document.querySelectorAll('.quiz-opt');
+      options.forEach(function(btn, i) {
         btn.disabled = true;
-        if (i === correct)       btn.classList.add('opt-correct');
-        else if (i === chosen)   btn.classList.add('opt-wrong');
-        else                     btn.classList.add('opt-dim');
+        if (i === correct)     btn.classList.add('opt-correct');
+        else if (i === chosen) btn.classList.add('opt-wrong');
+        else                   btn.classList.add('opt-dim');
       });
 
-      // Feedback
       const feedback = document.getElementById('feedback');
       feedback.hidden = false;
-      const resultEl = document.getElementById('feedback-result');
+      const resultEl  = document.getElementById('feedback-result');
       resultEl.textContent = isRight ? ('✓ ' + ui.correct) : ('✗ ' + ui.wrong);
-      resultEl.className = 'quiz-feedback-result ' + (isRight ? 'fb-correct' : 'fb-wrong');
+      resultEl.className   = 'quiz-fb-result ' + (isRight ? 'fb-correct' : 'fb-wrong');
 
+      const refEl = document.getElementById('feedback-ref');
       if (q.reference) {
-        document.getElementById('feedback-ref').textContent = ui.reference + ' ' + q.reference;
-        document.getElementById('feedback-ref').hidden = false;
+        refEl.textContent = ui.reference + ' ' + q.reference;
+        refEl.hidden = false;
       } else {
-        document.getElementById('feedback-ref').hidden = true;
+        refEl.hidden = true;
       }
 
-      // Next button
-      const btnNext      = document.getElementById('btn-next');
-      const isLast       = currentQ === quiz.questions.length - 1;
-      btnNext.hidden     = false;
+      const btnNext = document.getElementById('btn-next');
+      const isLast  = currentQ === quiz.questions.length - 1;
+      btnNext.hidden = false;
       document.getElementById('btn-next-label').textContent = isLast ? ui.seeResult : ui.next;
     }
 
     // ── Next ─────────────────────────────────────────────────────────────────
-    document.getElementById('btn-next').addEventListener('click', () => {
+    document.getElementById('btn-next').addEventListener('click', function() {
       const isLast = currentQ === quiz.questions.length - 1;
       if (isLast) {
         showScreen('register');
@@ -410,35 +479,55 @@ const uiDataStr   = JSON.stringify(ui);
     });
 
     // ── Hint toggle ──────────────────────────────────────────────────────────
-    document.getElementById('hint-btn').addEventListener('click', () => {
+    document.getElementById('hint-btn').addEventListener('click', function() {
       hintOpen = !hintOpen;
       document.getElementById('hint-text').hidden = !hintOpen;
       document.getElementById('hint-btn-label').textContent = hintOpen ? ui.hideHint : ui.showHint;
     });
 
     // ── Start ────────────────────────────────────────────────────────────────
-    document.getElementById('btn-start').addEventListener('click', () => {
+    document.getElementById('btn-start').addEventListener('click', function() {
       currentQ = 0; score = 0;
       showScreen('quiz');
       renderQuestion(0);
     });
 
     // ── Register form ────────────────────────────────────────────────────────
-    function submitAndShowResult() {
+    document.getElementById('register-form').addEventListener('submit', function(e) {
+      e.preventDefault();
       userName  = document.getElementById('input-name').value.trim();
       userEmail = document.getElementById('input-email').value.trim();
       showResult();
-    }
-
-    document.getElementById('register-form').addEventListener('submit', e => {
-      e.preventDefault();
-      submitAndShowResult();
     });
 
-    document.getElementById('btn-skip').addEventListener('click', () => {
+    document.getElementById('btn-skip').addEventListener('click', function() {
       userName = ''; userEmail = '';
       showResult();
     });
+
+    // ── Confetti ──────────────────────────────────────────────────────────────
+    function launchConfetti() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var colors = ['#9ee6cf', '#e8c07a', '#5bb8d4', '#f4a261', '#b8e6a4', '#f0c060'];
+      var wrap   = document.createElement('div');
+      wrap.className = 'confetti-wrap';
+      document.body.appendChild(wrap);
+      for (var i = 0; i < 60; i++) {
+        var p = document.createElement('div');
+        p.className = 'confetti-piece';
+        p.style.cssText = [
+          'left:' + (Math.random() * 100) + '%',
+          'background:' + colors[i % colors.length],
+          'width:' + (4 + Math.random() * 6) + 'px',
+          'height:' + (8 + Math.random() * 8) + 'px',
+          'animation-delay:' + (Math.random() * 2.5) + 's',
+          'animation-duration:' + (2.5 + Math.random() * 2) + 's',
+          'border-radius:' + (Math.random() > 0.5 ? '50%' : '2px'),
+        ].join(';');
+        wrap.appendChild(p);
+      }
+      setTimeout(function() { if (wrap.parentNode) wrap.parentNode.removeChild(wrap); }, 7000);
+    }
 
     // ── Show Result ───────────────────────────────────────────────────────────
     function showResult() {
@@ -447,17 +536,33 @@ const uiDataStr   = JSON.stringify(ui);
       const gradeKey = getGradeKey(pct);
       const grade    = ui.grades[gradeKey];
 
+      // Determine celebration level
+      const celebLevel = gradeKey === 'excellent' ? 'full' : gradeKey === 'veryGood' ? 'medium' : 'none';
+
       // Result card styling
       const card = document.getElementById('result-card');
       card.style.borderColor = grade.color;
       card.style.background  = grade.bg;
 
-      // Badge
-      const badge = document.getElementById('result-badge');
-      badge.textContent   = grade.label;
-      badge.style.color   = grade.color;
-      badge.style.borderColor = grade.color;
-      badge.style.background  = grade.bg;
+      // Seal
+      const seal = document.getElementById('result-seal');
+      seal.style.borderColor = grade.sealColor;
+      seal.style.background  = grade.sealBg;
+      const sealLbl = document.getElementById('result-seal-label');
+      sealLbl.textContent = grade.label;
+      sealLbl.style.color = grade.sealColor;
+
+      // Glow + celebration
+      const glow = document.getElementById('result-glow');
+      if (celebLevel === 'full') {
+        glow.className = 'result-glow glow-excellent';
+        launchConfetti();
+      } else if (celebLevel === 'medium') {
+        glow.className = 'result-glow glow-veryGood';
+        card.classList.add('flash-anim');
+      } else {
+        glow.className = 'result-glow';
+      }
 
       // Name
       if (userName) {
@@ -467,23 +572,34 @@ const uiDataStr   = JSON.stringify(ui);
       }
 
       // Score
-      document.getElementById('score-num').textContent   = score;
-      document.getElementById('score-total').textContent = total;
+      document.getElementById('score-num').textContent     = score;
+      document.getElementById('score-total').textContent   = total;
       document.getElementById('score-percent').textContent = pct + '%';
       document.getElementById('score-percent').style.color = grade.color;
 
-      // Classification + message
-      document.getElementById('result-class').textContent = grade.label;
-      document.getElementById('result-class').style.color  = grade.color;
-      document.getElementById('result-msg').textContent    = grade.msg;
+      // Message
+      document.getElementById('result-msg').textContent = grade.msg;
 
-      // Email button visibility
+      // Email button
       if (userEmail) document.getElementById('btn-email').hidden = false;
 
-      // Print data
-      document.getElementById('print-quiz-title').textContent = quiz.title;
-      if (userName) document.getElementById('print-name-line').textContent = userName + ' — ';
-      document.getElementById('print-date').textContent = new Date().toLocaleDateString(meta.lang === 'ar' ? 'ar-SA' : 'en-US', { year:'numeric', month:'long', day:'numeric' });
+      // Populate print certificate
+      document.getElementById('cert-name').textContent = userName || ui.certAnon;
+      document.getElementById('cert-score').textContent = score + '/' + total;
+      document.getElementById('cert-pct').textContent   = pct + '%';
+      document.getElementById('cert-seal-label-print').textContent = grade.label;
+      document.getElementById('cert-quote').textContent = grade.msg;
+
+      const completedTxt = isAr
+        ? ui.certCompleted + ' «' + quiz.title + '» ' + ui.certSucc
+        : ui.certCompleted + ' "' + quiz.title + '" ' + ui.certSucc;
+      document.getElementById('cert-quiz-completed').textContent = completedTxt;
+
+      const certDate = new Date().toLocaleDateString(
+        isAr ? 'ar-SA' : 'en-US',
+        { year: 'numeric', month: 'long', day: 'numeric' }
+      );
+      document.getElementById('cert-date').textContent = certDate;
 
       showScreen('result');
 
@@ -495,29 +611,29 @@ const uiDataStr   = JSON.stringify(ui);
           quiz_id: quiz.slug,
           name: userName || null,
           email: userEmail || null,
-          score,
+          score: score,
           total_questions: total,
           percentage: pct,
           classification: gradeKey,
           lang: meta.lang,
         }),
-      }).catch(() => {});
+      }).catch(function() {});
     }
 
     // ── Print ─────────────────────────────────────────────────────────────────
-    document.getElementById('btn-print').addEventListener('click', () => window.print());
+    document.getElementById('btn-print').addEventListener('click', function() { window.print(); });
 
     // ── Email ─────────────────────────────────────────────────────────────────
-    document.getElementById('btn-email').addEventListener('click', async () => {
-      const btn      = document.getElementById('btn-email');
-      const labelEl  = document.getElementById('email-btn-label');
-      const total    = quiz.questions.length;
-      const pct      = Math.round((score / total) * 100);
+    document.getElementById('btn-email').addEventListener('click', async function() {
+      const btn     = document.getElementById('btn-email');
+      const labelEl = document.getElementById('email-btn-label');
+      const total   = quiz.questions.length;
+      const pct     = Math.round((score / total) * 100);
       const gradeKey = getGradeKey(pct);
       const grade    = ui.grades[gradeKey];
 
       labelEl.textContent = ui.sending;
-      btn.disabled        = true;
+      btn.disabled = true;
 
       try {
         const res = await fetch('/api/quiz-email', {
@@ -527,7 +643,7 @@ const uiDataStr   = JSON.stringify(ui);
             to_email: userEmail,
             name: userName || null,
             quiz_title: quiz.title,
-            score,
+            score: score,
             total_questions: total,
             percentage: pct,
             classification: grade.label,
@@ -542,19 +658,23 @@ const uiDataStr   = JSON.stringify(ui);
         } else {
           throw new Error();
         }
-      } catch {
+      } catch (_) {
         labelEl.textContent = ui.sendError;
         btn.disabled = false;
       }
     });
 
     // ── Retake ────────────────────────────────────────────────────────────────
-    document.getElementById('btn-retake').addEventListener('click', () => {
+    document.getElementById('btn-retake').addEventListener('click', function() {
       currentQ = 0; score = 0; userName = ''; userEmail = '';
-      document.getElementById('result-name').hidden = true;
-      document.getElementById('btn-email').hidden   = true;
+      const nameEl = document.getElementById('result-name');
+      nameEl.hidden = true;
+      nameEl.textContent = '';
+      document.getElementById('btn-email').hidden = true;
       document.getElementById('email-btn-label').textContent = ui.emailBtn;
       document.getElementById('btn-email').disabled = false;
+      document.getElementById('result-card').classList.remove('flash-anim');
+      document.getElementById('result-glow').className = 'result-glow';
       document.getElementById('input-name').value  = '';
       document.getElementById('input-email').value = '';
       showScreen('quiz');
@@ -576,95 +696,123 @@ const uiDataStr   = JSON.stringify(ui);
   .quiz-back-link {
     display: inline-flex; align-items: center; gap: 6px;
     color: var(--muted); font-size:.88rem; margin-bottom: 24px;
-    transition: color .15s;
+    font-family: var(--font); transition: color .15s;
   }
   .quiz-back-link:hover { color: var(--accent); text-decoration: none; }
 
   /* ── Start card ─────────────────────────────────────────────────────── */
   .quiz-start-card { padding: 36px; }
   .quiz-start-meta { margin-bottom: 12px; }
-  .quiz-start-title { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 12px; line-height: 1.35; }
-  .quiz-start-desc { color: var(--muted); line-height: 1.8; margin-bottom: 24px; }
+  .quiz-start-title { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 12px; line-height: 1.35; font-family: var(--font); }
+  .quiz-start-desc { color: var(--muted); line-height: 1.8; margin-bottom: 24px; font-family: var(--font); }
   .quiz-start-info {
     display: flex; flex-direction: column; gap: 10px;
     margin-bottom: 28px; padding: 16px; border-radius: 10px;
     background: var(--surface); border: 1px solid var(--border);
   }
-  .quiz-info-item { display: flex; align-items: center; gap: 8px; font-size: .92rem; color: var(--muted); }
+  .quiz-info-item { display: flex; align-items: center; gap: 8px; font-size: .92rem; color: var(--muted); font-family: var(--font); }
   .quiz-info-label { font-weight: 700; color: var(--text); }
 
-  /* ── Progress ───────────────────────────────────────────────────────── */
-  .quiz-progress-wrap { margin-bottom: 20px; }
-  .quiz-progress-label { font-size: .88rem; color: var(--muted); margin-bottom: 8px; }
-  .quiz-progress-label span { color: var(--text); font-weight: 700; }
-  .quiz-progress-bar-track {
-    width: 100%; height: 6px; border-radius: 999px;
-    background: var(--border);
-  }
-  .quiz-progress-bar-fill {
-    height: 100%; border-radius: 999px;
-    background: linear-gradient(90deg, var(--accent-strong), var(--accent));
-    transition: width .4s ease;
-  }
+  /* ── Segmented Progress ─────────────────────────────────────────────── */
+  .quiz-progress-wrap { margin-bottom: 16px; }
+  .quiz-progress-label { font-size: .88rem; color: var(--muted); margin-bottom: 8px; font-family: var(--font); }
+  .quiz-segs { display: flex; gap: 4px; }
+  .q-seg { flex: 1; height: 5px; border-radius: 999px; background: rgba(255,255,255,.08); transition: background .35s; }
+  .q-seg.done   { background: var(--accent); }
+  .q-seg.active { background: rgba(158,230,207,.4); }
 
   /* ── Question card ──────────────────────────────────────────────────── */
-  .quiz-question-card { padding: 28px 32px 32px; }
+  .quiz-question-card {
+    padding: 28px 32px 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .quiz-question-card::before {
+    content: "";
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent, transparent 10px,
+      rgba(255,255,255,.018) 10px, rgba(255,255,255,.018) 11px
+    );
+    pointer-events: none;
+  }
+
   .quiz-question-header { margin-bottom: 16px; }
-  .quiz-difficulty-badge {
+  .quiz-diff-badge {
     display: inline-block; padding: 3px 12px; border-radius: 999px;
     font-size: .78rem; font-weight: 700; letter-spacing: .05em;
-    border: 1px solid; text-transform: uppercase;
+    font-family: var(--font); border: 1px solid;
   }
   .diff-easy   { color: #6be1a4; border-color: rgba(107,225,164,.35); background: rgba(107,225,164,.08); }
-  .diff-medium { color: var(--gold); border-color: rgba(232,192,122,.35); background: rgba(232,192,122,.08); }
-  .diff-hard   { color: #e07070; border-color: rgba(224,112,112,.35); background: rgba(224,112,112,.08); }
+  .diff-medium { color: #e8c07a; border-color: rgba(232,192,122,.35); background: rgba(232,192,122,.08); }
+  .diff-hard   { color: #e88aaa; border-color: rgba(232,138,170,.35); background: rgba(232,138,170,.08); }
 
-  .quiz-question-text { font-size: 1.1rem; font-weight: 700; line-height: 1.7; margin-bottom: 24px; }
+  .quiz-question-text {
+    font-size: 1.1rem; font-weight: 700; line-height: 1.7;
+    margin-bottom: 24px; font-family: var(--font);
+  }
 
-  /* ── Options ────────────────────────────────────────────────────────── */
-  .quiz-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-  .quiz-option {
-    width: 100%; text-align: start; padding: 13px 16px; border-radius: 10px;
+  /* ── Options with letter badges ─────────────────────────────────────── */
+  .quiz-opts { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+  .quiz-opt {
+    width: 100%; display: flex; align-items: center; gap: 12px;
+    padding: 12px 16px; border-radius: 10px;
     background: var(--surface); border: 1px solid var(--border);
     color: var(--text); font-family: var(--font); font-size: .97rem;
     cursor: pointer; transition: border-color .15s, background .15s;
-    line-height: 1.5;
+    line-height: 1.5; text-align: start;
   }
-  .quiz-option:hover:not(:disabled) { border-color: var(--accent-border); background: var(--accent-dim); }
-  .quiz-option.opt-correct { border-color: #6be1a4; background: rgba(107,225,164,.12); color: #6be1a4; font-weight: 700; cursor: default; }
-  .quiz-option.opt-wrong   { border-color: #e07070; background: rgba(224,112,112,.12); color: #e07070; cursor: default; }
-  .quiz-option.opt-dim     { opacity: .4; cursor: default; }
+  .quiz-opt:hover:not(:disabled) { border-color: var(--accent-border); background: var(--accent-dim); }
 
-  /* ── Hint ───────────────────────────────────────────────────────────── */
-  .quiz-hint-wrap { margin-bottom: 16px; }
-  .quiz-hint-btn {
+  .opt-ltr {
+    flex-shrink: 0;
+    width: 32px; height: 32px; border-radius: 50%;
+    border: 1.5px solid rgba(255,255,255,.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: .82rem; font-weight: 700; font-family: var(--font);
+    color: var(--muted); background: rgba(255,255,255,.04);
+    transition: background .2s, border-color .2s, color .2s;
+  }
+  .opt-txt { flex: 1; }
+
+  .quiz-opt.opt-correct { border-color: #6be1a4; background: rgba(107,225,164,.1); color: #6be1a4; cursor: default; }
+  .quiz-opt.opt-correct .opt-ltr { background: #6be1a4; border-color: #6be1a4; color: #001f15; font-weight: 800; }
+  .quiz-opt.opt-wrong   { border-color: #e07070; background: rgba(224,112,112,.1); color: #e07070; cursor: default; }
+  .quiz-opt.opt-wrong   .opt-ltr { background: #e07070; border-color: #e07070; color: #fff; font-weight: 800; }
+  .quiz-opt.opt-dim     { opacity: .35; cursor: default; }
+
+  /* ── Hint (collapsible dotted box) ──────────────────────────────────── */
+  .hint-wrap { margin-bottom: 16px; }
+  .hint-toggle {
     display: inline-flex; align-items: center; gap: 6px;
     background: none; border: none; cursor: pointer;
     color: var(--muted); font-size: .88rem; font-family: var(--font);
     padding: 4px 0; transition: color .15s;
   }
-  .quiz-hint-btn:hover { color: var(--accent); }
-  .quiz-hint-text {
+  .hint-toggle:hover { color: var(--accent); }
+  .hint-body {
     margin-top: 10px; padding: 12px 16px;
-    background: var(--accent-dim); border: 1px solid var(--accent-border);
-    border-radius: 8px; font-size: .92rem; color: var(--muted); line-height: 1.7;
+    border: 1.5px dashed rgba(158,230,207,.25); border-radius: 8px;
+    font-size: .92rem; color: var(--muted); line-height: 1.7;
+    background: rgba(158,230,207,.04); font-family: var(--font);
   }
 
   /* ── Feedback ───────────────────────────────────────────────────────── */
   .quiz-feedback { margin-bottom: 16px; padding: 12px 16px; border-radius: 8px; background: var(--surface); }
-  .quiz-feedback-result { font-weight: 700; font-size: .95rem; margin-bottom: 4px; }
+  .quiz-fb-result { font-weight: 700; font-size: .95rem; margin-bottom: 4px; font-family: var(--font); }
   .fb-correct { color: #6be1a4; }
   .fb-wrong   { color: #e07070; }
-  .quiz-feedback-ref { font-size: .82rem; color: var(--muted); margin: 0; }
+  .quiz-fb-ref { font-size: .82rem; color: var(--muted); margin: 0; font-family: var(--font); }
 
   /* ── Next button ────────────────────────────────────────────────────── */
-  .quiz-next-btn { margin-top: 8px; width: 100%; justify-content: center; gap: 8px; }
+  .quiz-next-btn { margin-top: 8px; width: 100%; justify-content: center; gap: 8px; font-family: var(--font); }
 
   /* ── Register ───────────────────────────────────────────────────────── */
   .quiz-register-card { padding: 36px; text-align: center; }
   .quiz-register-icon { margin-bottom: 16px; }
-  .quiz-register-title { font-size: 1.3rem; margin-bottom: 6px; }
-  .quiz-register-sub { color: var(--muted); font-size: .9rem; margin-bottom: 24px; }
+  .quiz-register-title { font-size: 1.3rem; margin-bottom: 6px; font-family: var(--font); }
+  .quiz-register-sub { color: var(--muted); font-size: .9rem; margin-bottom: 24px; font-family: var(--font); }
   .quiz-field { margin-bottom: 14px; text-align: start; }
   .quiz-input {
     width: 100%; padding: 12px 16px; border-radius: 10px;
@@ -674,50 +822,186 @@ const uiDataStr   = JSON.stringify(ui);
   }
   .quiz-input:focus { outline: none; border-color: var(--accent-border); }
   .quiz-input::placeholder { color: var(--muted); }
-  .quiz-field-hint { font-size: .8rem; color: var(--muted); margin-top: 5px; padding-inline-start: 2px; }
+  .quiz-field-hint { font-size: .8rem; color: var(--muted); margin-top: 5px; padding-inline-start: 2px; font-family: var(--font); }
   .quiz-register-actions { display: flex; gap: 10px; margin-top: 8px; }
 
-  /* ── Result ─────────────────────────────────────────────────────────── */
+  /* ── Result screen ──────────────────────────────────────────────────── */
+  .result-wrap { position: relative; margin-bottom: 0; }
+  .result-glow {
+    position: absolute; inset: -30px; border-radius: 24px;
+    pointer-events: none; opacity: 0; transition: opacity .8s;
+  }
+  .result-glow.glow-excellent { background: radial-gradient(ellipse at center, rgba(184,145,47,.22), transparent 65%); opacity: 1; }
+  .result-glow.glow-veryGood  { background: radial-gradient(ellipse at center, rgba(63,143,116,.18), transparent 65%); opacity: 1; }
+
   .quiz-result-card { padding: 36px; text-align: center; transition: border-color .3s, background .3s; }
-  .quiz-result-badge-wrap { margin-bottom: 20px; }
-  .quiz-result-badge {
-    display: inline-block; padding: 6px 20px; border-radius: 999px;
-    font-size: 1.1rem; font-weight: 800; letter-spacing: .04em;
-    border: 2px solid;
+
+  @keyframes flash { 0%,100% { box-shadow:none; } 50% { box-shadow:0 0 48px rgba(91,184,212,.3); } }
+  .flash-anim { animation: flash .7s ease-out 3; }
+
+  /* Seal */
+  .result-seal-wrap { margin-bottom: 20px; }
+  .result-seal {
+    width: 100px; height: 100px; border-radius: 50%;
+    border: 3px solid; display: inline-flex;
+    flex-direction: column; align-items: center; justify-content: center;
+    position: relative; transition: border-color .3s, background .3s;
   }
-  .quiz-result-name {
-    font-size: 1.2rem; font-weight: 700; color: var(--text);
-    margin-bottom: 12px;
+  .result-seal::before {
+    content: "";
+    position: absolute; inset: 6px;
+    border: 1px dashed currentColor; border-radius: 50%; opacity: .4;
   }
-  .quiz-result-score { font-size: 3rem; font-weight: 800; line-height: 1; margin-bottom: 6px; }
+  .result-seal-lbl { font-size: 1rem; font-weight: 800; font-family: var(--font); }
+
+  .quiz-result-name { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: 12px; font-family: var(--font); }
+  .quiz-result-score { font-size: 3rem; font-weight: 800; line-height: 1; margin-bottom: 6px; font-family: var(--font); }
   .quiz-score-num   { color: var(--text); }
   .quiz-score-sep   { color: var(--muted); font-size: 2.2rem; }
   .quiz-score-total { color: var(--muted); font-size: 2.2rem; }
-  .quiz-score-percent { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; }
-  .quiz-result-label { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
-  .quiz-result-classification { font-size: 1.3rem; font-weight: 800; margin-bottom: 16px; }
-  .quiz-result-msg { color: var(--muted); line-height: 1.8; font-size: .97rem; max-width: 46ch; margin: 0 auto; }
+  .quiz-score-percent { font-size: 1.5rem; font-weight: 800; margin-bottom: 20px; font-family: var(--font); }
+  .quiz-result-msg { color: var(--muted); line-height: 1.8; font-size: .97rem; max-width: 46ch; margin: 0 auto; font-family: var(--font); }
 
   .quiz-result-actions {
     display: flex; flex-wrap: wrap; gap: 10px;
     justify-content: center; margin-top: 24px;
   }
 
-  /* ── Print ──────────────────────────────────────────────────────────── */
-  .print-only { display: none; }
+  /* ── Confetti ───────────────────────────────────────────────────────── */
+  .confetti-wrap {
+    position: fixed; inset: 0;
+    pointer-events: none; z-index: 9999; overflow: hidden;
+  }
+  .confetti-piece {
+    position: absolute; top: -20px;
+    animation: confettiFall linear forwards;
+  }
+  @keyframes confettiFall {
+    to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+  }
+
+  /* ── Print certificate (screen: hidden) ─────────────────────────────── */
+  .cert-print { display: none; }
+
+  /* ── @media print ───────────────────────────────────────────────────── */
   @media print {
-    .no-print, nav, footer, .quiz-back-link { display: none !important; }
-    .print-only { display: block !important; font-size: .9rem; color: #333; margin-bottom: 16px; }
-    body { background: white !important; color: #111 !important; }
-    .quiz-result-card {
-      border: 2px solid #ccc !important;
-      background: white !important;
-      box-shadow: none !important;
+    @page { size: A4 portrait; margin: 0; }
+
+    nav, footer, main, .quiz-wrap, #quiz-app { display: none !important; }
+
+    .cert-print {
+      --ck-900: #0b1f1c;
+      --ck-gold: #b8912f;
+      --ck-gold-soft: #f7f0dd;
+      --ck-paper: #fffdf9;
+      --ck-text: #1a2b26;
+      --ck-muted: #6b7c76;
+
+      display: block !important;
+      width: 210mm;
+      min-height: 296mm;
+      background: var(--ck-paper);
+      position: relative;
+      padding: 0;
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      color: var(--ck-text);
+      box-sizing: border-box;
     }
-    .quiz-score-num, .quiz-score-sep, .quiz-score-total, .quiz-score-percent,
-    .quiz-result-classification, .quiz-result-msg { color: #111 !important; }
-    .quiz-result-label { color: #555 !important; }
-    .quiz-result-badge { border-color: #888 !important; background: #f5f5f5 !important; color: #111 !important; }
+
+    .cert-frame {
+      position: absolute; inset: 8mm;
+      border: 2.5px solid var(--ck-900);
+      pointer-events: none;
+    }
+    .cert-frame::before {
+      content: "";
+      position: absolute; inset: 5px;
+      border: 1px solid var(--ck-gold);
+    }
+    .cert-content {
+      position: relative; z-index: 1;
+      min-height: 296mm;
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center;
+      padding: 18mm 14mm;
+      box-sizing: border-box;
+    }
+
+    .cert-site-mark {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 4px; margin-bottom: 22px;
+    }
+    .cert-logo-img { height: 44px; width: auto; }
+    .cert-domain { font-size: 11px; letter-spacing: .08em; color: var(--ck-muted); font-family: 'Cairo', Tahoma, Arial, sans-serif; }
+
+    .cert-eyebrow {
+      font-size: 14px; font-weight: 600; color: var(--ck-gold);
+      letter-spacing: .12em; margin-bottom: 8px; font-family: 'Cairo', Tahoma, Arial, sans-serif;
+    }
+    .cert-title-el {
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      font-weight: 900; font-size: 30px; color: var(--ck-900);
+      margin: 0 0 6px;
+    }
+    .cert-subtitle { font-size: 14px; color: var(--ck-muted); margin-bottom: 32px; font-family: 'Cairo', Tahoma, Arial, sans-serif; }
+
+    .cert-grants { font-size: 15px; color: var(--ck-muted); margin-bottom: 6px; font-family: 'Cairo', Tahoma, Arial, sans-serif; }
+    .cert-pname {
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      font-weight: 800; font-size: 36px; color: var(--ck-900);
+      margin: 4px 0 6px;
+      border-bottom: 2px solid var(--ck-gold-soft);
+      padding-bottom: 12px; min-width: 60%;
+    }
+    .cert-completed {
+      font-size: 14px; color: var(--ck-text); margin: 16px 0 28px;
+      font-weight: 600; font-family: 'Cairo', Tahoma, Arial, sans-serif;
+    }
+
+    .cert-score-row {
+      display: flex; align-items: center; gap: 30px; margin-bottom: 26px;
+    }
+    .cert-score-block { text-align: center; }
+    .cert-score-num {
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      font-weight: 900; font-size: 48px; color: var(--ck-900); line-height: 1;
+    }
+    .cert-score-lbl { font-size: 12px; color: var(--ck-muted); margin-top: 4px; font-family: 'Cairo', Tahoma, Arial, sans-serif; }
+    .cert-dv { width: 1px; height: 55px; background: var(--ck-gold-soft); flex-shrink: 0; }
+    .cert-seal {
+      width: 100px; height: 100px; border-radius: 50%;
+      border: 3px solid var(--ck-gold);
+      background: var(--ck-gold-soft);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      position: relative; flex-shrink: 0;
+    }
+    .cert-seal::before {
+      content: "";
+      position: absolute; inset: 6px;
+      border: 1px dashed var(--ck-gold); border-radius: 50%;
+    }
+    .cert-seal-lbl {
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+      font-weight: 800; font-size: 15px; color: var(--ck-900); position: relative; z-index: 1;
+    }
+
+    .cert-quote {
+      font-size: 13px; color: var(--ck-muted);
+      max-width: 400px; line-height: 1.9; margin-bottom: auto;
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+    }
+    .cert-footer-row {
+      width: 100%;
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-top: 36px; padding-top: 16px;
+      border-top: 1px solid var(--ck-gold-soft);
+    }
+    .cert-footer-item {
+      text-align: center; font-size: 12px; color: var(--ck-muted);
+      font-family: 'Cairo', Tahoma, Arial, sans-serif;
+    }
+    .cert-footer-val { font-weight: 700; color: var(--ck-900); font-size: 14px; margin-bottom: 4px; }
   }
 
   /* ── Responsive ─────────────────────────────────────────────────────── */
@@ -727,5 +1011,6 @@ const uiDataStr   = JSON.stringify(ui);
     .quiz-result-score { font-size: 2.2rem; }
     .quiz-result-actions { flex-direction: column; align-items: stretch; }
     .quiz-result-actions .btn { justify-content: center; }
+    .opt-ltr { width: 28px; height: 28px; font-size: .78rem; }
   }
 </style>
