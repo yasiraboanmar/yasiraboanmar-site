@@ -19,7 +19,7 @@ tags:
 draft: false
 linkedinPosted: true
 ---
-### 1. Placement Workflow
+## 1. Placement Workflow
 This flowchart illustrates the logical sequence of the process to ensure sound execution:
 
 | Phase | Action Taken | Expected Outcome |
@@ -32,7 +32,7 @@ This flowchart illustrates the logical sequence of the process to ensure sound e
 
 
 
-### 2. The Golden Triangle: Pre-Implementation Requirements
+## 2. The Golden Triangle: Pre-Implementation Requirements
 Job placement cannot be executed haphazardly; essential pillars must be available to guarantee a logical and legal procedure:
 
 * **Approved Organizational Chart (Org Chart):** Ensuring all departments, sections, and authority lines are clearly defined.
@@ -41,7 +41,7 @@ Job placement cannot be executed haphazardly; essential pillars must be availabl
 
 
 
-### 3. Practical Model: Placement Matrix
+## 3. Practical Model: Placement Matrix
 This matrix is used as an analytical tool to differentiate between employees during placement:
 
 | Employee | Current Position | Proposed Position | Match % | Required Action |
@@ -52,7 +52,7 @@ This matrix is used as an analytical tool to differentiate between employees dur
 
 
 
-### 4. Success Factors and Key Considerations
+## 4. Success Factors and Key Considerations
 To ensure employee acceptance and minimize resistance to change, the following standards must be observed:
 
 1. **Fairness and Transparency:** Relying on measurable objective criteria (qualifications, seniority, appraisal) away from personal estimations.
@@ -61,7 +61,7 @@ To ensure employee acceptance and minimize resistance to change, the following s
 
 
 
-### 5. Integration with Other Procedures
+## 5. Integration with Other Procedures
 Placement is not an isolated procedure; rather, it is the pivot point from which other operations launch:
 
 * **Pay Scales:** Placement determines the job grade, which in turn defines the salary range, allowances, and benefits.
@@ -71,5 +71,5 @@ Placement is not an isolated procedure; rather, it is the pivot point from which
 
 
 
-### Conclusion
+## Conclusion
 The success of the placement process does not stop at issuing the administrative decision; it begins by measuring the employee's impact in their new position. The more accurate the Human Resources Management System (HRMS) is in processing this data, the more the organization will be capable of making sound strategic decisions that enhance its productivity.
