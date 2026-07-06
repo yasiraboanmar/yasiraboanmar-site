@@ -21,13 +21,23 @@ export interface Props {
     }>;
   };
   currentPath: string;
+  image?: string;
 }
 
-const { lang, quiz, currentPath } = Astro.props;
+const { lang, quiz, currentPath, image } = Astro.props;
 const isAr = lang === 'ar';
 const dir = isAr ? 'rtl' : 'ltr';
 
 const quizzesIndexPath = isAr ? '/quizzes/' : '/en/quizzes/';
+
+const quizPath      = isAr ? `/quizzes/${quiz.slug}/` : `/en/quizzes/${quiz.slug}/`;
+const quizFullUrl   = `https://yasiraboanmar.com${quizPath}`;
+const inviteText    = isAr
+  ? `اختبر معرفتك في اختبار «${quiz.title}» على نظام العمل السعودي — yasiraboanmar.com${quizPath}`
+  : `Test your knowledge with the "${quiz.title}" quiz on Saudi Labor Law — yasiraboanmar.com${quizPath}`;
+const inviteWaUrl   = `https://api.whatsapp.com/send?text=${encodeURIComponent(inviteText)}`;
+const inviteXUrl    = `https://twitter.com/intent/tweet?text=${encodeURIComponent(inviteText)}`;
+const inviteLiUrl   = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizFullUrl)}`;
 
 const ui = {
   audience:      isAr ? 'الجمهور المستهدف' : 'Target audience',
@@ -65,6 +75,7 @@ const ui = {
   certAnon:      isAr ? 'مشارك' : 'Participant',
   certCompleted: isAr ? 'عن إتمام اختبار' : 'for completing the quiz',
   certSucc:      isAr ? 'بنجاح' : 'successfully',
+  copied:        isAr ? 'تم النسخ!' : 'Copied!',
   grades: {
     excellent: { label: isAr ? 'ممتاز'    : 'Excellent',   color: '#9ee6cf', bg: 'rgba(158,230,207,.1)', sealColor: '#b8912f', sealBg: 'rgba(184,145,47,.08)',  msg: isAr ? 'رائع! تمتلك معرفة استثنائية بنظام العمل السعودي. أنت نموذج يُحتذى به.'                                     : "Outstanding! Your knowledge of Saudi labor law is exceptional. You're a true role model." },
     veryGood:  { label: isAr ? 'جيد جداً' : 'Very Good',   color: '#5bb8d4', bg: 'rgba(91,184,212,.1)',  sealColor: '#3f8f74', sealBg: 'rgba(63,143,116,.08)',   msg: isAr ? 'أداء ممتاز! أنت على طريق الاحتراف. مراجعة بسيطة للنقاط التي فاتتك ستجعلك خبيراً كاملاً.' : 'Great job! You\'re on the path to mastery. Reviewing the missed points will make you a full expert.' },
@@ -81,6 +92,7 @@ const uiDataStr   = JSON.stringify(ui);
 <Base
   title={`${quiz.title} — ${isAr ? 'ياسر الجيادي' : 'Yasir Aljiyadi'}`}
   description={quiz.description}
+  image={image}
   lang={lang}
   dir={dir}
 >
@@ -120,6 +132,28 @@ const uiDataStr   = JSON.stringify(ui);
             {ui.start}
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
           </button>
+
+          <div class="quiz-invite">
+            <p class="quiz-invite-lbl">{isAr ? 'شارك الاختبار مع الآخرين:' : 'Invite others to take this quiz:'}</p>
+            <div class="quiz-invite-btns">
+              <a href={inviteWaUrl} target="_blank" rel="noopener" class="btn btn-outline quiz-invite-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.997 2C6.477 2 2 6.477 2 12c0 1.99.554 3.847 1.515 5.434L2 22l4.728-1.485A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.997 2zm0 18.182a8.167 8.167 0 01-4.164-1.13l-.298-.177-3.086.81.823-3.012-.194-.31A8.143 8.143 0 013.818 12c0-4.51 3.67-8.182 8.179-8.182 4.509 0 8.18 3.672 8.18 8.182s-3.671 8.182-8.18 8.182z"/></svg>
+                {isAr ? 'واتساب' : 'WhatsApp'}
+              </a>
+              <a href={inviteXUrl} target="_blank" rel="noopener" class="btn btn-outline quiz-invite-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                X
+              </a>
+              <a href={inviteLiUrl} target="_blank" rel="noopener" class="btn btn-outline quiz-invite-btn">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5c0 1.38-1.12 2.5-2.5 2.5S0 4.88 0 3.5C0 2.12 1.12 1 2.48 1c1.37 0 2.5 1.12 2.5 2.5zM.5 8.5h4V23h-4V8.5zm7 0h3.83v1.98h.05c.53-1 1.82-2.06 3.75-2.06 4.01 0 4.75 2.64 4.75 6.07V23h-4v-5.91c0-1.41-.03-3.22-1.96-3.22-1.96 0-2.26 1.53-2.26 3.12V23h-4V8.5z"/></svg>
+                LinkedIn
+              </a>
+              <button id="invite-copy-btn" class="btn btn-outline quiz-invite-btn" type="button">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                <span id="invite-copy-lbl">{isAr ? 'نسخ الرابط' : 'Copy link'}</span>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -223,6 +257,31 @@ const uiDataStr   = JSON.stringify(ui);
             <div class="quiz-score-percent" id="score-percent"></div>
 
             <p class="quiz-result-msg" id="result-msg"></p>
+          </div>
+        </div>
+
+        <!-- Share buttons -->
+        <div class="quiz-share no-print">
+          <p class="quiz-share-label">{isAr ? 'شارك نتيجتك:' : 'Share your result:'}</p>
+          <div class="quiz-share-btns">
+            <button id="share-wa" class="btn btn-outline" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.997 2C6.477 2 2 6.477 2 12c0 1.99.554 3.847 1.515 5.434L2 22l4.728-1.485A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.997 2zm0 18.182a8.167 8.167 0 01-4.164-1.13l-.298-.177-3.086.81.823-3.012-.194-.31A8.143 8.143 0 013.818 12c0-4.51 3.67-8.182 8.179-8.182 4.509 0 8.18 3.672 8.18 8.182s-3.671 8.182-8.18 8.182z"/></svg>
+              {isAr ? 'واتساب' : 'WhatsApp'}
+            </button>
+            <button id="share-x" class="btn btn-outline" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              X
+            </button>
+            <button id="share-copy" class="btn btn-outline" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+              <span id="share-copy-lbl">{isAr ? 'نسخ الرابط' : 'Copy link'}</span>
+            </button>
+            {quiz.slug === 'hr-specialists' && (
+              <button id="share-li" class="btn btn-outline" type="button">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5c0 1.38-1.12 2.5-2.5 2.5S0 4.88 0 3.5C0 2.12 1.12 1 2.48 1c1.37 0 2.5 1.12 2.5 2.5zM.5 8.5h4V23h-4V8.5zm7 0h3.83v1.98h.05c.53-1 1.82-2.06 3.75-2.06 4.01 0 4.75 2.64 4.75 6.07V23h-4v-5.91c0-1.41-.03-3.22-1.96-3.22-1.96 0-2.26 1.53-2.26 3.12V23h-4V8.5z"/></svg>
+                LinkedIn
+              </button>
+            )}
           </div>
         </div>
 
@@ -492,6 +551,20 @@ const uiDataStr   = JSON.stringify(ui);
       renderQuestion(0);
     });
 
+    // ── Invite copy (start screen) ────────────────────────────────────────────
+    var inviteCopyBtn = document.getElementById('invite-copy-btn');
+    if (inviteCopyBtn) {
+      var inviteUrl = 'https://yasiraboanmar.com' + (isAr ? '/quizzes/' : '/en/quizzes/') + quiz.slug + '/';
+      inviteCopyBtn.addEventListener('click', function() {
+        var lbl = document.getElementById('invite-copy-lbl');
+        var orig = lbl.textContent;
+        navigator.clipboard.writeText(inviteUrl).then(function() {
+          lbl.textContent = ui.copied;
+          setTimeout(function() { lbl.textContent = orig; }, 1800);
+        }).catch(function() {});
+      });
+    }
+
     // ── Register form ────────────────────────────────────────────────────────
     document.getElementById('register-form').addEventListener('submit', function(e) {
       e.preventDefault();
@@ -602,6 +675,35 @@ const uiDataStr   = JSON.stringify(ui);
       document.getElementById('cert-date').textContent = certDate;
 
       showScreen('result');
+
+      // Share buttons
+      var quizUrl = isAr
+        ? 'https://yasiraboanmar.com/quizzes/' + quiz.slug + '/'
+        : 'https://yasiraboanmar.com/en/quizzes/' + quiz.slug + '/';
+      var shareTxt = isAr
+        ? 'حصلت على ' + pct + '% في اختبار «' + quiz.title + '» — جرّب معرفتك على yasiraboanmar.com'
+        : 'I scored ' + pct + '% on the "' + quiz.title + '" quiz — test your knowledge at yasiraboanmar.com';
+
+      document.getElementById('share-wa').onclick = function() {
+        window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(shareTxt + '\n' + quizUrl), '_blank', 'noopener');
+      };
+      document.getElementById('share-x').onclick = function() {
+        window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(shareTxt) + '&url=' + encodeURIComponent(quizUrl), '_blank', 'noopener');
+      };
+      document.getElementById('share-copy').onclick = function() {
+        var lbl = document.getElementById('share-copy-lbl');
+        var orig = lbl.textContent;
+        navigator.clipboard.writeText(quizUrl).then(function() {
+          lbl.textContent = ui.copied;
+          setTimeout(function() { lbl.textContent = orig; }, 1800);
+        }).catch(function() {});
+      };
+      var liBtn = document.getElementById('share-li');
+      if (liBtn) {
+        liBtn.onclick = function() {
+          window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + encodeURIComponent(quizUrl), '_blank', 'noopener');
+        };
+      }
 
       // Save attempt to D1 (fire-and-forget)
       fetch('/api/quiz-submit', {
@@ -882,6 +984,32 @@ const uiDataStr   = JSON.stringify(ui);
   @keyframes confettiFall {
     to { transform: translateY(110vh) rotate(720deg); opacity: 0; }
   }
+
+  /* ── Invite share (start screen) ────────────────────────────────────── */
+  .quiz-invite {
+    margin-top: 20px; padding: 16px 18px;
+    border-radius: 12px; border: 1px solid var(--border);
+    background: rgba(255,255,255,.02); text-align: center;
+  }
+  .quiz-invite-lbl {
+    font-size: .78rem; color: var(--muted); margin-bottom: 10px;
+    font-family: var(--font); font-weight: 600;
+  }
+  .quiz-invite-btns { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .quiz-invite-btn { gap: 6px; font-size: .82rem; padding: 7px 14px; }
+
+  /* ── Share section ──────────────────────────────────────────────────── */
+  .quiz-share {
+    margin-top: 20px; padding: 18px 20px;
+    border-radius: 14px; border: 1px solid var(--border);
+    background: var(--surface); text-align: center;
+  }
+  .quiz-share-label {
+    font-size: .82rem; color: var(--muted); margin-bottom: 14px;
+    font-family: var(--font); font-weight: 600;
+  }
+  .quiz-share-btns { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .quiz-share-btns .btn { gap: 7px; font-size: .86rem; padding: 9px 16px; }
 
   /* ── Print certificate (screen: hidden) ─────────────────────────────── */
   .cert-print { display: none; }

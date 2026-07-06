@@ -34,34 +34,92 @@ const currentPath = Astro.url.pathname;
   <section class="section">
     <div class="container">
       <div class="quizzes-grid">
-        {quizzes.map(q => (
-          <a href={`/en/quizzes/${q.id}/`} class="quiz-card card">
-            <div class="quiz-card-header">
-              <span class="quiz-card-badge">Interactive Quiz</span>
-            </div>
-            <h2 class="quiz-card-title">{q.data.title}</h2>
-            <p class="quiz-card-desc">{q.data.description}</p>
-            <div class="quiz-card-meta">
-              <div class="quiz-meta-item">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                <span>{q.data.audience}</span>
+        {quizzes.map(q => {
+          const quizPath  = `/en/quizzes/${q.id}/`;
+          const quizUrl   = `https://yasiraboanmar.com${quizPath}`;
+          const shareTxt  = `Test your knowledge with the "${q.data.title}" quiz on Saudi Labor Law — yasiraboanmar.com${quizPath}`;
+          const waUrl     = `https://api.whatsapp.com/send?text=${encodeURIComponent(shareTxt)}`;
+          const xUrl      = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareTxt)}`;
+          const liUrl     = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizUrl)}`;
+          return (
+            <div class="quiz-card-outer">
+              <a href={quizPath} class="quiz-card card">
+                <div class="quiz-card-header">
+                  <span class="quiz-card-badge">Interactive Quiz</span>
+                </div>
+                <h2 class="quiz-card-title">{q.data.title}</h2>
+                <p class="quiz-card-desc">{q.data.description}</p>
+                <div class="quiz-card-meta">
+                  <div class="quiz-meta-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span>{q.data.audience}</span>
+                  </div>
+                  <div class="quiz-meta-item">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    <span>{q.data.total_questions} questions</span>
+                  </div>
+                  <div class="quiz-meta-item" style="display:none" data-count-wrap>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    <span data-quiz-count-id={q.id}></span>
+                  </div>
+                </div>
+                <div class="quiz-card-cta">
+                  Start Quiz
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+                </div>
+              </a>
+              <div class="quiz-card-invite">
+                <span class="qci-label">Invite others:</span>
+                <a href={waUrl} target="_blank" rel="noopener" class="qci-btn" title="Share on WhatsApp" aria-label="Share on WhatsApp">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M11.997 2C6.477 2 2 6.477 2 12c0 1.99.554 3.847 1.515 5.434L2 22l4.728-1.485A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 11.997 2zm0 18.182a8.167 8.167 0 01-4.164-1.13l-.298-.177-3.086.81.823-3.012-.194-.31A8.143 8.143 0 013.818 12c0-4.51 3.67-8.182 8.179-8.182 4.509 0 8.18 3.672 8.18 8.182s-3.671 8.182-8.18 8.182z"/></svg>
+                </a>
+                <a href={xUrl} target="_blank" rel="noopener" class="qci-btn" title="Share on X" aria-label="Share on X">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href={liUrl} target="_blank" rel="noopener" class="qci-btn" title="Share on LinkedIn" aria-label="Share on LinkedIn">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5c0 1.38-1.12 2.5-2.5 2.5S0 4.88 0 3.5C0 2.12 1.12 1 2.48 1c1.37 0 2.5 1.12 2.5 2.5zM.5 8.5h4V23h-4V8.5zm7 0h3.83v1.98h.05c.53-1 1.82-2.06 3.75-2.06 4.01 0 4.75 2.64 4.75 6.07V23h-4v-5.91c0-1.41-.03-3.22-1.96-3.22-1.96 0-2.26 1.53-2.26 3.12V23h-4V8.5z"/></svg>
+                </a>
+                <button class="qci-btn" data-copy-url={quizUrl} title="Copy link" aria-label="Copy link">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                </button>
               </div>
-              <div class="quiz-meta-item">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                <span>{q.data.total_questions} questions</span>
-              </div>
             </div>
-            <div class="quiz-card-cta">
-              Start Quiz
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-          </a>
-        ))}
+          );
+        })}
       </div>
     </div>
   </section>
 
   <Footer lang="en" />
+
+  <script is:inline>
+  (function() {
+    fetch('/api/quiz-stats')
+      .then(function(r) { return r.ok ? r.json() : Promise.reject(); })
+      .then(function(data) {
+        document.querySelectorAll('[data-quiz-count-id]').forEach(function(el) {
+          var id = el.getAttribute('data-quiz-count-id');
+          var n = data[id];
+          if (typeof n === 'number' && n > 0) {
+            el.textContent = 'Completed by ' + n.toLocaleString('en') + ' people so far';
+            el.closest('[data-count-wrap]').style.display = 'flex';
+          }
+        });
+      })
+      .catch(function() {});
+
+    document.querySelectorAll('[data-copy-url]').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var url = btn.getAttribute('data-copy-url');
+        var orig = btn.innerHTML;
+        navigator.clipboard.writeText(url).then(function() {
+          btn.innerHTML = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+          setTimeout(function() { btn.innerHTML = orig; }, 1800);
+        }).catch(function() {});
+      });
+    });
+  })();
+  </script>
 </Base>
 
 <style>
@@ -71,17 +129,28 @@ const currentPath = Astro.url.pathname;
     gap: 20px;
   }
 
+  .quiz-card-outer {
+    display: flex; flex-direction: column;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .quiz-card-outer:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(158,230,207,.07);
+  }
+  .quiz-card-outer:hover > .quiz-card {
+    border-color: var(--accent-border);
+  }
+  .quiz-card-outer > .quiz-card {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
   .quiz-card {
     display: flex; flex-direction: column; gap: 12px;
     padding: 28px; text-decoration: none; color: var(--text);
-    transition: border-color .2s, transform .2s, box-shadow .2s;
+    transition: border-color .2s;
   }
-  .quiz-card:hover {
-    border-color: var(--accent-border);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(158,230,207,.07);
-    text-decoration: none; color: var(--text);
-  }
+  .quiz-card:hover { text-decoration: none; color: var(--text); }
 
   .quiz-card-header { margin-bottom: 2px; }
   .quiz-card-badge {
@@ -101,6 +170,29 @@ const currentPath = Astro.url.pathname;
     font-size: .88rem; color: var(--accent); font-weight: 700;
     margin-top: 4px;
   }
+
+  /* Invite row */
+  .quiz-card-invite {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 10px 16px;
+    border: 1px solid var(--border); border-top: 0;
+    border-bottom-left-radius: 14px; border-bottom-right-radius: 14px;
+    background: rgba(255,255,255,.015);
+    font-family: var(--font);
+  }
+  .qci-label {
+    font-size: .72rem; color: var(--muted);
+    margin-inline-end: 2px; white-space: nowrap;
+  }
+  .qci-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 30px; height: 30px; border-radius: 8px;
+    border: 1px solid var(--border); background: none;
+    color: var(--muted); cursor: pointer;
+    transition: color .15s, border-color .15s; text-decoration: none;
+    padding: 0; flex-shrink: 0;
+  }
+  .qci-btn:hover { color: var(--accent); border-color: var(--accent-border); text-decoration: none; }
 
   @media (max-width: 600px) {
     .quizzes-grid { grid-template-columns: 1fr; }
