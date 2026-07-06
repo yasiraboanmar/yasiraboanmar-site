@@ -101,29 +101,55 @@ const currentPath = Astro.url.pathname;
 
     var _shareImgs = ['/images/quizzes/law-quiz-1.png', '/images/quizzes/law-quiz-2.png', '/images/quizzes/law-quiz-3.png'];
 
+    async function _buildShareImg(imgPath, title, urlDisp, rtl) {
+      var img = new Image();
+      await new Promise(function(res, rej) { img.onload = res; img.onerror = rej; img.src = imgPath; });
+      if (document.fonts && document.fonts.ready) await document.fonts.ready;
+      var W = img.naturalWidth || 1200, H = img.naturalHeight || 630;
+      var cv = document.createElement('canvas');
+      cv.width = W; cv.height = H;
+      var ctx = cv.getContext('2d');
+      ctx.drawImage(img, 0, 0, W, H);
+      var oh = Math.round(H * 0.26);
+      ctx.fillStyle = 'rgba(0,10,8,0.78)';
+      ctx.fillRect(0, H - oh, W, oh);
+      var pad = Math.round(W * 0.05);
+      ctx.direction = rtl ? 'rtl' : 'ltr';
+      ctx.textAlign  = rtl ? 'right' : 'left';
+      var ax = rtl ? W - pad : pad;
+      ctx.fillStyle = '#ffffff';
+      ctx.font = 'bold ' + Math.round(H * 0.063) + 'px Cairo, Tahoma, Arial';
+      ctx.fillText(title, ax, H - oh + Math.round(oh * 0.43));
+      ctx.fillStyle = '#9ee6cf';
+      ctx.font = Math.round(H * 0.041) + 'px Cairo, Tahoma, Arial';
+      ctx.fillText(urlDisp, ax, H - oh + Math.round(oh * 0.78));
+      return new Promise(function(res) { cv.toBlob(res, 'image/jpeg', 0.92); });
+    }
+
     document.querySelectorAll('[data-quiz-slug]').forEach(function(btn) {
       btn.addEventListener('click', async function() {
-        var slug  = btn.getAttribute('data-quiz-slug');
-        var title = btn.getAttribute('data-quiz-title');
-        var lang  = btn.getAttribute('data-lang');
-        var url   = 'https://yasiraboanmar.com' + (lang === 'ar' ? '/quizzes/' : '/en/quizzes/') + slug + '/';
-        var txt   = 'Test your knowledge with the "' + title + '" quiz on Saudi Labor Law';
+        var slug    = btn.getAttribute('data-quiz-slug');
+        var title   = btn.getAttribute('data-quiz-title');
+        var lang    = btn.getAttribute('data-lang');
+        var url     = 'https://yasiraboanmar.com' + (lang === 'ar' ? '/quizzes/' : '/en/quizzes/') + slug + '/';
+        var urlDisp = 'yasiraboanmar.com' + (lang === 'ar' ? '/quizzes/' : '/en/quizzes/') + slug + '/';
+        var txt     = 'Test your knowledge with the "' + title + '" quiz on Saudi Labor Law';
         var imgPath = _shareImgs[Math.floor(Math.random() * _shareImgs.length)];
         try {
-          var res  = await fetch(imgPath);
-          var blob = await res.blob();
-          var file = new File([blob], 'quiz.png', { type: blob.type });
+          var blob = await _buildShareImg(imgPath, title, urlDisp, false);
+          var file = new File([blob], 'quiz.jpg', { type: 'image/jpeg' });
           if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({ files: [file], text: txt + '\n' + url });
-          } else if (navigator.share) {
-            await navigator.share({ text: txt + '\n' + url });
-          } else {
-            window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(txt + '\n' + url), '_blank', 'noopener');
+            await navigator.share({ files: [file] });
+            return;
           }
         } catch (e) {
-          if (e.name !== 'AbortError') {
-            window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(txt + '\n' + url), '_blank', 'noopener');
-          }
+          if (e.name === 'AbortError') return;
+        }
+        var fallback = txt + '\n' + url;
+        if (navigator.share) {
+          navigator.share({ text: fallback }).catch(function() {});
+        } else {
+          window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(fallback), '_blank', 'noopener');
         }
       });
     });
