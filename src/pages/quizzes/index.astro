@@ -187,15 +187,23 @@ const currentPath = Astro.url.pathname;
   }
   .qci-btn {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 30px; height: 30px; border-radius: 8px;
+    width: 40px; height: 40px; border-radius: 10px;
     border: 1px solid var(--border); background: none;
     color: var(--muted); cursor: pointer;
-    transition: color .15s, border-color .15s; text-decoration: none;
-    padding: 0; flex-shrink: 0;
+    transition: color .15s, border-color .15s, background .15s;
+    text-decoration: none; padding: 0; flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
   }
-  .qci-btn:hover { color: var(--accent); border-color: var(--accent-border); text-decoration: none; }
+  .qci-btn:hover  { color: var(--accent); border-color: var(--accent-border); text-decoration: none; }
+  .qci-btn:active { background: rgba(158,230,207,.08); }
+
+  @media (max-width: 768px) {
+    .quizzes-grid { grid-template-columns: 1fr; }
+  }
 
   @media (max-width: 600px) {
-    .quizzes-grid { grid-template-columns: 1fr; }
+    .qci-label { display: none; }
+    .quiz-card-invite { justify-content: flex-end; gap: 6px; padding: 8px 12px; }
+    .qci-btn { width: 44px; height: 44px; border-radius: 12px; }
   }
 </style>
