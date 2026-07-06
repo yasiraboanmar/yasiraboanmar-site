@@ -35,8 +35,13 @@ const currentPath = Astro.url.pathname;
     <div class="container">
       <div class="quizzes-grid">
         {quizzes.map(q => {
-          const quizPath  = `/quizzes/${q.id}/`;
-          const quizUrl   = `https://yasiraboanmar.com${quizPath}`;
+          const quizPath   = `/quizzes/${q.id}/`;
+          const quizUrl    = `https://yasiraboanmar.com${quizPath}`;
+          const inviteTxt  = `اختبر معرفتك في اختبار «${q.data.title}» على نظام العمل السعودي`;
+          const inviteMsg  = `${inviteTxt}\n${quizUrl}`;
+          const waUrl      = `https://api.whatsapp.com/send?text=${encodeURIComponent(inviteMsg)}`;
+          const xUrl       = `https://twitter.com/intent/tweet?text=${encodeURIComponent(inviteMsg)}`;
+          const liUrl      = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(quizUrl)}`;
           return (
             <div class="quiz-card-outer">
               <a href={quizPath} class="quiz-card card">
@@ -65,11 +70,16 @@ const currentPath = Astro.url.pathname;
                 </div>
               </a>
               <div class="quiz-card-invite">
-                <span class="qci-label">شارك الاختبار مع الآخرين:</span>
-                <button class="qci-share-btn" data-quiz-slug={q.id} data-quiz-title={q.data.title} data-lang="ar" title="شارك الاختبار" aria-label="شارك الاختبار">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
-                  شارك
-                </button>
+                <span class="qci-label">شارك مع الآخرين:</span>
+                <a href={waUrl} target="_blank" rel="noopener" class="qci-btn" title="واتساب" aria-label="شارك عبر واتساب">
+                  <svg width="15" height="15" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C8.832 3 3 8.832 3 16c0 2.385.638 4.686 1.84 6.695L3 29l6.48-1.8A13 13 0 0 0 16 29c7.168 0 13-5.832 13-13S23.168 3 16 3zm-3.184 7.355c.2 0 .406.003.584.01.2.008.46-.076.718.548.268.648.908 2.218.988 2.378.08.16.132.346.026.558-.1.207-.15.334-.298.515-.148.183-.313.408-.447.547-.148.15-.302.312-.13.613.173.3.768 1.266 1.649 2.05 1.132 1.01 2.087 1.322 2.387 1.47.3.15.476.126.65-.075.174-.2.744-.867.942-1.165.197-.298.395-.248.665-.15.27.1 1.716.81 2.01.957.296.148.493.222.566.345.074.123.074.713-.173 1.402-.248.688-1.46 1.354-1.996 1.403-.51.046-1.008.23-3.4-.71-2.862-1.12-4.666-4.057-4.808-4.244-.14-.187-1.15-1.527-1.15-2.914 0-1.386.727-2.07 1.025-2.35.224-.214.483-.267.644-.267z"/></svg>
+                </a>
+                <a href={xUrl} target="_blank" rel="noopener" class="qci-btn" title="X (تويتر)" aria-label="شارك عبر X">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.26 5.632 5.905-5.632zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                </a>
+                <a href={liUrl} target="_blank" rel="noopener" class="qci-btn" title="LinkedIn" aria-label="شارك عبر LinkedIn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </a>
                 <button class="qci-btn" data-copy-url={quizUrl} title="نسخ الرابط" aria-label="نسخ الرابط">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
                 </button>
@@ -98,38 +108,6 @@ const currentPath = Astro.url.pathname;
         });
       })
       .catch(function() {});
-
-    var _shareImgs = ['/images/quizzes/law-quiz-1.png', '/images/quizzes/law-quiz-2.png', '/images/quizzes/law-quiz-3.png'];
-
-    document.querySelectorAll('[data-quiz-slug]').forEach(function(btn) {
-      btn.addEventListener('click', async function() {
-        var slug    = btn.getAttribute('data-quiz-slug');
-        var title   = btn.getAttribute('data-quiz-title');
-        var lang    = btn.getAttribute('data-lang');
-        var url     = 'https://yasiraboanmar.com' + (lang === 'ar' ? '/quizzes/' : '/en/quizzes/') + slug + '/';
-        var txt     = lang === 'ar'
-          ? 'اختبر معرفتك في اختبار «' + title + '» على نظام العمل السعودي'
-          : 'Test your knowledge with the "' + title + '" quiz on Saudi Labor Law';
-        var imgPath = _shareImgs[Math.floor(Math.random() * _shareImgs.length)];
-        try {
-          var res  = await fetch(imgPath);
-          var blob = await res.blob();
-          var file = new File([blob], 'quiz.jpg', { type: blob.type });
-          if (navigator.canShare && navigator.canShare({ files: [file] })) {
-            await navigator.share({ files: [file], text: txt });
-            return;
-          }
-        } catch (e) {
-          if (e.name === 'AbortError') return;
-        }
-        var fallback = txt + '\n' + url;
-        if (navigator.share) {
-          navigator.share({ text: fallback }).catch(function() {});
-        } else {
-          window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(fallback), '_blank', 'noopener');
-        }
-      });
-    });
 
     document.querySelectorAll('[data-copy-url]').forEach(function(btn) {
       btn.addEventListener('click', function() {
@@ -207,14 +185,6 @@ const currentPath = Astro.url.pathname;
     font-size: .72rem; color: var(--muted);
     margin-inline-end: 2px; white-space: nowrap;
   }
-  .qci-share-btn {
-    display: inline-flex; align-items: center; gap: 5px;
-    padding: 5px 12px; border-radius: 8px;
-    border: 1px solid var(--border); background: none;
-    color: var(--muted); cursor: pointer; font-size: .78rem;
-    font-family: var(--font); transition: color .15s, border-color .15s;
-  }
-  .qci-share-btn:hover { color: var(--accent); border-color: var(--accent-border); }
   .qci-btn {
     display: inline-flex; align-items: center; justify-content: center;
     width: 30px; height: 30px; border-radius: 8px;
