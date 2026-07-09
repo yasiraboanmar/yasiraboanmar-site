@@ -4,7 +4,8 @@ title: كيف تُطبّق الجزاءات التأديبية بلا أخطاء
 description: دليل شامل لتطبيق جدول المخالفات والجزاءات وفق نظام العمل السعودي،
   مع خطوات الإجراء الصحيح وأمثلة تطبيقية وأخطاء يجب تجنبها
 pubDate: 2026-07-09
-tags: []
+tags:
+  - أنظمة العمل
 draft: false
 linkedinPosted: true
 cover: /images/blog/hr-labor-law.png
