@@ -6,7 +6,8 @@ description: A comprehensive guide to applying the Saudi Labor Law penalty
   schedule correctly, with step-by-step procedures, real examples, and common
   mistakes to avoid
 pubDate: 2026-07-09
-tags: []
+tags:
+  - Labor Law
 draft: false
 linkedinPosted: true
 cover: /images/blog/hr-labor-law.png
